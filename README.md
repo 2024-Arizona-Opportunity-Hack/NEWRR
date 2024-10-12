@@ -22,9 +22,9 @@
 Brief description of your project and its goals.
 
 ## Tech Stack
-- Frontend: 
-- Backend: 
-- Database: 
+- Frontend: Vite + React + Tailwind + TanStack Query
+- Backend: Express.js
+- Database: MongoDB
 - APIs: 
 <!-- Add/modify as needed -->
 
