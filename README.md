@@ -11,11 +11,11 @@
 @Ronald McInnes (on Slack)
 
 ## Team "Amdahl's Law"
-- Ronald McInnes https://github.com/rondawgx3
-- Andrew Le https://github.com/pandrewle
-- Jonathan Amdahl https://github.com/JonathanAmdahl
-- Dhruv Jain https://github.com/materwelondhruv
-- Dario D'Addamio https://github.com/dariodaddamio
+- [Ronald McInnes](https://github.com/rondawgx3)
+- [Andrew Le](https://github.com/pandrewle)
+- [Jonathan Amdahl](https://github.com/JonathanAmdahl)
+- [Dhruv Jain](https://github.com/materwelondhruv)
+- [Dario D'Addamio](https://github.com/dariodaddamio)
 <!-- Add all team members -->
 
 ## Project Overview
