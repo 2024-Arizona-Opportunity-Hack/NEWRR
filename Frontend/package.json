@@ -9,12 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-<<<<<<< HEAD
     "@react-oauth/google": "^0.12.1",
-=======
     "@newrr/api": "workspace:*",
->>>>>>> 02cc092 (feat: updating configs to work with monorepo multi-service setup)
     "@tanstack/react-query": "^5.59.9",
+    "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0"
