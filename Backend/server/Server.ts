@@ -4,6 +4,7 @@ import { Globals } from '../library/Globals/Globals';
 import { LoggerUtils } from '../library/Utilities/LoggerUtils';
 import { GetRouter } from './Routes/Get';
 import { HttpStatusCode } from 'axios';
+import { PostRouter } from './Routes/Post';
 // Import other routers as needed
 
 export class Server {
@@ -34,6 +35,7 @@ export class Server {
 
   private configureRoutes(): void {
     this.app.use('/api', new GetRouter().router);
+    this.app.use('/api', new PostRouter().router);
   }
 
   private configureErrorHandling(): void {
