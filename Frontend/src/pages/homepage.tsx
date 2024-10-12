@@ -1,17 +1,35 @@
-// one pager homepage with all the sections
-
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import newrrLogo from "../assets/newrr.svg";
 
 const Home: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
   const navbarRef = useRef<HTMLDivElement>(null);
+  const lastScrollTop = useRef(0);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop.current) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
+      }
+      lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -36,7 +54,11 @@ const Home: React.FC = () => {
       {/* Navbar */}
       <nav
         ref={navbarRef}
-        className="fixed top-0 left-0 right-0 bg-[#DAD7CE] text-[#101010] z-50"
+        className={`fixed top-0 left-0 right-0 bg-[#FFFFFF] text-[#101010] z-50 transition-transform duration-300 ${
+          isNavbarVisible
+            ? "transform translate-y-0"
+            : "transform -translate-y-full"
+        }`}
       >
         <div className="container mx-auto">
           <div className="flex items-center justify-between h-16 sm:h-20">
@@ -98,7 +120,7 @@ const Home: React.FC = () => {
       {/* Sliding Menu */}
       <div
         ref={menuRef}
-        className={`fixed inset-y-0 right-0 max-w-xs w-full bg-[#DAD7CE] text-[#101010] transform ${
+        className={`fixed inset-y-0 right-0 max-w-xs w-full bg-[#FFFFFF] text-[#101010] transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center`}
       >
@@ -124,9 +146,9 @@ const Home: React.FC = () => {
       </div>
 
       {/* Hero content */}
-      <main className="pt-16 sm:pt-20">
+      <main className="pt-16 sm:pt-20 flex items-center bg-[#FFFFFF] justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)]">
         <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="md:w-full mb-8 md:mb-0">
               <h2 className="font-['Outfit'] font-black text-2xl sm:text-3xl md:text-4xl text-[#101010] leading-tight">
                 Rescuing, Rehabilitating, and Rehoming Wildlife and Reptiles.
@@ -159,7 +181,7 @@ const Home: React.FC = () => {
       </main>
 
       {/* What we do, and how the process works */}
-      <section className="bg-[#61805B] py-12">
+      <section className="bg-[#61805B] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)]">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
@@ -264,9 +286,9 @@ const Home: React.FC = () => {
       </section>
 
       {/* Found an Animal? */}
-      <section className="bg-[#DAD7CE] py-12">
+      <section className="bg-[#DAD7CE] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)]">
         <div className="container mx-auto">
-          <h3 className="font-['Montserrat'] font-bold text-3xl text-[#3A4D42] mb-4">
+          <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
             Found an Animal?
           </h3>
           <ul className="text-[#3A4D42] space-y-4">
@@ -274,7 +296,7 @@ const Home: React.FC = () => {
               <strong className="font-['Outfit'] font-bold">
                 Found a sick, injured, or orphaned wild animal?
               </strong>{" "}
-              <span className="font-['Outfit'] text-base">
+              <span className="font-['Outfit'] text-lg">
                 Get it into a box with a lid or crate with a door. You can use a
                 towel, sheet, etc., place it over the animal, scoop the whole
                 thing up and place in box/crate. Ensure the animal is warm and
@@ -289,7 +311,7 @@ const Home: React.FC = () => {
               <strong className="font-['Outfit'] font-bold">
                 Never give food or water to any animal, baby or adult.
               </strong>{" "}
-              <span className="font-['Outfit'] text-base">
+              <span className="font-['Outfit'] text-lg">
                 Think of it this way, if you go to the ER due to illness or
                 injury, they don’t give you food or water until the doctor sees
                 you.
@@ -299,7 +321,7 @@ const Home: React.FC = () => {
               <strong className="font-['Outfit'] font-bold">
                 Please do not play with wild animals.
               </strong>{" "}
-              <span className="font-['Outfit'] text-base">
+              <span className="font-['Outfit'] text-lg">
                 Holding them, petting them, etc. just adds to their stress.
               </span>
             </li>
@@ -307,7 +329,7 @@ const Home: React.FC = () => {
               <strong className="font-['Outfit'] font-bold">
                 Contact NEWRR.
               </strong>{" "}
-              <span className="font-['Outfit'] text-base">
+              <span className="font-['Outfit'] text-lg">
                 Enter information in the form below and we will reach out for
                 intake and next steps.
               </span>
@@ -316,7 +338,7 @@ const Home: React.FC = () => {
               <strong className="font-['Outfit'] font-bold">
                 Animal is contained and I’ve contacted NEWRR, what now?
               </strong>{" "}
-              <span className="font-['Outfit'] text-base">
+              <span className="font-['Outfit'] text-lg">
                 Contact a permitted wildlife rehabilitator immediately. Helpful
                 resources:{" "}
                 <a href="#" className="underline">
@@ -332,6 +354,41 @@ const Home: React.FC = () => {
           <button className="bg-[#3A4D42] text-white px-6 py-2 mt-6 rounded font-outfit font-medium">
             NEWRR Intake Form
           </button>
+        </div>
+      </section>
+
+      {/* Want to adopt an animal? */}
+      <section className="bg-[#3A4D42] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)]">
+        <div className="container mx-auto">
+          <div className="text-left mb-8">
+            <h3 className="font-['Montserrat'] font-bold text-4xl text-[#DAD7CE] mb-4">
+              Want to Adopt an Animal?
+            </h3>
+            <p className="font-['Outfit'] text-lg text-[#DAD7CE]">
+              If you are interested in adopting an animal, take a look at what
+              we currently have, and get in contact with us!
+            </p>
+          </div>
+          {/* Carousel placeholder */}
+          <div className="carousel flex justify-center items-center space-x-4">
+            {/* Example carousel item */}
+            <div className="bg-white shadow-lg rounded-lg p-4">
+              <img
+                src="animal-image.jpg"
+                alt="Animal"
+                className="w-full h-48 object-cover rounded-t-lg"
+              />
+              <div className="p-4">
+                <h4 className="font-['Outfit'] font-bold text-xl text-[#3A4D42]">
+                  Animal Name
+                </h4>
+                <button className="bg-[#3A4D42] text-white px-4 py-2 mt-4 rounded font-outfit font-medium">
+                  Adoption Form
+                </button>
+              </div>
+            </div>
+            {/* Add more carousel items as needed */}
+          </div>
         </div>
       </section>
     </div>
