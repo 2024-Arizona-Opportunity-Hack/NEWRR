@@ -2,6 +2,9 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "composite": true,
-    "rootDir": "../"
-  }
+    "paths": {
+      "@monorepo/api": ["../API/source/index.ts"]
+    }
+  },
+  "references": [{ "path": "../API" }]
 }

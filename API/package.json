@@ -2,7 +2,6 @@
   "name": "@newrr/api",
   "private": true,
   "scripts": {},
-  "devDependencies": {
-    "lerna": "^4.0.0"
-  }
+  "main": "source/index.ts",
+  "types": "source/index.d.ts"
 }

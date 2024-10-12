@@ -13,7 +13,11 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noUnusedLocals": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@monorepo/api": ["API/source/index.ts"]
+    }
   },
   "include": ["API/**/*.ts", "Frontend/**/*.ts", "Backend/**/*.ts"],
   "exclude": ["dist"]
