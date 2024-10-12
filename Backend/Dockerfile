@@ -1,5 +1,3 @@
-# Backend/Dockerfile
-
 # Stage 1: Build the Backend
 FROM node:22-alpine AS builder
 
@@ -40,7 +38,7 @@ RUN pnpm install --prod --filter backend
 COPY --from=builder /app/Backend/dist ./Backend/dist
 
 # Expose the port that the app runs on
-EXPOSE 6969
+EXPOSE 4000
 
 # Start the application
 CMD ["pnpm", "--filter", "backend", "start"]
