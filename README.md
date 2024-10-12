@@ -11,9 +11,10 @@
 @Ronald McInnes (on Slack)
 
 ## Team "Amdahl's Law"
-- [Team Member 1](GitHub profile link)
-- [Team Member 2](GitHub profile link)
-- [Team Member 3](GitHub profile link)
+- https://github.com/rondawgx3
+- https://github.com/pandrewle
+- https://github.com/JonathanAmdahl
+- https://github.com/materwelondhruv
 <!-- Add all team members -->
 
 ## Project Overview
