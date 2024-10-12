@@ -1,5 +1,3 @@
-# Frontend/Dockerfile
-
 # Stage 1: Build the Frontend
 FROM node:22-alpine AS builder
 
