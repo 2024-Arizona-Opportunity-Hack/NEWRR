@@ -4,4 +4,8 @@ export abstract class BaseMethods {
   constructor(baseUrl: string) {
     this._baseUrl = baseUrl;
   }
+
+  get baseUrl(): string {
+    return this._baseUrl;
+  }
 }
