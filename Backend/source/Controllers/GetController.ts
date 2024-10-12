@@ -4,7 +4,7 @@ import {
   ServerEvent
 } from '../../library/Interfaces/HandlerController';
 import { ValidRoutes } from '../../server/ValidRoutes';
-import { GetHelloWorld } from '../Handlers/GetHandlers/HelloWorld';
+import { GetHealth } from '../Handlers/GetHandlers/HelloWorld';
 
 export class GetController extends Controller<ServerEvent> {
   private routeId: ValidRoutes;
@@ -16,8 +16,8 @@ export class GetController extends Controller<ServerEvent> {
 
   protected resolve(): HandlerController<ServerEvent> | null {
     switch (this.routeId) {
-      case ValidRoutes.HelloWorld:
-        return new GetHelloWorld(this.trigger);
+      case ValidRoutes.Health:
+        return new GetHealth(this.trigger);
       default:
         return null;
     }

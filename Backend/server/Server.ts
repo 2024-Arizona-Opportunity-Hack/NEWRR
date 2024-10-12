@@ -22,7 +22,7 @@ export class Server {
   private configureMiddleware(): void {
     this.app.use(
       cors({
-        origin: 'http://localhost:3000',
+        origin: Globals.API_URL,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true

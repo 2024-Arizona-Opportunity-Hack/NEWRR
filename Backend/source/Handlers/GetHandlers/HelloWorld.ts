@@ -5,19 +5,18 @@ import {
   ServerEvent
 } from '../../../library/Interfaces/HandlerController';
 
-export class GetHelloWorld extends Handler<ServerEvent> {
+export class GetHealth extends Handler<ServerEvent> {
   constructor(event: ServerEvent) {
     super(event);
   }
 
   @Catchable()
   async execute(): Promise<void> {
-    const helloworld: Record<string, string> = {
-      hello: 'world',
-      world: 'hello'
+    const health: Record<string, string> = {
+      status: 'ok'
     };
 
-    this.event.res.status(HttpStatusCode.Ok).send(helloworld);
+    this.event.res.status(HttpStatusCode.Ok).send(health);
 
     await new Promise<void>((resolve) => {
       setTimeout(() => {

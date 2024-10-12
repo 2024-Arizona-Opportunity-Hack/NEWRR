@@ -8,8 +8,8 @@ export class GetRouter extends RequestRouter {
   }
 
   initializeRoutes() {
-    this.router.get('/helloworld', (req, res) => {
-      this.handleRequest(ValidRoutes.HelloWorld, req, res);
+    this.router.get('/health', (req, res) => {
+      this.handleRequest(ValidRoutes.Health, req, res);
     });
   }
 }

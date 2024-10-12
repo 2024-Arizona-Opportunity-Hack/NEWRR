@@ -1,19 +1,21 @@
+# Frontend/Dockerfile
+
 # Stage 1: Build the Frontend
 FROM node:22-alpine AS builder
 
 # Set working directory
 WORKDIR /app
 
-# Install pnpm
+# Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy root package.json, pnpm-lock.yaml, and pnpm-workspace.yaml
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+# Copy root package.json, pnpm-workspace.yaml, and pnpm-lock.yaml
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 
 # Install all dependencies
 RUN pnpm install
 
-# Copy all workspace packages
+# Copy all workspace packages (includes API, Backend, Frontend)
 COPY . .
 
 # Build the Frontend
@@ -22,7 +24,7 @@ RUN pnpm --filter frontend run build
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
 
-# Install gettext for envsubst
+# Install gettext for envsubst (environment variable substitution)
 RUN apk add --no-cache gettext
 
 # Copy custom Nginx configuration template
@@ -41,5 +43,5 @@ COPY --from=builder /app/Frontend/dist /usr/share/nginx/html
 # Expose port 80
 EXPOSE 80
 
-# Set entrypoint
+# Set entrypoint to handle dynamic configuration and start Nginx
 ENTRYPOINT ["/entrypoint.sh"]
