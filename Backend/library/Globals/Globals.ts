@@ -17,8 +17,6 @@ export class Globals {
   // PRIVATE CONSTANTS | VARIABLES
   public static readonly DB_NAME = process.env.DB_NAME || '';
   public static readonly MONGO_URI = process.env.MONGODB_URI || '';
-  public static readonly V_EMAIL = process.env.V_EMAIL || '';
-  public static readonly V_PASSWORD = process.env.V_PASSWORD || '';
   public static readonly PORT = process.env.PORT || 3000;
 
   // VARIABLE ACCESSORS BASED ON ENVIRONMENT
