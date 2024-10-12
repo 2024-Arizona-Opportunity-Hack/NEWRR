@@ -18,6 +18,7 @@ export class Globals {
   public static readonly DB_NAME = process.env.DB_NAME || '';
   public static readonly MONGO_URI = process.env.MONGODB_URI || '';
   public static readonly PORT = process.env.PORT || 3000;
+  public static readonly API_URL = process.env.API_URL || '';
 
   // VARIABLE ACCESSORS BASED ON ENVIRONMENT
 }
