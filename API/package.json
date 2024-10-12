@@ -1,5 +1,5 @@
 {
-  "name": "@monorepo/api",
+  "name": "@newrr/api",
   "private": true,
   "scripts": {},
   "devDependencies": {
