@@ -22,17 +22,24 @@ RUN pnpm --filter frontend run build
 # Stage 2: Serve with Nginx
 FROM nginx:alpine
 
-# Copy custom Nginx configuration
-COPY Frontend/nginx.conf /etc/nginx/nginx.conf
+# Install gettext for envsubst
+RUN apk add --no-cache gettext
+
+# Copy custom Nginx configuration template
+COPY Frontend/nginx.conf.template /etc/nginx/nginx.conf.template
+
+# Copy entrypoint script
+COPY Frontend/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Remove default Nginx static assets
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy built Frontend code from builder
-COPY --from=builder /app/frontend/dist /usr/share/nginx/html
+COPY --from=builder /app/Frontend/dist /usr/share/nginx/html
 
 # Expose port 80
 EXPOSE 80
 
-# Start Nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Set entrypoint
+ENTRYPOINT ["/entrypoint.sh"]
