@@ -36,6 +36,7 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
+    "@newrr/api": "workspace:*",
     "axios": "^1.7.5",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

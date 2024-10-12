@@ -2,10 +2,14 @@
   "files": [],
   "references": [
     { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    { "path": "./tsconfig.node.json" },
+    { "path": "../API" }
   ],
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "paths": {
+      "@monorepo/api": ["../API/source/index.ts"]
+    }
   },
   "extends": "../tsconfig.json"
 }
