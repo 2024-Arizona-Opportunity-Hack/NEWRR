@@ -52,12 +52,3 @@ pnpm run start:watch
 
 ## [DevPost Link](https://devpost.com/software/nature-s-edge-wildlife-and-reptile-rescue)
 ## [Demo Video]()
-
-
-Examples of stellar readmes:
-- ✨ [2019 Team 3](https://github.com/2019-Arizona-Opportunity-Hack/Team-3)
-- ✨ [2019 Team 6](https://github.com/2019-Arizona-Opportunity-Hack/Team-6)
-- ✨ [2020 Team 2](https://github.com/2020-opportunity-hack/Team-02)
-- ✨ [2020 Team 4](https://github.com/2020-opportunity-hack/Team-04)
-- ✨ [2020 Team 8](https://github.com/2020-opportunity-hack/Team-08)
-- ✨ [2020 Team 12](https://github.com/2020-opportunity-hack/Team-12)
