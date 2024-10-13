@@ -10,19 +10,20 @@ import { useQueryClient } from "@tanstack/react-query";
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+
+  const handleLogout = async () => {
+    const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
+    await postMethods.postLogout();
+    queryClient.invalidateQueries({ queryKey: ["user"] });
+    navigate("/admin");
+  };
+
   const adminLinks = [
     { name: "Management", href: "#management" },
     { name: "Admins", href: "#admins" },
     { name: "Animals", href: "#animals" },
     { name: "Log out", href: "#", onClick: handleLogout },
   ];
-
-  async function handleLogout() {
-    const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
-    await postMethods.postLogout();
-    queryClient.invalidateQueries({ queryKey: ["user"] });
-    navigate("/admin");
-  }
 
   return (
     <div className="min-h-screen bg-gray-100">

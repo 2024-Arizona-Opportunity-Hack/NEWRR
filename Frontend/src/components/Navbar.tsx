@@ -56,6 +56,18 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
     };
   }, []);
 
+  const handleLinkClick = (href: string, onClick?: () => void) => {
+    if (onClick) {
+      onClick();
+    } else {
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className="fixed top-0 left-0 right-0 z-50">
       <div
@@ -91,7 +103,10 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={link.onClick}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href, link.onClick);
+                }}
                 className="hover:text-gray-700"
               >
                 {link.name}
@@ -133,11 +148,8 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
                 <a
                   href={link.href}
                   onClick={(e) => {
-                    if (link.onClick) {
-                      e.preventDefault();
-                      link.onClick();
-                    }
-                    setIsMenuOpen(false);
+                    e.preventDefault();
+                    handleLinkClick(link.href, link.onClick);
                   }}
                   className="hover:text-gray-700"
                 >
