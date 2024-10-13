@@ -1,4 +1,4 @@
-import { Globals } from 'Backend/library/Globals/Globals';
+import { Globals } from '../../../library/Globals/Globals';
 import { Catchable } from '../../../library/Decorators/Catchable';
 import {
   Handler,

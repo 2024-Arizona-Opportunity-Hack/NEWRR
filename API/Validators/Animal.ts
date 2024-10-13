@@ -1,5 +1,5 @@
-import { AnimalSex, AnimalStatus } from '@newrr/api';
 import { z } from 'zod';
+import { AnimalSex, AnimalStatus } from '../Types/Animal';
 
 export class AnimalValidator {
   public static Behavior = z.object({
