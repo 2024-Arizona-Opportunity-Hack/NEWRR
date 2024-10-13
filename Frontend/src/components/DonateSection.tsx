@@ -1,11 +1,11 @@
 const DonateSection = () => {
   return (
     <section
-      className="bg-[#E8E8E8] flex items-center justify-center px-16 py-16 lg:py-30"
+      className="w-full bg-[#E8E8E8] flex items-center justify-center px-16 py-16 lg:py-30"
       id="donate"
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-        <div className="text-left flex flex-col justify-center pb-8">
+        <div className="w-[1/2] text-left flex flex-col justify-center pb-8">
           <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
             Support Us!
           </h3>
@@ -16,7 +16,7 @@ const DonateSection = () => {
             to go to the GiveButter platform:
           </p>
         </div>
-        <div className="w-[450px]">
+        <div className="w-full">
           <givebutter-widget
             id="jDJPKg"
             height="auto"

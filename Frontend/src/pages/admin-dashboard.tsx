@@ -25,8 +25,6 @@ const AdminDashboard: React.FC = () => {
     { name: "Admins", href: "#admins" },
     { name: "Animals", href: "#animals" },
     { name: "Log out", href: "#", onClick: handleLogout },
-  ];
-
     { name: "Dashboard", href: "/admin/dashboard" },
     { name: "Animal Dashboard", href: "/admin/animal-dashboard" },
     { name: "Financial Dashboard", href: "/admin/financial-dashboard" },
@@ -40,8 +38,8 @@ const AdminDashboard: React.FC = () => {
   };
 
   const hasAccess = hasPerms();
-  if(!user) return <NotLoggedIn hasUser={false}/>;
-  if(!hasAccess) return <NotLoggedIn hasUser={true}/>;
+  if (!user) return <NotLoggedIn hasUser={false} />;
+  if (!hasAccess) return <NotLoggedIn hasUser={true} />;
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar
