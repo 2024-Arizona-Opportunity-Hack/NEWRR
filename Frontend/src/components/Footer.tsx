@@ -1,10 +1,14 @@
 interface FooterProps {
-  color?: string
+  color?: string;
 }
 
 const Footer: React.FC<FooterProps> = ({ color }) => {
   return (
-    <footer style={{backgroundColor: color ?? "#3A4D42"}} className="text-white py-4">
+    <footer
+      style={{ backgroundColor: color ?? "#3A4D42" }}
+      className="text-white py-4"
+    >
+      {/* Basic footer with copyright information and social media links */}
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-16">
         <p className="text-center font-['Outfit'] text-sm mb-2 md:mb-0">
           © Copyright {new Date().getFullYear()} Nature's Edge Wildlife and
