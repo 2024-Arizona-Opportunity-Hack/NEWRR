@@ -29,7 +29,7 @@ const AdoptAnimalSection: React.FC = () => {
         {
           id: 1,
           name: "Luna",
-          species: "Axolotl",
+          species: "Parrot",
           gender: "Female",
           age: 2,
           image:
@@ -37,10 +37,20 @@ const AdoptAnimalSection: React.FC = () => {
           description:
             "Luna is a playful axolotl known for her unique ability to regenerate lost body parts. She loves to swim and eat small aquatic creatures. Axolotls are neotenic salamanders, which means they retain juvenile features in adulthood. Luna's pink coloration is due to a pigment mutation. She has external gills that look like feathery structures on the sides of her head, which she uses to breathe underwater. Luna is very curious and often investigates new objects added to her aquarium. She enjoys a diet of worms, small fish, and specially formulated axolotl pellets. Despite her alien-like appearance, Luna is quite gentle and can recognize her caretakers.",
         },
+        {
+          id: 2,
+          name: "Max",
+          species: "Axolotl",
+          gender: "Male",
+          age: 2,
+          image:
+            "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+          description: "Max is cool",
+        },
         // Additional animal data...
       ]);
       setLoading(false); // Set loading to false after data is fetched
-    }, 8000); // Simulate an 8-second delay
+    }, 1000); // Simulate an 8-second delay
   }, [results]);
 
   return (
@@ -62,8 +72,7 @@ const AdoptAnimalSection: React.FC = () => {
           <Spinner /> // Show a spinner while loading
         ) : results.length > 0 ? (
           <div className="carousel flex justify-center items-center space-x-4">
-            <EnhancedAnimalCarousel animals={results} /> // Display the carousel
-            if animals are available
+            <EnhancedAnimalCarousel animals={results} />
           </div>
         ) : (
           <div className="text-center font-bold text-lg text-[#DAD7CE] p-8">

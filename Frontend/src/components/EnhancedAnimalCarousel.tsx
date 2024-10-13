@@ -36,19 +36,20 @@ export default function ResponsiveAnimalCarousel({
   // Set the number of visible slides based on screen width (3 for desktop, 2 for tablet, 1 for mobile)
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1024) {
-        setCurrentIndices([0, 1, 2]); // Show 3 animals on large screens
-      } else if (window.innerWidth >= 768) {
-        setCurrentIndices([0, 1]); // Show 2 animals on medium screens
-      } else {
-        setCurrentIndices([0]); // Show 1 animal on small screens
-      }
+      const numVisible =
+        window.innerWidth >= 1024 ? 3 : window.innerWidth >= 768 ? 2 : 1;
+      setCurrentIndices(
+        Array.from(
+          { length: Math.min(numVisible, animals.length) },
+          (_, i) => i
+        )
+      );
     };
 
     handleResize(); // Initial setup
     window.addEventListener("resize", handleResize); // Update on resize
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [animals.length]);
 
   // Function to move to the next set of animals
   const nextSlide = () => {
@@ -189,20 +190,24 @@ export default function ResponsiveAnimalCarousel({
       </div>
 
       {/* Navigation Buttons */}
-      <button
-        onClick={prevSlide}
-        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-wolfwhite text-gray-800 rounded-full p-2 shadow-md -translate-x-1/2"
-        aria-label="Previous animal"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-wolfwhite text-gray-800 rounded-full p-2 shadow-md translate-x-1/2"
-        aria-label="Next animal"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
+      {animals.length > 1 && (
+        <>
+          <button
+            onClick={prevSlide}
+            className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-wolfwhite text-gray-800 rounded-full p-2 shadow-md -translate-x-1/2"
+            aria-label="Previous animal"
+          >
+            <ChevronLeft className="h-6 w-6" />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-wolfwhite text-gray-800 rounded-full p-2 shadow-md translate-x-1/2"
+            aria-label="Next animal"
+          >
+            <ChevronRight className="h-6 w-6" />
+          </button>
+        </>
+      )}
     </div>
   );
 }
