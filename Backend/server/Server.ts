@@ -22,6 +22,9 @@ export class Server {
   }
 
   private configureMiddleware(): void {
+    console.log('Configuring CORS');
+    console.log(Globals.FRONTEND_URL);
+    console.log(Globals.API_URL);
     this.app.use(
       cors({
         origin: [Globals.FRONTEND_URL, Globals.API_URL],
@@ -30,6 +33,7 @@ export class Server {
         credentials: true
       })
     );
+    this.app.options('*', cors()); // Manually handle OPTIONS requests
     this.app.use(cookieParser());
     this.app.use(express.json());
   }

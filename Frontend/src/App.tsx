@@ -1,7 +1,7 @@
 import Home from "./pages/homepage";
 import ScrollToHashElement from "./components/ScrollToHashElement";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import AdminDashboard from "./pages/admin-dashboard";
+import AdminDashboardPage from "./pages/admin-dashboard";
 import FinancialDashboard from "./pages/financial-dashboard";
 import FormsDashboard from "./pages/forms-dashboard";
 import AnimalDashboard from "./pages/animal-dashboard";
@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         {/* <Route path="/admin" element={<Admin />} /> */}
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
         <Route
           path="/admin/financial-dashboard"
           element={<FinancialDashboard />}

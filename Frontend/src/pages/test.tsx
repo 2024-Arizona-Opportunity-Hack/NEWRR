@@ -1,5 +1,5 @@
 import React from "react";
-import GoogleLogin from "../components/GoogleLogin";
+import GoogleLogin from "../components/admin/GoogleLogin";
 
 const Test: React.FC = () => {
   return (

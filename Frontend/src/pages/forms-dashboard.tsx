@@ -2,7 +2,7 @@
 
 import React from "react";
 import Navbar from "../components/Navbar";
-import Form from "../components/form";
+import Form from "../components/admin/Form";
 
 const FormsDashboard: React.FC = () => {
   const adminLinks = [
@@ -61,8 +61,8 @@ const FormsDashboard: React.FC = () => {
               index === forms.length - 1 && forms.length % 2 === 1
                 ? "col-span-3"
                 : index % 4 === 0 || index % 4 === 3
-                ? "col-span-2"
-                : "col-span-1"
+                  ? "col-span-2"
+                  : "col-span-1"
             }
           >
             <Form
