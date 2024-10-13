@@ -1,7 +1,7 @@
 const FoundAnimalSection = () => {
   return (
     <section
-      className="bg-[#DAD7CE] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16"
+      className="bg-[#DAD7CE] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16 py-16 lg:py-0"
       id="found"
     >
       <div className="container mx-auto">
@@ -58,18 +58,30 @@ const FoundAnimalSection = () => {
             <span className="font-['Outfit'] text-lg">
               Contact a permitted wildlife rehabilitator immediately. Helpful
               resources:{" "}
-              <a href="#" className="underline">
+              <a href="https://ahnow.org/" className="underline">
                 Animal Help Now
               </a>
               ,{" "}
-              <a href="#" className="underline">
+              <a
+                href="tel:972-234-9453"
+                target="_blank"
+                rel="noreferrer"
+                className="underline"
+              >
                 DFW Wildlife Hotline
               </a>
             </span>
           </li>
         </ul>
-        <button className="bg-[#3A4D42] text-white px-6 py-2 mt-6 rounded font-outfit font-medium">
-          NEWRR Intake Form
+        <button className="bg-darkestgreen text-wolfwhite px-6 py-2 mt-6 rounded font-outfit font-medium">
+          <a
+            href="https://forms.gle/7Q6Z8Q6Q7Q6Z8Q6Q7"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {" "}
+            NEWRR Intake Form
+          </a>
         </button>
       </div>
     </section>
