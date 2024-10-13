@@ -11,6 +11,8 @@ npm-debug.*
 # typescript
 *.tsbuildinfo
 
+pnpm-lock.yaml
+
 # misc 
 test/
 pnpm-lock.yaml

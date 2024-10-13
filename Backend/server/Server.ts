@@ -4,6 +4,8 @@ import { Globals } from '../library/Globals/Globals';
 import { LoggerUtils } from '../library/Utilities/LoggerUtils';
 import { GetRouter } from './Routes/Get';
 import { HttpStatusCode } from 'axios';
+import { PostRouter } from './Routes/Post';
+import cookieParser from 'cookie-parser';
 // Import other routers as needed
 
 export class Server {
@@ -22,18 +24,19 @@ export class Server {
   private configureMiddleware(): void {
     this.app.use(
       cors({
-        origin: Globals.API_URL,
+        origin: [Globals.FRONTEND_URL, Globals.API_URL],
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization'],
+        allowedHeaders: ['Content-Type', 'Authorization', 'Cookie'],
         credentials: true
       })
     );
-
+    this.app.use(cookieParser());
     this.app.use(express.json());
   }
 
   private configureRoutes(): void {
     this.app.use('/api', new GetRouter().router);
+    this.app.use('/api', new PostRouter().router);
   }
 
   private configureErrorHandling(): void {

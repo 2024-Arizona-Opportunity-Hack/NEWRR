@@ -9,7 +9,10 @@ export class GetRouter extends RequestRouter {
 
   initializeRoutes() {
     this.router.get('/health', (req, res) => {
-      this.handleRequest(ValidRoutes.Health, req, res);
+      this.handleRequest(ValidRoutes.Health, req, res, false);
+    });
+    this.router.get('/check-auth', (req, res) => {
+      this.handleRequest(ValidRoutes.CheckAuth, req, res, false);
     });
   }
 }

@@ -5,6 +5,8 @@ import AdminDashboard from "./pages/admin-dashboard";
 import FinancialDashboard from "./pages/financial-dashboard";
 import FormsDashboard from "./pages/forms-dashboard";
 import AnimalDashboard from "./pages/animal-dashboard";
+import Admin from "./pages/admin";
+import Test from "./pages/test";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         />
         <Route path="/admin/animal-dashboard" element={<AnimalDashboard />} />
         <Route path="/admin/forms-dashboard" element={<FormsDashboard />} />
+        <Route path="/admin" element={<Admin />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
       <ScrollToHashElement />
     </Router>

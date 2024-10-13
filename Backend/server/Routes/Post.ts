@@ -1,10 +1,18 @@
 import { RequestRouter } from '../../library/Interfaces/RequestRouter';
 import { PostController } from '../../source/Controllers/PostController';
+import { ValidRoutes } from '../ValidRoutes';
 
 export class PostRouter extends RequestRouter {
   constructor() {
     super(PostController);
   }
 
-  initializeRoutes() {}
+  initializeRoutes() {
+    this.router.post('/google-auth', (req, res) => {
+      this.handleRequest(ValidRoutes.GoogleAuth, req, res, false);
+    });
+    this.router.post('/logout', (req, res) => {
+      this.handleRequest(ValidRoutes.Logout, req, res, false);
+    });
+  }
 }
