@@ -66,7 +66,7 @@ const TaskManagement: React.FC = () => {
       className="flex flex-col md:flex-row w-full bg-wolfwhite px-4 md:px-6 lg:px-8 pt-20 font-['Montserrat']"
       id="/admin/dashboard/#tasks"
     >
-      <div className="w-full md:w-1/2 md:pr-3 mb-6 md:mb-0 pt-20">
+      <div className="w-full md:w-1/2 md:pr-3 mb-6 md:mb-0 pt-20 pb-20">
         <ToDo />
       </div>
       <div className="w-full md:w-1/2 md:pl-3 space-y-6 pt-20 pb-20">
