@@ -1,3 +1,7 @@
 export enum ValidRoutes {
-  Health = 'health'
+  Health = 'health',
+  GoogleAuth = 'google-auth',
+  Logout = 'logout',
+  CheckAuth = 'check-auth'
 }
+

@@ -5,9 +5,11 @@ import newrrLogo from "../assets/newrr.svg";
 interface NavbarProps {
   links: { name: string; href: string }[];
   title: string;
+  color?: string;
+  onClick?: () => void; // Add onClick prop
 }
 
-const Navbar: React.FC<NavbarProps> = ({ links, title }) => {
+const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -58,14 +60,19 @@ const Navbar: React.FC<NavbarProps> = ({ links, title }) => {
     <nav>
       <div
         ref={navbarRef}
-        className={`fixed top-0 left-0 right-0 bg-[#FFFFFF] text-[#101010] z-50 transition-transform duration-300 ${
+        style={{ backgroundColor: color || "#FFFFFF" }}
+        className={`fixed top-0 left-0 right-0 text-[#101010] z-50 transition-transform duration-300 ${
           isNavbarVisible
             ? "transform translate-y-0"
             : "transform -translate-y-full"
         }`}
       >
         <div className="flex items-center justify-between h-16 sm:h-20 px-16">
-          <div className="flex items-center">
+          <div
+            className="flex items-center"
+            onClick={onClick}
+            style={{ cursor: "pointer" }}
+          >
             <img src={newrrLogo} alt="NEWRR logo" className="w-12 h-12 mr-3" />
             <Link
               to="/"

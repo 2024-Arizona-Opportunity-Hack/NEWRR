@@ -2,8 +2,8 @@
   "name": "@newrr/api",
   "private": true,
   "scripts": {},
-  "main": "source/index.ts",
-  "types": "source/index.d.ts",
+  "main": "./index.ts",
+  "types": "./index.d.ts",
   "dependencies": {
     "axios": "^1.7.5"
   }
