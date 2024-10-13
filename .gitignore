@@ -55,3 +55,4 @@ Thumbs.db
 **/*.*proj.user
 **/*.dbmdl
 **/*.jfm
+pnpm-lock.yaml
