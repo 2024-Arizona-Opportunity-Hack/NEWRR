@@ -1,4 +1,5 @@
 import React from "react";
+import AdminUsers from "../components/admin/AdminUsers";
 import AnimalManagement from "../components/admin/AnimalManagament";
 import TaskManagement from "../components/admin/TaskManagement";
 import Navbar from "../components/Navbar";
@@ -36,7 +37,7 @@ const AdminDashboard: React.FC = () => {
       />
 
       <TaskManagement />
-      {/* <FinancialManagement /> */}
+      <AdminUsers />
       <AnimalManagement />
     </div>
   );

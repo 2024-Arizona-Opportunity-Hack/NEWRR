@@ -17,5 +17,8 @@ export class PostRouter extends RequestRouter {
     this.router.post('/todo', (req, res) => {
       this.handleRequest(ValidRoutes.Todo, req, res, true);
     });
+    this.router.post('/add-admin-user', (req, res) => {
+      this.handleRequest(ValidRoutes.AddAdminUser, req, res, true);
+    });
   }
 }
