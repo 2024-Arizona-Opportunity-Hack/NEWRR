@@ -1,25 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { GetMethods, PostMethods, UserDetails} from "@newrr/api";
+import { GetMethods, PostMethods, UserDetails } from "@newrr/api";
 
 const AdminUsers: React.FC = () => {
   const [users, setUsers] = useState<UserDetails[]>([]);
   const [email, setEmail] = useState<string>("");
 
-  // Mock backend call to fetch users
-  useEffect(() => {
-    const fetchUsers = async () => {
-      const getMethods = new GetMethods(import.meta.env.VITE_G_API_URL);
-      const users = await getMethods.getAdminUsers();
-      setUsers(users);
-    };
+  // Function to fetch users from the backend
+  const fetchUsers = async () => {
+    const getMethods = new GetMethods(import.meta.env.VITE_G_API_URL);
+    const users = await getMethods.getAdminUsers();
+    setUsers(users);
+  };
 
+  // Fetch users on component mount
+  useEffect(() => {
     fetchUsers();
   }, []);
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
-    postMethods.postAddAdminUser(email);
+    
+    try {
+      // Post the new email to the backend
+      await postMethods.postAddAdminUser(email);
+      
+      // Clear the email input field
+      setEmail("");
+      
+      // Refetch the updated list of users
+      await fetchUsers();
+    } catch (error) {
+      console.error("Error adding user:", error);
+      // Handle the error (e.g., show a message to the user)
+    }
   };
 
   return (
@@ -50,7 +64,7 @@ const AdminUsers: React.FC = () => {
           {users.length > 0 ? (
             users.map((user, index) => (
               <tr key={`user-${index}`}>
-                <td style={{ border: "1px solid black", padding: "8px" }}>{index}</td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>{index + 1}</td>
                 <td style={{ border: "1px solid black", padding: "8px" }}>{user.email}</td>
                 <td style={{ border: "1px solid black", padding: "8px" }}>{user.role.name}</td>
               </tr>
