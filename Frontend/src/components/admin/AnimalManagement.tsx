@@ -177,7 +177,18 @@ const AnimalManagement: React.FC = () => {
 
       const matchesFilters = Object.entries(filters).every(([key, value]) => {
         if (!value) return true; // Skip empty filters
+
         const animalValue = animal[key as keyof Animal];
+
+        // Exact match for specific fields (like gender, status, species, etc.)
+        if (key === "gender") {
+          return (
+            typeof animalValue === "string" &&
+            animalValue.toLowerCase() === value.toLowerCase()
+          );
+        }
+
+        // For other fields, allow partial match (e.g., id, name)
         return (
           typeof animalValue === "string" &&
           animalValue.toLowerCase().includes(value.toLowerCase())
@@ -188,7 +199,7 @@ const AnimalManagement: React.FC = () => {
     });
 
     setFilteredAnimals(results);
-    setCurrentPage(1);
+    setCurrentPage(1); // Reset to the first page after filtering
   };
 
   const indexOfLastAnimal = currentPage * animalsPerPage;

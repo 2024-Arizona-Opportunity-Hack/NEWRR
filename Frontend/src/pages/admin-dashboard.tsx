@@ -1,5 +1,5 @@
 import React from "react";
-import AnimalManagement from "../components/admin/AnimalManagament";
+import AnimalManagement from "../components/admin/AnimalManagement";
 import TaskManagement from "../components/admin/TaskManagement";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
