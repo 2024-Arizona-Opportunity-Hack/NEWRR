@@ -23,7 +23,7 @@ export class Server {
   private configureMiddleware(): void {
     this.app.use(
       cors({
-        origin: Globals.API_URL,
+        origin: Globals.FRONTEND_URL,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
         credentials: true

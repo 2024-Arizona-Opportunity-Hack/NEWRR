@@ -1,4 +1,4 @@
-import { UserCRUD } from 'Backend/database/Middleware/UserCRUD';
+import { UserCRUD } from '../../../database/Middleware/UserCRUD';
 import { Catchable } from '../../../library/Decorators/Catchable';
 import {
   Handler,
@@ -6,6 +6,10 @@ import {
 } from '../../../library/Interfaces/HandlerController';
 import { HttpStatusCode } from 'axios';
 import { OAuth2Client } from 'google-auth-library';
+import { UserRole } from '../../../database/Models/UserRole';
+import jwt from 'jsonwebtoken';
+import { Globals } from '../../../library/Globals/Globals';
+import { CookieOptions } from 'express';
 
 export class GoogleAuth extends Handler<ServerEvent> {
   private client = new OAuth2Client();
@@ -30,21 +34,34 @@ export class GoogleAuth extends Handler<ServerEvent> {
     if (!payload) throw new Error('No payload');
 
     // Get the user ID from the payload
-    const userid = payload['sub'];
+    const {sub: userid, email, name} = payload;
+    if(!userid || !email || !name) throw new Error('Missing required fields');
 
     // Check if the user already exists
-    const existingUser = await UserCRUD.getUserByGoogleID(userid);
+    let existingUser = await UserCRUD.getUserByGoogleID(userid);
     if (!existingUser) {
+      // Find the basic role so they dont have access to anything
+      const basicRole = await UserRole.findOne({ name: "Basic" });
+      if(!basicRole) throw new Error('Basic role not found');
+
       // Create User  
-      const newUser = await UserCRUD.createUser({
+      existingUser = await UserCRUD.createUser({
         google_id: userid,
-        email: payload['email'],
-        name: payload['name'],
+        email,
+        name,
+        role: basicRole._id,
       });
     }
-  
-    // Send the payload as a response
-    this.event.res.status(HttpStatusCode.Ok).json({ payload });
+
+    // Send back the user and a cookie with the JWT
+    const token = jwt.sign({ existingUser }, Globals.JWT_SECRET);
+    const cookieOptions: CookieOptions = {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production', // Use secure in production
+      sameSite: 'strict',
+      maxAge: 1000 * 60 * 60 * 24 * 90, // 90 days
+    };
+    this.event.res.status(HttpStatusCode.Ok).cookie('token', token, cookieOptions).json({ payload });
 
     return await new Promise((resolve) => resolve());
   }
