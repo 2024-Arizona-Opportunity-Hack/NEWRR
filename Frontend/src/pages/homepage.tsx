@@ -28,7 +28,7 @@ const Home: React.FC = () => {
         <AdoptAnimalSection />
       </section>
       <section id="donate">
-        <ContactSection />
+        <DonateSection />
       </section>
       <Footer />
     </div>

@@ -15,18 +15,13 @@ const DonateSection = () => {
             the public. If you would like to donate, click on the button below
             to go to the GiveButter platform:
           </p>
-          <button className="bg-[#3A4D42] text-white px-6 py-2 w-fit rounded font-outfit font-medium">
-            <a
-              href="https://givebutter.com/wbRK0J"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Donate
-            </a>
-          </button>
         </div>
-        <div className='w-[450px]'>
-          <givebutter-widget id="jDJPKg" height='auto' width='450px'></givebutter-widget>
+        <div className="w-[450px]">
+          <givebutter-widget
+            id="jDJPKg"
+            height="auto"
+            width="450px"
+          ></givebutter-widget>
         </div>
       </div>
     </section>

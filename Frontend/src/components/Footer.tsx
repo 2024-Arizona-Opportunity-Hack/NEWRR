@@ -22,12 +22,6 @@ const Footer: React.FC<FooterProps> = ({ color }) => {
             Digital Rights
           </a>
           <a
-            href="tel:682-463-9453"
-            className="hover:text-gray-300 hover:underline"
-          >
-            Contact Us
-          </a>
-          <a
             href="https://www.youtube.com/c/NaturesEdgeWildlifeandReptileRescue"
             target="_blank"
             rel="noreferrer"
