@@ -1,7 +1,6 @@
-import React, { useState, useEffect, KeyboardEvent } from "react";
-import { FaCheck } from "react-icons/fa";
-import Box from "../Box";
-import Keyboard from "../Keyboard";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { Plus, Check, X } from "lucide-react";
 import { GetMethods, IToDoItem, PostMethods, TodoStatus } from "@newrr/api";
 
 const ToDo: React.FC = () => {
@@ -12,7 +11,6 @@ const ToDo: React.FC = () => {
     const getMethods = new GetMethods(import.meta.env.VITE_G_API_URL);
     getMethods.getTodo().then((todos: IToDoItem[]) => {
       setTodos(todos);
-      console.log(todos);
     });
   }, []);
 
@@ -28,12 +26,6 @@ const ToDo: React.FC = () => {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      addTodo();
-    }
-  };
-
   const toggleTodo = (id: string) => {
     setTodos(
       todos.map((todo) => {
@@ -43,7 +35,7 @@ const ToDo: React.FC = () => {
               [TodoStatus.NOT_DONE]: TodoStatus.COMPLETED,
               [TodoStatus.COMPLETED]: TodoStatus.DELETED,
               [TodoStatus.DELETED]: TodoStatus.NOT_DONE,
-            }[todo.completed] || TodoStatus.NOT_DONE; // Add fallback
+            }[todo.completed] || TodoStatus.NOT_DONE;
           return { ...todo, completed: nextStatus };
         }
         return todo;
@@ -52,8 +44,6 @@ const ToDo: React.FC = () => {
   };
 
   const saveTodos = () => {
-    console.log(todos);
-
     const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
     postMethods.postTodo(todos).then(() => {
       alert("To-do list saved!");
@@ -61,56 +51,62 @@ const ToDo: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white p- mt-20">
-      <div className="border border-black rounded-lg p-4">
-        <h1 className="text-2xl font-bold mb-4 text-center">To-Do List</h1>
-        <ul>
-          {todos
-            .filter((todo) => todo.completed !== TodoStatus.DELETED)
-            .map((todo) => (
-              <li key={todo.id} className="flex items-center mb-2 last:mb-0">
-                <button
-                  onClick={() => toggleTodo(todo.id)}
-                  className="mr-2 text-lg"
-                >
-                  {todo.completed === TodoStatus.COMPLETED ? (
-                    <FaCheck />
-                  ) : (
-                    <Box />
-                  )}
-                </button>
-                <span
-                  className={`cursor-pointer ${todo.completed === TodoStatus.COMPLETED ? "line-through" : ""}`}
-                >
-                  {todo.text}
-                </span>
-              </li>
-            ))}
-        </ul>
-        <div className="mb-4 flex items-center">
-          <button onClick={() => addTodo()} className="mr-2 text-lg">
-            <Box />
-          </button>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      className="bg-darkergreen text-white p-6 rounded-lg shadow-lg"
+    >
+      <h2 className="text-2xl font-bold mb-4">To-Do List</h2>
+      <div className="space-y-4">
+        {todos
+          .filter((todo) => todo.completed !== TodoStatus.DELETED)
+          .map((todo) => (
+            <motion.div
+              key={todo.id}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white/10 p-4 rounded-md flex items-center justify-between"
+            >
+              <span
+                className={
+                  todo.completed === TodoStatus.COMPLETED ? "line-through" : ""
+                }
+              >
+                {todo.text}
+              </span>
+              <button onClick={() => toggleTodo(todo.id)} className="text-sage">
+                {todo.completed === TodoStatus.COMPLETED ? (
+                  <Check className="w-5 h-5" />
+                ) : (
+                  <X className="w-5 h-5" />
+                )}
+              </button>
+            </motion.div>
+          ))}
+        <div className="flex items-center space-x-2">
           <input
             type="text"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
-            onKeyPress={handleKeyPress}
-            className="border m-20 p-2 pl-0 mr-2 w-full outline-none border-none"
+            onKeyPress={(e) => e.key === "Enter" && addTodo()}
+            className="bg-white/10 p-2 rounded-md flex-grow"
             placeholder="Add new todo"
           />
-        </div>
-        <div className="flex justify-between items-center">
-          <Keyboard />
           <button
-            onClick={saveTodos}
-            className="bg-darkestgreen text-white p-2 rounded"
+            onClick={addTodo}
+            className="bg-sage text-darkestgreen p-2 rounded-md"
           >
-            Save
+            <Plus className="w-5 h-5" />
           </button>
         </div>
+        <button
+          onClick={saveTodos}
+          className="bg-sage text-darkestgreen px-4 py-2 rounded-md w-full"
+        >
+          Save
+        </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
