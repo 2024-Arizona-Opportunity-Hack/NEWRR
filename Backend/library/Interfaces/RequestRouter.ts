@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { ValidRoutes } from '../../server/ValidRoutes';
-import { ControllerChild } from './HandlerController';
 import { AuthMiddleware } from '../../source/Middleware/AuthMiddleware';
+import { ControllerChild } from './HandlerController';
 
 export abstract class RequestRouter {
   public router: Router;
@@ -22,10 +22,7 @@ export abstract class RequestRouter {
     isProtected: boolean
   ): void {
     if (isProtected) {
-      AuthMiddleware.authenticate(req, res, (err: any) => {
-        if (err) {
-          return res.status(401).json({ error: 'Unauthorized' });
-        }
+      AuthMiddleware.authenticate(req, res, () => {
         this.processRequest(route, req, res);
       });
     } else {

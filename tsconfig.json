@@ -14,7 +14,7 @@
     "strict": true,
     "noUnusedLocals": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
       "@newrr/api": ["API/index.ts"]
     }

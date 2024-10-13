@@ -1,10 +1,10 @@
 import { HttpStatusCode } from 'axios';
-import { AnimalCRUD } from 'Backend/database/Services/AnimalCRUD';
-import { Catchable } from 'Backend/library/Decorators/Catchable';
+import { AnimalCRUD } from '../../../database/Services/AnimalCRUD';
+import { Catchable } from '../../../library/Decorators/Catchable';
 import {
   Handler,
   ServerEvent
-} from 'Backend/library/Interfaces/HandlerController';
+} from '../../../library/Interfaces/HandlerController';
 
 export class GetAllAnimals extends Handler<ServerEvent> {
   constructor(event: ServerEvent) {

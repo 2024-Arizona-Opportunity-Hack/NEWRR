@@ -1,10 +1,15 @@
-import { IAnimalData, NewAnimalData, UpdateableAnimalKeys } from '@newrr/api';
+import {
+  AnimalStatus,
+  IAnimalData,
+  NewAnimalData,
+  UpdateableAnimalKeys
+} from '@newrr/api';
 import { Animal } from '../Models/Animal';
-import { DBCatchable } from 'Backend/library/Decorators/DBCatchable';
+import { DBCatchable } from '../../library/Decorators/DBCatchable';
 import {
   AnimalDoesNotExist,
   NoAnimalsFound
-} from 'Backend/library/Errors/Animal';
+} from '../../library/Errors/Animal';
 
 export class AnimalCRUD {
   // POST
@@ -12,7 +17,12 @@ export class AnimalCRUD {
   public static async createAnimal(
     newAnimalData: NewAnimalData
   ): Promise<IAnimalData> {
-    const animal = await Animal.create(newAnimalData);
+    const animalData: NewAnimalData & { status: AnimalStatus } = {
+      ...newAnimalData,
+      status: AnimalStatus.AVAILABLE
+    };
+
+    const animal = await Animal.create(animalData);
     return animal;
   }
 
@@ -20,9 +30,11 @@ export class AnimalCRUD {
   @DBCatchable('Failed to fetch animal')
   public static async getAnimalById(id: string): Promise<IAnimalData> {
     const animal = await Animal.findById(id).populate('behaviors');
+
     if (!animal) {
       throw new AnimalDoesNotExist(`Animal with ID ${id} does not exist`);
     }
+
     return animal;
   }
 
@@ -35,6 +47,10 @@ export class AnimalCRUD {
       throw new NoAnimalsFound('There are no animals in the database');
     }
 
+    animals.map((animal) => {
+      animal.behaviors?.map((behavior) => behavior.name);
+    });
+
     return animals;
   }
 
@@ -46,7 +62,7 @@ export class AnimalCRUD {
   ): Promise<IAnimalData> {
     const animal = await Animal.findByIdAndUpdate(id, updatedAnimalData, {
       new: true
-    }).populate('behaviors');
+    });
 
     if (!animal) {
       throw new AnimalDoesNotExist(`Animal with ID ${id} does not exist`);

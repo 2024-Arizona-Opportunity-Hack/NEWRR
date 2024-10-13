@@ -1,5 +1,5 @@
 import { AnimalSex, AnimalStatus, IAnimalData } from '@newrr/api';
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 
 const schema = new mongoose.Schema<IAnimalData>({
   name: {
@@ -30,11 +30,11 @@ const schema = new mongoose.Schema<IAnimalData>({
     required: true,
     default: Date.now()
   },
-  behaviour: [
+  behaviors: [
     {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'behavior',
-      required: false
+      type: Types.ObjectId,
+      ref: 'behaviors',
+      default: []
     }
   ],
   age: {

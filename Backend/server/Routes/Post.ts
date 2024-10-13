@@ -16,15 +16,15 @@ export class PostRouter extends RequestRouter {
     });
 
     this.router.post('/webhooks/jotform/checkin', (req, res) => {
-      this.handleRequest(ValidRoutes.JotformCheckin, req, res);
+      this.handleRequest(ValidRoutes.JotformCheckin, req, res, false);
     });
 
     this.router.post('/animal', (req, res) => {
-      this.handleRequest(ValidRoutes.CreateAnimal, req, res);
+      this.handleRequest(ValidRoutes.CreateAnimal, req, res, false);
     });
 
     this.router.post('/behavior', (req, res) => {
-      this.handleRequest(ValidRoutes.CreateBehavior, req, res);
+      this.handleRequest(ValidRoutes.CreateBehavior, req, res, false);
     });
   }
 }

@@ -1,3 +1,4 @@
+import { UserNotFound } from '../../library/Errors/Auth';
 import { IUser } from '../Models/User';
 import { User } from '../Models/User';
 
@@ -7,10 +8,13 @@ export class UserCRUD {
     return newUser;
   }
 
-  public static async getUserByGoogleID(
-    google_id: string
-  ): Promise<IUser | null> {
+  public static async getUserByGoogleID(google_id: string): Promise<IUser> {
     const user = await User.findOne({ google_id });
+
+    if (!user) {
+      throw new UserNotFound('User not found');
+    }
+
     return user;
   }
 }

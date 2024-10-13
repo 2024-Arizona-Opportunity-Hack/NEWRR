@@ -1,11 +1,10 @@
-import { UserCRUD } from '../../../database/Services/UserCRUD';
+import { HttpStatusCode } from 'axios';
 import { Catchable } from '../../../library/Decorators/Catchable';
+import { Globals } from '../../../library/Globals/Globals';
 import {
   Handler,
   ServerEvent
 } from '../../../library/Interfaces/HandlerController';
-import { HttpStatusCode } from 'axios';
-import { Globals } from '../../../library/Globals/Globals';
 
 export class Logout extends Handler<ServerEvent> {
   constructor(event: ServerEvent) {
@@ -23,5 +22,9 @@ export class Logout extends Handler<ServerEvent> {
     this.event.res
       .status(HttpStatusCode.Ok)
       .json({ message: 'Logged out successfully' });
+
+    await new Promise((resolve) => {
+      resolve(void 0);
+    });
   }
 }

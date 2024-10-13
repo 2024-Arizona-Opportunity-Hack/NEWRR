@@ -30,7 +30,7 @@
     "@types/nodemailer": "^6.4.16",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^9.12.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
@@ -38,6 +38,7 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.670.0",
     "@newrr/api": "workspace:*",
     "axios": "^1.7.5",
     "cookie-parser": "^1.4.7",

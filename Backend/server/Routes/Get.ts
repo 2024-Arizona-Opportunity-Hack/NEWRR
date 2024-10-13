@@ -16,23 +16,23 @@ export class GetRouter extends RequestRouter {
     });
 
     this.router.get('/animal', (req, res) => {
-      this.handleRequest(ValidRoutes.GetAnimalById, req, res);
+      this.handleRequest(ValidRoutes.GetAnimalById, req, res, false);
     });
 
     this.router.get('/animals', (req, res) => {
-      this.handleRequest(ValidRoutes.GetAllAnimals, req, res);
+      this.handleRequest(ValidRoutes.GetAllAnimals, req, res, false);
     });
 
     this.router.get('/behavior/id', (req, res) => {
-      this.handleRequest(ValidRoutes.GetBehaviorById, req, res);
+      this.handleRequest(ValidRoutes.GetBehaviorById, req, res, false);
     });
 
     this.router.get('/behavior/name', (req, res) => {
-      this.handleRequest(ValidRoutes.GetBehaviorByName, req, res);
+      this.handleRequest(ValidRoutes.GetBehaviorByName, req, res, false);
     });
 
     this.router.get('/behaviors', (req, res) => {
-      this.handleRequest(ValidRoutes.GetBehaviors, req, res);
+      this.handleRequest(ValidRoutes.GetBehaviors, req, res, false);
     });
   }
 }

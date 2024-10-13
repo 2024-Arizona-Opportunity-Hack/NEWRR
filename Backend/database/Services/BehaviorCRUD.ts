@@ -1,6 +1,10 @@
 import { IBehavior } from '@newrr/api';
 import { Behavior } from '../Models/Behavior';
-import { DBCatchable } from 'Backend/library/Decorators/DBCatchable';
+import { DBCatchable } from '../../library/Decorators/DBCatchable';
+import {
+  BehaviorAlreadyExists,
+  BehaviorDoesNotExist
+} from '../../library/Errors/Behavior';
 
 export class BehaviorCRUD {
   @DBCatchable('Failed to create behavior')
@@ -14,14 +18,32 @@ export class BehaviorCRUD {
   }
 
   @DBCatchable('Failed to fetch behavior')
-  public static async getBehaviorById(id: string): Promise<IBehavior | null> {
-    return await Behavior.findById(id);
+  public static async getBehaviorById(id: string): Promise<IBehavior> {
+    const behavior = await Behavior.findById(id);
+
+    if (!behavior) {
+      throw new BehaviorDoesNotExist('Behavior does not exist');
+    }
+
+    return behavior;
   }
 
   @DBCatchable('Failed to update behavior')
-  public static async findBehaviorByName(
-    name: string
-  ): Promise<IBehavior | null> {
-    return await Behavior.findOne({ name: name.toLowerCase() });
+  public static async findBehaviorByName(name: string): Promise<IBehavior> {
+    const behavior = await Behavior.findOne({ name: name.toLowerCase() });
+
+    if (!behavior) {
+      throw new BehaviorDoesNotExist('Behavior does not exist');
+    }
+
+    return behavior;
+  }
+
+  public static async behaviorExists(name: string): Promise<void> {
+    const behavior = await Behavior.exists({ name: name.toLowerCase() });
+
+    if (behavior) {
+      throw new BehaviorAlreadyExists('Behavior already exists');
+    }
   }
 }

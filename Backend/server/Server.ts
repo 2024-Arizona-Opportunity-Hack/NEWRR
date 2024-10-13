@@ -1,12 +1,11 @@
-import express, { Application } from 'express';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import express, { Application } from 'express';
 import { Globals } from '../library/Globals/Globals';
 import { LoggerUtils } from '../library/Utilities/LoggerUtils';
 import { GetRouter } from './Routes/Get';
-import { HttpStatusCode } from 'axios';
 import { PostRouter } from './Routes/Post';
-import cookieParser from 'cookie-parser';
-// Import other routers as needed
+import { PutRouter } from './Routes/Put';
 
 export class Server {
   private readonly app: Application;
@@ -37,22 +36,7 @@ export class Server {
   private configureRoutes(): void {
     this.app.use('/api', new GetRouter().router);
     this.app.use('/api', new PostRouter().router);
-  }
-
-  private configureErrorHandling(): void {
-    this.app.use(
-      (
-        err: any,
-        req: express.Request,
-        res: express.Response,
-        next: express.NextFunction
-      ) => {
-        LoggerUtils.error(`Error: ${err}`);
-        res
-          .status(HttpStatusCode.InternalServerError)
-          .json({ message: 'Internal Server Error' });
-      }
-    );
+    this.app.use('/api', new PutRouter().router);
   }
 
   public start(): void {
