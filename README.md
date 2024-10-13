@@ -1,5 +1,5 @@
-
-# 2024_fall Hackathon Project
+# Team 8 - Amdahl's Law
+#### 2024_fall Hackathon Project
 
 ## Quick Links
 - [Hackathon Details](https://www.ohack.dev/hack/2024_fall)
@@ -7,18 +7,19 @@
 - [Nonprofit Partner](https://ohack.dev/nonprofit/BQkux9KMxEXksUK7ec7h)
 - [Problem Statement](https://ohack.dev/project/nsxPhAtgiL8MMiX0rKj7)
 
-## Creator
-@Ronald McInnes (on Slack)
-
 ## Team "Amdahl's Law"
 - [Ronald McInnes](https://github.com/rondawgx3)
 - [Andrew Le](https://github.com/pandrewle)
 - [Jonathan Amdahl](https://github.com/JonathanAmdahl)
 - [Dhruv Jain](https://github.com/materwelondhruv)
 - [Dario D'Addamio](https://github.com/dariodaddamio)
-<!-- Add all team members -->
 
 ## Project Overview
+**Problem Statement:**
+Problem: NEWRR struggles with manual processes for donation tracking, thank-you cards, and animal intake/adoption forms, leading to inefficiencies and missed engagement opportunities.
+Goal: Develop a cloud-based system to streamline donation management, automate donor communications, and digitize animal-related forms and processes.
+Key Features: Implement digital forms with unique URLs, donation tracking with automated thank-you notes, role-based access controls, and potential for task management and multimedia file integration.
+**About our approach:**
 In order to properly solve the issues of Nature's Edge Wildlife and Reptile Rescue, we decided to build them a fully functioning website to replace their current website, which lacks high quality UX (see here: https://www.newrr.org/), and is unable to support their needed tools like an animal database, additional forms, and centralized donation tracking.
 We chose to decrease complexity for administrative users at the nonprofit by using forms from JotForm and facilitating donation and donation tracking with GiveButter. We centralize animal database editing and links to relevant form submissions and donating tracking all in one Admin Dashboard, which is accessible by logging in with Oauth. 
 
@@ -33,7 +34,7 @@ We chose to decrease complexity for administrative users at the nonprofit by usi
 
 
 ## Getting Started
-Instructions on how to set up and run your project locally.
+Instructions on how to set up and run our project locally.
 
 ```bash
 git clone https://github.com/2024-Arizona-Opportunity-Hack/NEWRR
@@ -46,29 +47,12 @@ and
 ```bash
 cd Backend
 pnpm install
-
+pnpm run start:watch
 ```
 
+## [DevPost Link](https://devpost.com/software/nature-s-edge-wildlife-and-reptile-rescue)
+## [Demo Video]()
 
-## Your next steps
-1. ✅ Add everyone on your team to your GitHub repo like [this video posted in our Slack channel](https://opportunity-hack.slack.com/archives/C1Q6YHXQU/p1605657678139600)
-2. ✅ Create your DevPost project [like this video](https://youtu.be/vCa7QFFthfU?si=bzMQ91d8j3ZkOD03)
-3. ✅ Use the [2024 DevPost](https://opportunity-hack-2024-arizona.devpost.com) to submit your project
-4. ✅ Your DevPost final submission demo video should be 4 minutes or less
-5. ✅ Review the judging criteria on DevPost
-
-# What should your final Readme look like?
-Your readme should be a one-stop-shop for the judges to understand your project. It should include:
-- Team name
-- Team members
-- Slack channel
-- Problem statement
-- Tech stack
-- Link to your DevPost project
-- Link to your final demo video
-- Any other information you think is important
-
-You'll use this repo as your resume in the future, so make it shine! 🌟
 
 Examples of stellar readmes:
 - ✨ [2019 Team 3](https://github.com/2019-Arizona-Opportunity-Hack/Team-3)
