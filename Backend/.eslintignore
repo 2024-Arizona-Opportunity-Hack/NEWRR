@@ -8,5 +8,3 @@ node_modules/
 # dotenv environment variables file
 .env.production
 .env.development
-
-src/Devil/Archive

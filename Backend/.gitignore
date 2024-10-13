@@ -19,6 +19,8 @@ test/
 dist/
 build/
 
+pnpm-lock.yaml
+
 # Ignore IDE specific files
 **/.idea
 # **/.vscode

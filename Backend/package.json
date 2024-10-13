@@ -39,6 +39,7 @@
     "typescript": "^5.6.2"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.670.0",
     "@newrr/api": "workspace:*",
     "axios": "^1.7.5",
     "cookie-parser": "^1.4.7",

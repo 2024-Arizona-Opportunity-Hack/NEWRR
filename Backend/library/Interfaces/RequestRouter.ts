@@ -24,6 +24,7 @@ export abstract class RequestRouter {
     if (isProtected) {
       AuthMiddleware.authenticate(req, res, (err: any) => {
         if (err) {
+          console.log('err');
           return res.status(401).json({ error: 'Unauthorized' });
         }
         this.processRequest(route, req, res);
