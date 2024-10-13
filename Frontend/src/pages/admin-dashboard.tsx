@@ -4,13 +4,12 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import TaskManagement from "../components/TaskManagement";
 import AdminManagement from "../components/AdminManagement";
-import BottomLinks from "../components/BottomLinks";
 
 const AdminDashboard: React.FC = () => {
   const adminLinks = [
-    { name: "Financials", href: "/admin/financial-dashboard" },
-    { name: "Animals", href: "/admin/animal-dashboard" },
-    { name: "Forms", href: "/admin/forms-dashboard" },
+    { name: "Financial Dashboard", href: "/admin/financial-dashboard" },
+    { name: "Animal Dashboard", href: "/admin/animal-dashboard" },
+    { name: "Forms Dashboard", href: "/admin/forms-dashboard" },
   ];
 
   return (
@@ -23,9 +22,6 @@ const AdminDashboard: React.FC = () => {
         <div className="md:w-1/4 p-2">
           <AdminManagement />
         </div>
-      </div>
-      <div className="h-1/10 mx-4">
-        <BottomLinks />
       </div>
     </div>
   );
