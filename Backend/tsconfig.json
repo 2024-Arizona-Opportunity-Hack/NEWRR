@@ -2,6 +2,10 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "composite": true,
-    "baseUrl": "../"
+    "baseUrl": "../",
+    "paths": {
+      "@newrr/api": ["API/index.ts"],
+      "@newrr/api/*": ["API/*"]
+    }
   }
 }
