@@ -5,10 +5,15 @@ import ToDo from "./ToDo";
 // Combines todo and tiles into one area
 const TaskManagement: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gray-100 flex" id="/admin/dashboard/#tasks">
-      <ToDo />
-      <Tiles />
+    <div className="w-fullbg-gray-100 flex" id="/admin/dashboard/#tasks">
+      <div className="w-1/2">
+        <ToDo />
+      </div>
+      <div className="w-1/2">
+        <Tiles />
+      </div>
     </div>
   );
 };
+
 export default TaskManagement;

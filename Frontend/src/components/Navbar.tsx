@@ -108,6 +108,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
             >
               <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24">
                 <path
+                  stroke="#101010" // Ensure the stroke color is set
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
