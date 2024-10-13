@@ -5,6 +5,7 @@ import {
 } from '../../library/Interfaces/HandlerController';
 import { ValidRoutes } from '../../server/ValidRoutes';
 import { GoogleAuth } from '../Handlers/PostHandlers/GoogleAuth';
+import { Logout } from '../Handlers/PostHandlers/Logout';
 
 export class PostController extends Controller<ServerEvent> {
   private routeId: ValidRoutes;
@@ -18,6 +19,8 @@ export class PostController extends Controller<ServerEvent> {
     switch (this.routeId) {
       case ValidRoutes.GoogleAuth:
         return new GoogleAuth(this.trigger);
+      case ValidRoutes.Logout:
+        return new Logout(this.trigger);
       default:
         return null;
     }

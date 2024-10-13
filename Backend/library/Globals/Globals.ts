@@ -21,5 +21,6 @@ export class Globals {
   public static readonly API_URL = process.env.API_URL || '';
   public static readonly FRONTEND_URL = process.env.FRONTEND_URL || '';
   public static readonly JWT_SECRET = process.env.JWT_SECRET || '';
+  public static readonly IS_PRODUCTION = Boolean(process.env.IS_PRODUCTION) || false;
   // VARIABLE ACCESSORS BASED ON ENVIRONMENT
 }

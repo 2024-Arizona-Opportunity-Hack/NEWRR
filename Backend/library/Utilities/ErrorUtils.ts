@@ -14,6 +14,10 @@ import {
 } from '../Errors/Params';
 import { ErrorResponse } from '../Interfaces/Errors';
 import { LoggerUtils } from './LoggerUtils';
+import {
+  InvalidCredentials,
+  InvalidCredentialsRes
+} from '../Errors/GoogleAuth';
 
 export type CustomErrorType = new (...args: any[]) => Error;
 
@@ -41,7 +45,8 @@ export class ErrorUtils {
     [
       MissingBody.name,
       (error: MissingBody) => new MissingBodyRes(error.missingBody)
-    ]
+    ],
+    [InvalidCredentials.name, () => new InvalidCredentialsRes()]
   ]);
 
   public static getErrorRes(

@@ -15,8 +15,13 @@ function CustomGoogleLogin() {
         try {
             console.log("About to decode")
             const {email, name, picture} = jwtDecode(user.credential) as GoogleProfile;
+
+            //Update the profile state to feel faster (client side)
             console.log("Decoded... Setting profile")
             setProfile({email, name, picture, authenticated: null});
+
+
+            //Send data to backend for validation and role access
             console.log("Profile set... Sending to backend")
             sendLoginDataToBackend(user.credential, user.clientId);
             console.log("Sent to backend")
@@ -27,23 +32,24 @@ function CustomGoogleLogin() {
     }, [user]);
    
     const sendLoginDataToBackend = async (credential: string, client_id: string) => {
+        //send data to backend for validation and role access
         const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
-        const response = await postMethods.postGoogleAuth(credential, client_id);
-       // const response = await axios.post<string>(`${import.meta.env.VITE_G_API_URL}/google-auth`, { credential, client_id }, { withCredentials: true });
-        console.log(response);
+        const { email, name, role, picture} = await postMethods.postGoogleAuth(credential, client_id);
+
+        //server side google auth response validated + client side rendering of authentication
+        setProfile({email, name, picture, authenticated: role.perm_level > 5});
     };
 
     // log out function to log the user out of google and set the profile array to null
-    const logOut = () => {
+    const logOut = async() => {
         googleLogout();
+        const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
+        await postMethods.postLogout();
         setProfile(null);
     };
     
     return (
         <div>
-            <h2>React Google Login</h2>
-            <br />
-            <br />
             {profile && (
                 <div>
                     <img src={profile.picture} alt="user image" />
@@ -57,10 +63,12 @@ function CustomGoogleLogin() {
                 </div>
             )}
             {!profile && (
-                <GoogleLogin 
-                    onSuccess={(credentialResponse) => setUser(credentialResponse)} 
-                    onError={() => console.log('Login Failed')} 
-                />
+                <div className='w-96'>
+                    <GoogleLogin 
+                        onSuccess={(credentialResponse) => setUser(credentialResponse)} 
+                        onError={() => console.log('Login Failed')} 
+                    />
+                </div>
             )}
         </div>
     );
