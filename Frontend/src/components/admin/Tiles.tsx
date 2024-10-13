@@ -25,7 +25,7 @@ const Tile: React.FC<TileProps> = ({ title, icon, items }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className={`bg-${title === "GiveButter" ? "darkergreen" : "lightgreen"} text-white p-4 md:p-6 rounded-lg shadow-lg`}
+      className={`bg-${title === "GiveButter" ? "darkergreen" : "darkergreen"} text-white p-4 md:p-6 rounded-lg shadow-lg`}
     >
       <div className="flex items-center mb-4">
         {icon}

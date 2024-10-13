@@ -1,5 +1,5 @@
 import React from "react";
-import Tile from "./Tile";
+import Tile from "./Tiles";
 import ToDo from "./ToDo";
 import { DollarSign, FileText, MessageSquare, CheckSquare } from "lucide-react";
 
