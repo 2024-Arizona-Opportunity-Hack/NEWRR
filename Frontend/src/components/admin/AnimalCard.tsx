@@ -36,7 +36,9 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
             <h3 className="font-semibold">
               {animal.name} (ID #{animal.id})
             </h3>
-            <p className="text-sm">{animal.species}</p>
+            <p className="text-sm">
+              {animal.species} ({animal.gender})
+            </p>
           </div>
         </div>
         <span
@@ -47,9 +49,10 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
       </div>
       {expanded && (
         <div className="grid grid-cols-2 gap-4">
-          <p className="text-sm">{animal.description}</p>
+          <div className="flex-grow overflow-y-auto pr-4 custom-scrollbar">
+            <p className="text-sm leading-relaxed">{animal.description}</p>
+          </div>
           <div className="relative h-40">
-            {/* Implement carousel here */}
             <img
               src={animal.images[0]}
               alt={animal.name}
