@@ -14,7 +14,7 @@ npm-debug.*
 # misc 
 test/
 **/.DS_Store
-
+pnpm-lock.yaml
 # Ignore build output directories
 dist/
 build/

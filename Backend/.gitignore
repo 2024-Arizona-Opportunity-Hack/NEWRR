@@ -10,7 +10,7 @@ npm-debug.*
 
 # typescript
 *.tsbuildinfo
-
+pnpm-lock.yaml
 # misc 
 test/
 **/.DS_Store
