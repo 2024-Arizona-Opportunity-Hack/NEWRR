@@ -61,7 +61,7 @@ const ToDo: React.FC = () => {
   };
 
   return (
-    <div className="w-[50%] min-h-screen bg-white p-16 mt-16">
+    <div className="min-h-screen bg-white p- mt-20">
       <div className="border border-black rounded-lg p-4">
         <h1 className="text-2xl font-bold mb-4 text-center">To-Do List</h1>
         <ul>
@@ -96,7 +96,7 @@ const ToDo: React.FC = () => {
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="border p-2 pl-0 mr-2 w-full outline-none border-none"
+            className="border m-20 p-2 pl-0 mr-2 w-full outline-none border-none"
             placeholder="Add new todo"
           />
         </div>
