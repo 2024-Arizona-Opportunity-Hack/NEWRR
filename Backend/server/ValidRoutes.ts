@@ -1,7 +1,9 @@
 export enum ValidRoutes {
-  Health = 'health', // GET
+  Health = 'health',
 
   GoogleAuth = 'google-auth', // POST
+  Logout = 'logout', // POST
+  CheckAuth = 'check-auth', // GET
 
   JotformCheckin = 'jotform-checkin', // POST WEBHOOK
 

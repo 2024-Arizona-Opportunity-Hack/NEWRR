@@ -26,6 +26,10 @@ import {
   NoBehaviorsSaved,
   NoBehaviorsSavedRes
 } from '../Errors/Behavior';
+import {
+  InvalidCredentials,
+  InvalidCredentialsRes
+} from '../Errors/GoogleAuth';
 
 export type CustomErrorType = new (...args: any[]) => Error;
 
@@ -54,6 +58,7 @@ export class ErrorUtils {
       MissingBody.name,
       (error: MissingBody) => new MissingBodyRes(error.missingBody)
     ],
+    [InvalidCredentials.name, () => new InvalidCredentialsRes()],
     [AnimalDoesNotExist.name, () => new AnimalDoesNotExistRes()],
     [NoAnimalsFound.name, () => new NoAnimalsFoundRes()],
     [NoBehaviorsSaved.name, () => new NoBehaviorsSavedRes()],

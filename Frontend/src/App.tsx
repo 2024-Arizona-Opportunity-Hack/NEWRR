@@ -1,6 +1,7 @@
 import Home from "./pages/homepage";
 import Admin from "./pages/admin";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AdminTest from "./pages/admin-test";
 import Test from "./pages/test";
 
 function App() {
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/test" element={<Test />} />
+        <Route path="/admin-test" element={<AdminTest />} />
       </Routes>
     </Router>
   );
