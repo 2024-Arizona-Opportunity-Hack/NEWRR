@@ -1,22 +1,24 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import AnimalCard from "./AnimalCard";
-import SearchBar from "./SearchBar";
+import SearchBar, { FilterOptions } from "./SearchBar";
 
 interface Animal {
-  id: number;
+  _id: string;
+  intakeDate: number;
   name: string;
   species: string;
-  gender: string;
+  sex: "Male" | "Female" | "Unknown";
   status: "Adopted" | "In Rehabilitation" | "Rehabilitated" | "Released";
-  description: string;
   images: string[];
-}
-interface FilterOptions {
-  gender: string;
-  species: string;
-  status: string;
-  id: string;
-  name: string;
+  behaviors: string[];
+  age?: number;
+  breed?: string;
+  medicalInfo?: string;
+  location?: string;
+  notes?: string;
+  weight?: number;
+  intakeFormLink?: string;
+  adoptionFormLink?: string;
 }
 
 const AnimalManagement: React.FC = () => {
@@ -30,138 +32,188 @@ const AnimalManagement: React.FC = () => {
     // For now, we'll use dummy data
     const dummyAnimals: Animal[] = [
       {
-        id: 1,
+        _id: "a1",
+        intakeDate: 1622577600000, // Unix timestamp
         name: "Luna",
         species: "Wolf",
-        gender: "Female",
+        sex: "Female",
         status: "In Rehabilitation",
-        description:
-          "Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest.",
         images: [
           "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-          "https://images.unsplash.com/photo-1568860357750-5ca7b2e9f3e6?w=500&h=500&fit=crop",
-          "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=500&h=500&fit=crop",
         ],
+        behaviors: ["Curious", "Playful"],
+        age: 4,
+        breed: "Gray Wolf",
+        medicalInfo: "Fractured leg, undergoing treatment",
+        location: "Wildlife Rescue Center",
+        notes: "Found injured in the forest.",
+        weight: 50,
+        intakeFormLink: "https://example.com/intake-form-luna",
+        adoptionFormLink: "https://example.com/adopt-luna",
       },
       {
-        id: 2,
+        _id: "a2",
+        intakeDate: 1619875200000,
         name: "Max",
         species: "Eagle",
-        gender: "Male",
+        sex: "Male",
         status: "Rehabilitated",
-        description:
-          "Max is a majestic eagle that was treated for a broken wing.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: ["https://example.com/max.jpg"],
+        behaviors: ["Aggressive", "Alert"],
+        age: 3,
+        breed: "Bald Eagle",
+        medicalInfo: "Broken wing, fully healed",
+        location: "Sky Sanctuary",
+        notes: "Ready for release into the wild.",
+        weight: 6,
+        intakeFormLink: "https://example.com/intake-form-max",
+        adoptionFormLink: "https://example.com/adopt-max",
       },
       {
-        id: 3,
+        _id: "a3",
+        intakeDate: 1617187200000,
         name: "Bella",
         species: "Fox",
-        gender: "Female",
+        sex: "Female",
         status: "Released",
-        description:
-          "Bella, a playful fox, was released back into the wild after rehabilitation.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: ["https://example.com/bella.jpg"],
+        behaviors: ["Shy", "Fast"],
+        age: 2,
+        breed: "Red Fox",
+        medicalInfo: "No medical issues.",
+        location: "Rehabilitation Forest",
+        notes: "Released back into the wild.",
+        weight: 8,
+        intakeFormLink: "https://example.com/intake-form-bella",
+        adoptionFormLink: "",
       },
       {
-        id: 4,
+        _id: "a4",
+        intakeDate: 1633027200000,
         name: "Charlie",
         species: "Deer",
-        gender: "Male",
+        sex: "Male",
         status: "Adopted",
-        description:
-          "Charlie, a gentle deer, was adopted by a wildlife sanctuary.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: ["https://example.com/charlie.jpg"],
+        behaviors: ["Gentle", "Calm"],
+        age: 5,
+        breed: "White-tailed Deer",
+        medicalInfo: "Recovered from a leg injury.",
+        location: "Wildlife Sanctuary",
+        notes: "Adopted by a local wildlife sanctuary.",
+        weight: 100,
+        intakeFormLink: "https://example.com/intake-form-charlie",
+        adoptionFormLink: "https://example.com/adopt-charlie",
       },
       {
-        id: 5,
+        _id: "a5",
+        intakeDate: 1640995200000,
         name: "Kira",
         species: "Owl",
-        gender: "Female",
+        sex: "Female",
         status: "In Rehabilitation",
-        description:
-          "Kira is a nocturnal owl recovering from a collision with a vehicle.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: ["https://example.com/kira.jpg"],
+        behaviors: ["Nocturnal", "Alert"],
+        age: 6,
+        breed: "Barn Owl",
+        medicalInfo: "Collision injury, recovering well.",
+        location: "Bird Sanctuary",
+        notes: "Still under observation.",
+        weight: 1.5,
+        intakeFormLink: "https://example.com/intake-form-kira",
+        adoptionFormLink: "",
       },
       {
-        id: 6,
+        _id: "a6",
+        intakeDate: 1635705600000,
         name: "Leo",
         species: "Lion",
-        gender: "Male",
+        sex: "Male",
         status: "In Rehabilitation",
-        description:
-          "Leo is a rescued lion undergoing rehabilitation after being rescued from a circus.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: ["https://example.com/leo.jpg"],
+        behaviors: ["Aggressive", "Protective"],
+        age: 8,
+        breed: "African Lion",
+        medicalInfo: "Malnourished, slowly gaining weight.",
+        location: "Big Cat Rescue",
+        notes: "Rescued from illegal captivity.",
+        weight: 190,
+        intakeFormLink: "https://example.com/intake-form-leo",
+        adoptionFormLink: "https://example.com/adopt-leo",
       },
       {
-        id: 7,
+        _id: "a7",
+        intakeDate: 1654041600000,
         name: "Ruby",
         species: "Rabbit",
-        gender: "Female",
+        sex: "Female",
         status: "Released",
-        description:
-          "Ruby was released into the wild after receiving treatment for a leg injury.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: [
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+        ],
+        behaviors: ["Shy", "Timid"],
+        age: 1,
+        breed: "Cottontail Rabbit",
+        medicalInfo: "Healthy, no issues.",
+        location: "Rehabilitation Field",
+        notes: "Released after rehabilitation.",
+        weight: 1.2,
+        intakeFormLink: "https://example.com/intake-form-ruby",
+        adoptionFormLink: "",
       },
       {
-        id: 8,
+        _id: "a8",
+        intakeDate: 1651363200000,
         name: "Oscar",
         species: "Bear",
-        gender: "Male",
+        sex: "Male",
         status: "Adopted",
-        description:
-          "Oscar is a brown bear that was adopted by a wildlife reserve.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: ["https://example.com/oscar.jpg"],
+        behaviors: ["Curious", "Playful"],
+        age: 10,
+        breed: "Grizzly Bear",
+        medicalInfo: "Rescued from malnutrition, now healthy.",
+        location: "Bear Sanctuary",
+        notes: "Adopted by a wildlife reserve.",
+        weight: 350,
+        intakeFormLink: "https://example.com/intake-form-oscar",
+        adoptionFormLink: "https://example.com/adopt-oscar",
       },
       {
-        id: 9,
+        _id: "a9",
+        intakeDate: 1638316800000,
         name: "Milo",
         species: "Hedgehog",
-        gender: "Male",
+        sex: "Male",
         status: "Rehabilitated",
-        description:
-          "Milo was rehabilitated after being found in a garden with an injured paw.",
-        images: [
-          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-        ],
+        images: ["https://example.com/milo.jpg"],
+        behaviors: ["Shy", "Curious"],
+        age: 3,
+        breed: "European Hedgehog",
+        medicalInfo: "Recovered from a paw injury.",
+        location: "Small Animal Clinic",
+        notes: "Ready for release into a protected area.",
+        weight: 0.8,
+        intakeFormLink: "https://example.com/intake-form-milo",
+        adoptionFormLink: "https://example.com/adopt-milo",
       },
       {
-        id: 10,
+        _id: "a10",
+        intakeDate: 1643587200000,
         name: "Stella",
         species: "Penguin",
-        gender: "Female",
+        sex: "Female",
         status: "In Rehabilitation",
-        description:
-          "Stella, a rescued penguin, is recovering from an oil spill incident.",
-        images: [
-          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-        ],
-      },
-      {
-        id: 11,
-        name: "Duke",
-        species: "Turtle",
-        gender: "Male",
-        status: "Released",
-        description:
-          "Duke, a sea turtle, was released after being treated for a shell injury.Sasha is a rescued python that was nursed back to health after an infection. Sasha is a rescued python that was nursed back to health after an infection. Sasha is a rescued python that was nursed back to health after an infection. Sasha is a rescued python that was nursed back to health after an infection.",
-        images: [
-          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-        ],
-      },
-      {
-        id: 12,
-        name: "Sasha",
-        species: "Snake",
-        gender: "Female",
-        status: "Rehabilitated",
-        description:
-          "Sasha is a rescued python that was nursed back to health after an infection.",
-        images: [
-          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
-        ],
+        images: ["https://example.com/stella.jpg"],
+        behaviors: ["Playful", "Curious"],
+        age: 4,
+        breed: "Emperor Penguin",
+        medicalInfo: "Recovering from oil spill contamination.",
+        location: "Marine Rescue Center",
+        notes: "Still undergoing rehabilitation.",
+        weight: 15,
+        intakeFormLink: "https://example.com/intake-form-stella",
+        adoptionFormLink: "",
       },
     ];
     setAnimals(dummyAnimals);
@@ -173,33 +225,31 @@ const AnimalManagement: React.FC = () => {
       const matchesQuery =
         animal.name.toLowerCase().includes(query.toLowerCase()) ||
         animal.species.toLowerCase().includes(query.toLowerCase()) ||
-        animal.id.toString().includes(query);
+        animal._id.toLowerCase().includes(query.toLowerCase());
 
       const matchesFilters = Object.entries(filters).every(([key, value]) => {
         if (!value) return true; // Skip empty filters
 
-        const animalValue = animal[key as keyof Animal];
-
-        // Exact match for specific fields (like gender, status, species, etc.)
-        if (key === "gender") {
-          return (
-            typeof animalValue === "string" &&
-            animalValue.toLowerCase() === value.toLowerCase()
+        if (key === "behavior") {
+          return animal.behaviors.some((behavior) =>
+            behavior.toLowerCase().includes(value.toLowerCase())
           );
         }
 
-        // For other fields, allow partial match (e.g., id, name)
-        return (
-          typeof animalValue === "string" &&
-          animalValue.toLowerCase().includes(value.toLowerCase())
-        );
+        const animalValue = animal[key as keyof Animal];
+
+        if (typeof animalValue === "string") {
+          return animalValue.toLowerCase().includes(value.toLowerCase());
+        }
+
+        return true;
       });
 
       return matchesQuery && matchesFilters;
     });
 
     setFilteredAnimals(results);
-    setCurrentPage(1); // Reset to the first page after filtering
+    setCurrentPage(1);
   };
 
   const indexOfLastAnimal = currentPage * animalsPerPage;
@@ -212,12 +262,12 @@ const AnimalManagement: React.FC = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold pb-4 px-16">Animal Management</h1>
+    <div className="container mx-auto px-16 py-8">
+      <h1 className="text-3xl font-bold mb-6">Animal Management</h1>
       <SearchBar onSearch={handleSearch} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-16">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {currentAnimals.map((animal) => (
-          <AnimalCard key={animal.id} animal={animal} />
+          <AnimalCard key={animal._id} animal={animal} />
         ))}
       </div>
       <div className="mt-4 flex justify-center">
@@ -227,7 +277,11 @@ const AnimalManagement: React.FC = () => {
             <button
               key={i}
               onClick={() => paginate(i + 1)}
-              className={`mx-1 px-3 py-1 rounded ${currentPage === i + 1 ? "bg-darkergreen text-white" : "bg-gray-200"}`}
+              className={`mx-1 px-3 py-1 rounded ${
+                currentPage === i + 1
+                  ? "bg-darkergreen text-white"
+                  : "bg-gray-200"
+              }`}
             >
               {i + 1}
             </button>

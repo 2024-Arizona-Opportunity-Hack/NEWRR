@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { Search, Filter } from "lucide-react";
 
-interface FilterOptions {
-  gender: string;
+export interface FilterOptions {
+  sex: string;
   species: string;
   status: string;
-  id: string;
+  _id: string;
   name: string;
+  behavior: string;
 }
 
 const initialFilterOptions: FilterOptions = {
-  gender: "",
+  sex: "",
   species: "",
   status: "",
-  id: "",
+  _id: "",
   name: "",
+  behavior: "",
 };
 
 const SearchBar: React.FC<{
@@ -39,7 +41,7 @@ const SearchBar: React.FC<{
   };
 
   return (
-    <div className="mb-4 px-16">
+    <div className="mb-4">
       <div className="flex items-center bg-gray-200 rounded-lg">
         <input
           type="search"
@@ -59,7 +61,7 @@ const SearchBar: React.FC<{
       {showFilters && (
         <div className="mt-2 p-4 bg-gray-100 rounded-lg">
           <h4 className="font-semibold mb-2">Filters</h4>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {Object.entries(filters).map(([key, value]) => (
               <div key={key}>
                 <label className="block text-sm font-medium mb-1">
