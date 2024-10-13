@@ -1,9 +1,16 @@
 import React from "react";
-import Hero from "../components/admin/Hero";
+import AnimalManagement from "../components/admin/AnimalManagament";
+import TaskManagement from "../components/admin/TaskManagement";
+import Navbar from "../components/Navbar";
 // import { useUser } from "../hooks/useUser";
 // import NotLoggedIn from "../components/ NotLoggedIn";
 
 const AdminDashboard: React.FC = () => {
+  const adminLinks = [
+    { name: "Dashboard", href: "/admin/dashboard" },
+    { name: "Animal Dashboard", href: "/admin/animal-dashboard" },
+    { name: "Financial Dashboard", href: "/admin/financial-dashboard" },
+  ];
   // const { data: user } = useUser();
 
   // const hasPerms = () => {
@@ -17,7 +24,10 @@ const AdminDashboard: React.FC = () => {
   // if(!hasAccess) return <NotLoggedIn hasUser={true}/>;
   return (
     <div className="min-h-screen bg-gray-100">
-      <Hero />
+      <Navbar links={adminLinks} title="NEWRR Forms Dashboard" />
+
+      <TaskManagement />
+      <AnimalManagement />
     </div>
   );
 };

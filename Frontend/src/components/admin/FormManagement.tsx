@@ -1,16 +1,9 @@
 // admin page with log in and powerbi platform later
 
 import React from "react";
-import Navbar from "../components/Navbar";
-import Form from "../components/admin/Form";
+import Form from "./Form";
 
-const FormsDashboard: React.FC = () => {
-  const adminLinks = [
-    { name: "Dashboard", href: "/admin/dashboard" },
-    { name: "Animal Dashboard", href: "/admin/animal-dashboard" },
-    { name: "Financial Dashboard", href: "/admin/financial-dashboard" },
-  ];
-
+const FormManagement: React.FC = () => {
   const forms = [
     {
       number: 1,
@@ -45,8 +38,7 @@ const FormsDashboard: React.FC = () => {
   const numRows = Math.ceil(forms.length / 2);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <Navbar links={adminLinks} title="NEWRR Forms Dashboard" />
+    <div className="w-[50%] min-h-screen bg-white flex flex-col">
       <div
         className="grid grid-cols-3 gap-4 p-16 mt-16"
         style={{
@@ -77,4 +69,4 @@ const FormsDashboard: React.FC = () => {
   );
 };
 
-export default FormsDashboard;
+export default FormManagement;
