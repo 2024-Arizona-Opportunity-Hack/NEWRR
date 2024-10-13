@@ -10,7 +10,7 @@ const Users: React.FC = () => {
   const fetchUsers = async () => {
     const getMethods = new GetMethods(import.meta.env.VITE_G_API_URL);
     const users = await getMethods.getAdminUsers();
-    setUsers(users);
+    setUsers(JSON.parse(users));
   };
 
   useEffect(() => {

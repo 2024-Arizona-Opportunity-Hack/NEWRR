@@ -13,8 +13,13 @@ export class PutMethods extends BaseMethods {
   ): Promise<IAnimalData> {
     const response = await axios.put<IAnimalData>(
       `${this.baseUrl}/animal`,
-      { id, ...options },
-      { withCredentials: true }
+      options,
+      {
+        headers: {
+          id: id,
+        },
+        withCredentials: true,
+      }
     );
     return response.data;
   }

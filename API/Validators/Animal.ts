@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { AnimalSex, AnimalStatus } from '../Types/Animal';
+import { z } from "zod";
+import { AnimalSex, AnimalStatus } from "../Types/Animal";
 
 export class AnimalValidator {
   public static Behavior = z.object({
@@ -48,7 +48,7 @@ export class AnimalValidator {
     .refine(
       (data) => Object.values(data).some((value) => value !== undefined),
       {
-        message: 'At least one updateable key must be provided',
+        message: "At least one updateable key must be provided",
       }
     );
 

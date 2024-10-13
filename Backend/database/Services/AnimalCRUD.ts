@@ -19,7 +19,8 @@ export class AnimalCRUD {
   ): Promise<IAnimalData> {
     const animalData: NewAnimalData & { status: AnimalStatus } = {
       ...newAnimalData,
-      status: AnimalStatus.AVAILABLE
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      status: AnimalStatus.NO_STATUS
     };
 
     const animal = await Animal.create(animalData);

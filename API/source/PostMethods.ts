@@ -1,8 +1,8 @@
-import { GoogleAuthResponse } from 'API/Types/GoogleAuth';
-import { BaseMethods } from './BaseMethods';
-import axios from 'axios';
-import { IToDoItem } from 'API/Types/ToDo';
-import { IAnimalData, IBehavior, NewAnimalData } from '../Types/Animal';
+import { GoogleAuthResponse } from "API/Types/GoogleAuth";
+import { BaseMethods } from "./BaseMethods";
+import axios from "axios";
+import { IToDoItem } from "API/Types/ToDo";
+import { IAnimalData, IBehavior, NewAnimalData } from "../Types/Animal";
 
 export class PostMethods extends BaseMethods {
   constructor(baseUrl: string) {

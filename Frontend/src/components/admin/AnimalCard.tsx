@@ -1,33 +1,61 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import {
+  IAnimalData,
+  AnimalStatus,
+  UpdateableAnimalKeys,
+  AnimalValidator,
+} from "@newrr/api";
+import { PutMethods } from "@newrr/api";
 
-interface Animal {
-  _id: string;
-  intakeDate: number;
-  name: string;
-  species: string;
-  sex: "Male" | "Female" | "Unknown";
-  status: "Adopted" | "In Rehabilitation" | "Rehabilitated" | "Released";
-  images: string[];
-  behaviors: string[];
-  age?: number;
-  breed?: string;
-  medicalInfo?: string;
-  location?: string;
-  notes?: string;
-  weight?: number;
-  intakeFormLink?: string;
-  adoptionFormLink?: string;
-}
-
-const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
+const AnimalCard: React.FC<{ animal: IAnimalData }> = ({ animal }) => {
   const [expanded, setExpanded] = useState(false);
+  const [editing, setEditing] = useState(false);
+  const [editedAnimal, setEditedAnimal] = useState<IAnimalData>(animal);
+  const formattedAnimal =
+    AnimalValidator.UpdateableAnimalKeys.safeParse(editedAnimal).data;
+  console.log(formattedAnimal);
+  // Function to get status color
+  const getStatusColor = (status: AnimalStatus): string => {
+    switch (status) {
+      case AnimalStatus.ADOPTED:
+        return "bg-green-500";
+      case AnimalStatus.IN_REHABILITATION:
+        return "bg-yellow-500";
+      case AnimalStatus.REHABILITATED:
+        return "bg-blue-500";
+      case AnimalStatus.RELEASED:
+        return "bg-purple-500";
+      default:
+        return "bg-gray-500";
+    }
+  };
 
-  const statusColors = {
-    Adopted: "bg-red-500",
-    "In Rehabilitation": "bg-yellow-500",
-    Rehabilitated: "bg-green-500",
-    Released: "bg-red-500",
+  const handleEdit = () => {
+    setEditing(true);
+  };
+
+  const handleSave = async () => {
+    try {
+      // Assuming you have a method to update the animal
+      const putMethods = new PutMethods(import.meta.env.VITE_G_API_URL);
+      const updatedAnimal = await putMethods.updateAnimal(
+        editedAnimal._id,
+        formattedAnimal as UpdateableAnimalKeys
+      );
+      // Update the local state with the updated animal
+      setEditedAnimal(updatedAnimal);
+      setEditing(false);
+    } catch (error) {
+      console.error("Error saving animal data:", error);
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setEditedAnimal((prev) => ({ ...prev, [name]: value }));
   };
 
   const renderDetail = (label: string, value: string | number | undefined) => {
@@ -41,10 +69,16 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
 
   return (
     <div
-      className={`bg-gray-100 rounded-lg shadow-md p-4 mb-4 ${
+      className={`bg-gray-100 rounded-lg shadow-md p-4 mb-4 relative transition-all duration-300 ${
         expanded ? "h-auto" : "h-20"
-      } transition-all duration-300`}
+      }`}
     >
+      {/* Status badge in the top right corner */}
+      <span
+        className={`absolute top-2 right-2 px-2 py-1 rounded-full text-black text-sm ${getStatusColor(animal.status)}`}
+      >
+        {animal.status}
+      </span>
       <div
         className={`flex justify-between items-center ${expanded ? "mb-4" : ""}`}
       >
@@ -61,64 +95,98 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
             )}
           </button>
           <div>
-            <h3 className="font-semibold">
-              {animal.name} (ID #{animal._id})
-            </h3>
+            <h3 className="font-semibold">{animal.name}</h3>
             <p className="text-sm">
               {animal.species} ({animal.sex})
             </p>
           </div>
         </div>
-        <span
-          className={`px-2 py-1 rounded-full text-white text-sm ${statusColors[animal.status]}`}
-        >
-          {animal.status}
-        </span>
       </div>
       {expanded && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="space-y-2">
-            {renderDetail("Age", animal.age)}
-            {renderDetail("Breed", animal.breed)}
-            {renderDetail(
-              "Weight",
-              animal.weight ? `${animal.weight} kg` : undefined
+            {editing ? (
+              <>
+                <input
+                  name="name"
+                  value={editedAnimal.name}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <input
+                  name="species"
+                  value={editedAnimal.species}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <input
+                  name="age"
+                  type="number"
+                  value={editedAnimal.age || ""}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <input
+                  name="breed"
+                  value={editedAnimal.breed || ""}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <input
+                  name="weight"
+                  type="number"
+                  value={editedAnimal.weight || ""}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <input
+                  name="location"
+                  value={editedAnimal.location || ""}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <textarea
+                  name="medicalInfo"
+                  value={editedAnimal.medicalInfo || ""}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+                <textarea
+                  name="notes"
+                  value={editedAnimal.notes || ""}
+                  onChange={handleInputChange}
+                  className="w-full p-2 border rounded"
+                />
+              </>
+            ) : (
+              <>
+                {renderDetail("Age", animal.age)}
+                {renderDetail("Breed", animal.breed)}
+                {renderDetail(
+                  "Weight",
+                  animal.weight ? `${animal.weight} kg` : undefined
+                )}
+                {renderDetail("Location", animal.location)}
+                {renderDetail("Medical Info", animal.medicalInfo)}
+                {renderDetail("Notes", animal.notes)}
+                {renderDetail(
+                  "Intake Date",
+                  animal.intakeDate
+                    ? new Date(animal.intakeDate).toLocaleDateString()
+                    : undefined
+                )}
+                {animal.behaviors.length > 0 && (
+                  <p className="text-sm">
+                    <span className="font-semibold">Behaviors:</span>{" "}
+                    {animal.behaviors
+                      .map((behavior) => behavior.name)
+                      .join(", ")}
+                  </p>
+                )}
+              </>
             )}
-            {renderDetail("Location", animal.location)}
-            {renderDetail("Medical Info", animal.medicalInfo)}
-            {renderDetail("Notes", animal.notes)}
-            {renderDetail(
-              "Intake Date",
-              new Date(animal.intakeDate).toLocaleDateString()
-            )}
-            {animal.behaviors.length > 0 && (
-              <p className="text-sm">
-                <span className="font-semibold">Behaviors:</span>{" "}
-                {animal.behaviors.join(", ")}
-              </p>
-            )}
-            <div className="flex space-x-2 mt-4">
-              {animal.intakeFormLink && (
-                <a
-                  href={animal.intakeFormLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-darkestgreen hover:bg-darkergreen text-white px-3 py-1 rounded text-sm text-center font-bold min-w-[100px]"
-                >
-                  Intake Form
-                </a>
-              )}
-              {animal.adoptionFormLink && (
-                <a
-                  href={animal.adoptionFormLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-darkestgreen hover:bg-darkergreen text-white px-3 py-1 rounded text-sm text-center font-bold min-w-[100px]"
-                >
-                  Adoption Form
-                </a>
-              )}
-            </div>
+            {/* Display the ID when expanded */}
+            <p className="text-xs text-gray-500">ID: {animal._id}</p>
           </div>
           <div className="relative lg:h-64">
             {animal.images.length > 0 && (
@@ -131,6 +199,26 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
           </div>
         </div>
       )}
+      <div className="flex justify-between items-center mt-4">
+        <div className="flex space-x-2">
+          {expanded &&
+            (editing ? (
+              <button
+                onClick={handleSave}
+                className="bg-green-500 text-white px-3 py-1 rounded"
+              >
+                Save
+              </button>
+            ) : (
+              <button
+                onClick={handleEdit}
+                className="bg-blue-500 text-white px-3 py-1 rounded"
+              >
+                Edit
+              </button>
+            ))}
+        </div>
+      </div>
     </div>
   );
 };

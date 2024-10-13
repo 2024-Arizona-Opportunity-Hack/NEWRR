@@ -1,17 +1,19 @@
-import { z } from 'zod';
-import { AtLeastOne } from './Generic';
-import { AnimalValidator } from '../Validators/Animal';
+import { z } from "zod";
+import { AtLeastOne } from "./Generic";
+import { AnimalValidator } from "../Validators/Animal";
 
 export enum AnimalSex {
-  MALE = 'male',
-  FEMALE = 'female',
-  UNKNOWN = 'unknown',
+  MALE = "male",
+  FEMALE = "female",
+  UNKNOWN = "unknown",
 }
 
 export enum AnimalStatus {
-  AVAILABLE = 'available',
-  NOT_AVAILABLE = 'not available',
-  FOSTERED = 'fostered',
+  ADOPTED = "adopted",
+  IN_REHABILITATION = "in rehabilitation",
+  REHABILITATED = "rehabilitated",
+  RELEASED = "released",
+  NO_STATUS = "no status",
 }
 
 export interface IBehavior extends z.infer<typeof AnimalValidator.Behavior> {}

@@ -6,34 +6,20 @@ import {
   ChevronUp,
   ChevronDown,
 } from "lucide-react";
-
-// Define the Animal interface to type the animal data
-interface Animal {
-  id: number;
-  name: string;
-  species: string;
-  gender: string;
-  age: number;
-  image: string;
-  description: string;
-}
+import { IAnimalData } from "@newrr/api";
 
 // Define the props for the ResponsiveAnimalCarousel component
 interface ResponsiveAnimalCarouselProps {
-  animals: Animal[]; // Array of animal objects
+  animals: IAnimalData[]; // Array of animal objects
 }
 
 export default function ResponsiveAnimalCarousel({
   animals,
 }: ResponsiveAnimalCarouselProps) {
-  // State to track the current indices of animals being displayed
   const [currentIndices, setCurrentIndices] = useState<number[]>([]);
-  // State to track which animal is expanded for more details
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  // State to track the direction of the slide animation
   const [direction, setDirection] = useState(0);
 
-  // Set the number of visible slides based on screen width (3 for desktop, 2 for tablet, 1 for mobile)
   useEffect(() => {
     const handleResize = () => {
       const numVisible =
@@ -46,33 +32,29 @@ export default function ResponsiveAnimalCarousel({
       );
     };
 
-    handleResize(); // Initial setup
-    window.addEventListener("resize", handleResize); // Update on resize
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [animals.length]);
 
-  // Function to move to the next set of animals
   const nextSlide = () => {
-    setDirection(1); // Set direction for animation
+    setDirection(1);
     setCurrentIndices((prev) => prev.map((i) => (i + 1) % animals.length));
-    setExpandedIndex(null); // Collapse any expanded animal
+    setExpandedIndex(null);
   };
 
-  // Function to move to the previous set of animals
   const prevSlide = () => {
-    setDirection(-1); // Set direction for animation
+    setDirection(-1);
     setCurrentIndices((prev) =>
       prev.map((i) => (i - 1 + animals.length) % animals.length)
     );
-    setExpandedIndex(null); // Collapse any expanded animal
+    setExpandedIndex(null);
   };
 
-  // Function to toggle the expanded view of an animal
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  // Effect to handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prevSlide();
@@ -98,7 +80,7 @@ export default function ResponsiveAnimalCarousel({
               <div className="relative">
                 <motion.div transition={{ type: "spring", stiffness: 300 }}>
                   <img
-                    src={animals[animalIndex].image}
+                    src={animals[animalIndex].images[0]} // Use the first image from the images array
                     alt={animals[animalIndex].name}
                     className={`w-full h-[300px] sm:h-[350px] lg:h-[400px] object-cover ${
                       expandedIndex === index ? "blur-sm" : ""
@@ -153,13 +135,22 @@ export default function ResponsiveAnimalCarousel({
                           </p>
                         </div>
                         <div className="text-sm text-right">
-                          <p>Gender: {animals[animalIndex].gender}</p>
-                          <p>Age: {animals[animalIndex].age} years</p>
+                          <p>
+                            {animals[animalIndex].age || "Unknown"} years old
+                          </p>
+                          <p>{animals[animalIndex].breed || "Unknown breed"}</p>
                         </div>
                       </div>
                       <div className="flex-grow overflow-y-auto pr-4 custom-scrollbar">
-                        <p className="text-sm leading-relaxed">
-                          {animals[animalIndex].description}
+                        <p className="text-sm mt-2">
+                          Medical Info:{" "}
+                          {animals[animalIndex].medicalInfo || "None"}
+                        </p>
+                        <p className="text-sm mt-2">
+                          Location: {animals[animalIndex].location || "Unknown"}
+                        </p>
+                        <p className="text-sm mt-2">
+                          Notes: {animals[animalIndex].notes || "None"}
                         </p>
                       </div>
                       <div className="flex justify-between items-center mt-4">
