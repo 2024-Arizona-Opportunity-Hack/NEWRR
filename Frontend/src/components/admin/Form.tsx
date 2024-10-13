@@ -6,6 +6,7 @@ interface FormProps {
   link: string;
 }
 
+// Component for rendering a form tile
 const Form: React.FC<FormProps> = ({ name, description, link }) => {
   return (
     <div

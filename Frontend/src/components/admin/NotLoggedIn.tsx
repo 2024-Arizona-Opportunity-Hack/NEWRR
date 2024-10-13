@@ -2,23 +2,26 @@ import { PostMethods } from "@newrr/api";
 import { useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
+// Define the props for the NotLoggedIn component
 interface NotLoggedInProps {
-  hasUser: boolean;
+  hasUser: boolean; // Indicates if a user is logged in
 }
 
 const NotLoggedIn: React.FC<NotLoggedInProps> = ({ hasUser }) => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
+  const navigate = useNavigate(); // Hook for programmatic navigation
+  const queryClient = useQueryClient(); // React Query client for cache management
 
+  // Determine the title based on the user's login status
   const title = hasUser
     ? "You do not have access to this page"
     : "You are not logged in";
 
+  // Function to handle logout
   const handleLogout = async () => {
-    const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
-    await postMethods.postLogout();
-    queryClient.invalidateQueries({ queryKey: ["user"] });
-    navigate("/admin");
+    const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL); // Initialize API methods
+    await postMethods.postLogout(); // Call the logout API
+    queryClient.invalidateQueries({ queryKey: ["user"] }); // Invalidate user query to update cache
+    navigate("/admin"); // Redirect to the admin login page
   };
 
   return (
@@ -29,7 +32,7 @@ const NotLoggedIn: React.FC<NotLoggedInProps> = ({ hasUser }) => {
         </p>
         <p className="text-white text-center mb-4">Please login to continue.</p>
         <button
-          onClick={handleLogout}
+          onClick={handleLogout} // Trigger logout on button click
           className="bg-white text-darkestgreen px-4 py-2 rounded-md"
         >
           Click here to log in

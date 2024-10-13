@@ -5,6 +5,7 @@ import { ErrorUtils } from '../library/Utilities/ErrorUtils';
 import { LoggerUtils } from '../library/Utilities/LoggerUtils';
 import { User } from './Models/User';
 import { UserRole } from './Models/UserRole';
+import { ToDo } from './Models/ToDo';
 
 export class Database {
   private readonly uri: string;
@@ -25,6 +26,7 @@ export class Database {
       )
       .then(() => User)
       .then(() => UserRole)
+      .then(() => ToDo)
       .catch((error) => {
         ErrorUtils.throwCustomError(
           error,

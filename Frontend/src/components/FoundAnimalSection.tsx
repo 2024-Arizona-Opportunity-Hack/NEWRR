@@ -1,13 +1,16 @@
+// FoundAnimalSection component definition
 const FoundAnimalSection = () => {
   return (
     <section
       className="bg-[#DAD7CE] flex items-center justify-center px-16 py-16 lg:py-36"
-      id="found"
+      id="found" // Section ID for navigation
     >
       <div className="container mx-auto">
+        {/* Section heading */}
         <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
           Found an Animal?
         </h3>
+        {/* List of instructions for handling found animals, as per origin NEWRR website */}
         <ul className="text-[#3A4D42] space-y-4">
           <li>
             <strong className="font-['Outfit'] font-bold">
@@ -73,13 +76,13 @@ const FoundAnimalSection = () => {
             </span>
           </li>
         </ul>
+        {/* Button linking to the NEWRR Intake Form */}
         <button className="bg-darkestgreen text-wolfwhite px-6 py-2 mt-6 rounded font-outfit font-medium">
           <a
             href="https://form.jotform.com/242856687555070"
             target="_blank"
             rel="noreferrer"
           >
-            {" "}
             NEWRR Intake Form
           </a>
         </button>

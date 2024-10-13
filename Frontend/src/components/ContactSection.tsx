@@ -1,10 +1,12 @@
+// ContactSection component definition
 const ContactSection = () => {
   return (
     <section
       className="bg-[#E8E8E8] flex items-center justify-center px-16 py-16 lg:py-36"
-      id="donate"
+      id="donate" // Section ID for navigation
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+        {/* Support Us Section */}
         <div className="text-left">
           <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
             Support Us!
@@ -25,6 +27,7 @@ const ContactSection = () => {
             </a>
           </button>
         </div>
+        {/* Contact Information Section */}
         <div className="text-left">
           <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
             Contact

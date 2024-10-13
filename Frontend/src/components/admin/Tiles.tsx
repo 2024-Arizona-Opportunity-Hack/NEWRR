@@ -4,6 +4,7 @@ import React from "react";
 import Form from "./Form";
 
 const Tiles: React.FC = () => {
+  // Array of form objects, each representing a form with a name, description, and link
   const forms = [
     {
       number: 1,
@@ -63,31 +64,26 @@ const Tiles: React.FC = () => {
     },
   ];
 
-  const numRows = Math.ceil(forms.length / 2);
-
   return (
     <div className="w-[50%] min-h-screen bg-white flex flex-col">
-      <div
-        className="grid grid-cols-3 gap-4 p-16 mt-16"
-        style={{
-          gridTemplateRows: `repeat(${numRows}, 1fr)`,
-          height: "calc(120vh - 64px)",
-        }}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:p-20 mt-20">
         {forms.map((form, index) => (
           <div
             key={form.number}
-            className={
-              index === forms.length - 1 && forms.length % 2 === 1
-                ? "col-span-3"
-                : index % 4 === 0 || index % 4 === 3
-                  ? "col-span-2"
-                  : "col-span-1"
-            }
+            className={`
+              ${
+                index === forms.length - 1 && forms.length % 2 === 1
+                  ? "col-span-1 lg:col-span-3"
+                  : index % 4 === 0 || index % 4 === 3
+                    ? "col-span-1 sm:col-span-2 lg:col-span-2"
+                    : "col-span-1"
+              }
+              text-base sm:text-sm
+            `}
           >
             <Form
               name={form.name}
-              description={form.description as string}
+              description={form.description as string} // Cast description to string
               link={form.link}
             />
           </div>
