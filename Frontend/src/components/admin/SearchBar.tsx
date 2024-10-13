@@ -41,7 +41,7 @@ const SearchBar: React.FC<{
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 flex flex-col gap-4">
       <div className="flex items-center bg-gray-200 rounded-lg">
         <input
           type="search"

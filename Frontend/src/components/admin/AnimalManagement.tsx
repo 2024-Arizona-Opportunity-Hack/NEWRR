@@ -65,7 +65,7 @@ const AnimalManagement: React.FC = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container m-8">
+    <div className="container w-1/2 m-8">
       <h1 className="text-3xl font-bold pb-4">Animal Management</h1>
       <SearchBar onSearch={handleSearch} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
