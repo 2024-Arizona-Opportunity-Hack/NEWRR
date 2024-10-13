@@ -5,9 +5,10 @@ import newrrLogo from "../assets/newrr.svg";
 interface NavbarProps {
   links: { name: string; href: string }[];
   title: string;
+  color?: string
 }
 
-const Navbar: React.FC<NavbarProps> = ({ links, title }) => {
+const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -58,7 +59,8 @@ const Navbar: React.FC<NavbarProps> = ({ links, title }) => {
     <nav>
       <div
         ref={navbarRef}
-        className={`fixed top-0 left-0 right-0 bg-[#FFFFFF] text-[#101010] z-50 transition-transform duration-300 ${
+        style={{ backgroundColor: color || "#FFFFFF" }}
+        className={`fixed top-0 left-0 right-0 text-[#101010] z-50 transition-transform duration-300 ${
           isNavbarVisible
             ? "transform translate-y-0"
             : "transform -translate-y-full"

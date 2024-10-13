@@ -1,19 +1,20 @@
 import { GetMethods, UserResponse } from '@newrr/api';
 import { useQuery } from '@tanstack/react-query';
 
-const fetchUser = async (): Promise<UserResponse> => {
+const fetchUser = async (): Promise<UserResponse | null> => {
   const getMethods = new GetMethods(import.meta.env.VITE_G_API_URL);
   const result = await getMethods.checkAuth();
 
   if (!result.authenticated) {
-    throw new Error('User is not authenticated');
+    console.log("User is not authenticated");
+    return null;
   }
 
   return result;
 };
 
 export const useUser = () => {
-  return useQuery<UserResponse, Error>({
+  return useQuery<UserResponse | null, Error>({
     queryKey: ['user'],
     queryFn: fetchUser,
     retry: false, // Don't retry on error
