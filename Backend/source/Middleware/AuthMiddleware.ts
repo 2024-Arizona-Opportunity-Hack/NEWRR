@@ -21,7 +21,7 @@ export abstract class AuthMiddleware {
     if (!token) {
       return res
         .status(HttpStatusCode.Unauthorized)
-        .json({ error: 'No token provided' });
+        .json({ error: 'No t`  oken provided' });
     }
 
     jwt.verify(token, Globals.JWT_SECRET, (err: any, decoded: any) => {

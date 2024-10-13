@@ -7,7 +7,6 @@ import { ValidRoutes } from '../../server/ValidRoutes';
 import { CreateAnimal } from '../Handlers/PostHandlers/CreateAnimal';
 import { CreateBehavior } from '../Handlers/PostHandlers/CreateBehavior';
 import { GoogleAuth } from '../Handlers/PostHandlers/GoogleAuth';
-import { Jotform } from '../Handlers/PostHandlers/Jotform';
 import { Logout } from '../Handlers/PostHandlers/Logout';
 
 export class PostController extends Controller<ServerEvent> {
@@ -28,8 +27,6 @@ export class PostController extends Controller<ServerEvent> {
         return new CreateAnimal(this.trigger);
       case ValidRoutes.CreateBehavior:
         return new CreateBehavior(this.trigger);
-      case ValidRoutes.JotformCheckin:
-        return new Jotform(this.trigger);
       default:
         return null;
     }
