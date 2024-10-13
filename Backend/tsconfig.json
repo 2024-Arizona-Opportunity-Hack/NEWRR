@@ -1,7 +1,11 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "composite": true
-  },
-  "references": [{ "path": "../API" }]
+    "composite": true,
+    "baseUrl": "../",
+    "paths": {
+      "@newrr/api": ["API/index.ts"],
+      "@newrr/api/*": ["API/*"]
+    }
+  }
 }

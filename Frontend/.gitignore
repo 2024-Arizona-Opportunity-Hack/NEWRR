@@ -28,6 +28,8 @@ build/
 # **/.vscode
 **/.vs
 
+pnpm-lock.yaml
+
 # Ignore log files
 *.log
 Logs/
