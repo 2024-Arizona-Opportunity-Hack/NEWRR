@@ -39,13 +39,15 @@ const TaskManagement: React.FC = () => {
           name: "Animal Intake",
           icon: <FileText className="w-4 h-4" />,
           actions: ["Share", "Responses"],
-          url: "https://form.jotform.com/242856687555070",
+          url: "https://www.jotform.com/inbox/242856687555070",
+          url2: "https://form.jotform.com/242856634248061",
         },
         {
           name: "Animal Adoption",
           icon: <FileText className="w-4 h-4" />,
           actions: ["Share", "Responses"],
           url: "https://www.jotform.com/inbox/242855970936168",
+          url2: "https://form.jotform.com/242855970936168",
         },
         {
           name: "Check-in",
