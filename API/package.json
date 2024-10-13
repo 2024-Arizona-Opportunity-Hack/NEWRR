@@ -1,7 +1,9 @@
 {
   "name": "@newrr/api",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "build": "tsc -p ."
+  },
   "main": "source/index.ts",
   "types": "source/index.d.ts",
   "dependencies": {

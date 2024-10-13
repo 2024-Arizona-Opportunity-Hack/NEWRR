@@ -11,5 +11,9 @@ export class PostRouter extends RequestRouter {
     this.router.post('/google-auth', (req, res) => {
       this.handleRequest(ValidRoutes.GoogleAuth, req, res);
     });
+
+    this.router.post('/webhooks/jotform/checkin', (req, res) => {
+      this.handleRequest(ValidRoutes.JotformCheckin, req, res);
+    });
   }
 }
