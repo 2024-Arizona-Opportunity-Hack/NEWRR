@@ -15,7 +15,8 @@
     "build:prod": "docker compose build newrr-prod",
     "start:prod": "docker compose run -P --rm newrr-prod",
     "build": "tsc -p .",
-    "start": "npm run build && node dist/index.js"
+    "start": "npm run build && node dist/index.js",
+    "docs": "typedoc"
   },
   "keywords": [],
   "author": "materwelon",
@@ -29,14 +30,17 @@
     "@types/multer": "^1.4.12",
     "@types/node": "^20.16.1",
     "@types/nodemailer": "^6.4.16",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "eslint": "^8.57.0",
+    "eslint": "^9.12.0",
     "eslint-config-prettier": "^9.1.0",
     "nodemon": "^3.1.4",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.2"
+    "typedoc": "^0.26.9",
+    "typedoc-theme-hierarchy": "^5.0.0",
+    "typescript": "^5.6.3"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.670.0",
@@ -52,6 +56,7 @@
     "mongoose": "^8.5.4",
     "multer": "1.4.5-lts.1",
     "nodemailer": "^6.9.15",
+    "uuid": "^10.0.0",
     "winston": "^3.14.2",
     "zod": "^3.23.8"
   }

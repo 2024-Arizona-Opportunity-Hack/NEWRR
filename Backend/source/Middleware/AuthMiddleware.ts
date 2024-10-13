@@ -26,9 +26,7 @@ export abstract class AuthMiddleware {
 
     jwt.verify(token, Globals.JWT_SECRET, (err: any, decoded: any) => {
       if (err) {
-        return res
-          .status(HttpStatusCode.Unauthorized)
-          .json({ error: 'Invalid token' });
+        return res.status(401).json({ error: 'Invalid token' });
       }
 
       // Attach the decoded user to the request object

@@ -1,6 +1,6 @@
-import { AnimalValidator } from 'API/Validators/Animal';
 import { z } from 'zod';
 import { AtLeastOne } from './Generic';
+import { AnimalValidator } from '../Validators/Animal';
 
 export enum AnimalSex {
   MALE = 'male',

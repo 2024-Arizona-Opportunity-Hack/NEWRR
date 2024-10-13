@@ -1,10 +1,10 @@
+import { UserCRUD } from '../../../database/Services/UserCRUD';
+import { Catchable } from '../../../library/Decorators/Catchable';
 import { HttpStatusCode } from 'axios';
 import { CookieOptions } from 'express';
 import { LoginTicket, OAuth2Client } from 'google-auth-library';
 import jwt from 'jsonwebtoken';
-import { UserCRUD } from '../../../database/Services/UserCRUD';
 import { UserRoleCRUD } from '../../../database/Services/UserRoleCRUD';
-import { Catchable } from '../../../library/Decorators/Catchable';
 import { Checkable } from '../../../library/Decorators/Checkable';
 import {
   InvalidCredentials,
@@ -16,7 +16,7 @@ import {
   IHasChecks,
   ServerEvent
 } from '../../../library/Interfaces/HandlerController';
-import { DefaultRoles } from '@newrr/api';
+import { IUser } from '../../../database/Models/User';
 
 type GooglePayload = {
   client_id?: string;
@@ -91,16 +91,20 @@ export class GoogleAuth extends Handler<ServerEvent> implements IHasChecks {
 
   @Catchable()
   async execute(): Promise<void> {
+    // Get the payload from the ticket
+    const payload = this.ticket.getPayload();
+    if (!payload) throw new Error('No payload');
+
+    // Get the user ID from the payload
+    const { sub: userid, email, name, picture } = payload;
+    if (!userid || !email || !name || !picture)
+      throw new Error('Missing required fields');
+
     // Check if the user already exists
-    let existingUser;
-    try {
-      existingUser = await UserCRUD.getUserByGoogleID(this.payload.sub);
-    } catch (error) {
-      existingUser = null;
-    }
+    let existingUser = await UserCRUD.getUserByGoogleID(userid);
     if (!existingUser) {
       // Find the basic role so they dont have access to anything
-      const basicRole = await UserRoleCRUD.findRoleByName(DefaultRoles.Basic);
+      const basicRole = await UserRoleCRUD.findRoleByName('basic');
 
       // Create User
       existingUser = await UserCRUD.createUser({

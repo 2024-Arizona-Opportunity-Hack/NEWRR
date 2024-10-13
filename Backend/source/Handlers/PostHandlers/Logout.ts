@@ -1,10 +1,10 @@
-import { HttpStatusCode } from 'axios';
-import { Catchable } from '../../../library/Decorators/Catchable';
 import { Globals } from '../../../library/Globals/Globals';
+import { Catchable } from '../../../library/Decorators/Catchable';
 import {
   Handler,
   ServerEvent
 } from '../../../library/Interfaces/HandlerController';
+import { HttpStatusCode } from 'axios';
 
 export class Logout extends Handler<ServerEvent> {
   constructor(event: ServerEvent) {

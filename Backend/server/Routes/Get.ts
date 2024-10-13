@@ -14,6 +14,12 @@ export class GetRouter extends RequestRouter {
     this.router.get('/check-auth', (req, res) => {
       this.handleRequest(ValidRoutes.CheckAuth, req, res, false);
     });
+    this.router.get('/get-todo', (req, res) => {
+      this.handleRequest(ValidRoutes.GetToDo, req, res, true);
+    });
+    this.router.get('/get-admin-users', (req, res) => {
+      this.handleRequest(ValidRoutes.GetAdminUsers, req, res, true);
+    });
 
     this.router.get('/animal', (req, res) => {
       this.handleRequest(ValidRoutes.GetAnimalById, req, res, false);

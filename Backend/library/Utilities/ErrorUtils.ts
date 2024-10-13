@@ -20,6 +20,10 @@ import {
 import { ErrorResponse } from '../Interfaces/Errors';
 import { LoggerUtils } from './LoggerUtils';
 import {
+  InvalidCredentials,
+  InvalidCredentialsRes
+} from '../Errors/GoogleAuth';
+import {
   AnimalDoesNotExist,
   AnimalDoesNotExistRes,
   InvalidAnimalData,
@@ -40,8 +44,6 @@ import {
   NoBehaviorsSavedRes
 } from '../Errors/Behavior';
 import {
-  InvalidCredentials,
-  InvalidCredentialsRes,
   MissingCookies,
   MissingCookiesRes,
   MissingPayload,
@@ -83,8 +85,8 @@ export class ErrorUtils {
       MissingBody.name,
       (error: MissingBody) => new MissingBodyRes(error.missingBody)
     ],
-    [Unauthorized.name, () => new UnauthorizedRes()],
     [InvalidCredentials.name, () => new InvalidCredentialsRes()],
+    [Unauthorized.name, () => new UnauthorizedRes()],
     [AnimalDoesNotExist.name, () => new AnimalDoesNotExistRes()],
     [NoAnimalsFound.name, () => new NoAnimalsFoundRes()],
     [NoBehaviorsSaved.name, () => new NoBehaviorsSavedRes()],

@@ -1,6 +1,7 @@
 import { GoogleAuthResponse } from 'API/Types/GoogleAuth';
 import { BaseMethods } from './BaseMethods';
 import axios from 'axios';
+import { IToDoItem } from 'API/Types/ToDo';
 import { IAnimalData, IBehavior, NewAnimalData } from '../Types/Animal';
 
 export class PostMethods extends BaseMethods {
@@ -22,6 +23,22 @@ export class PostMethods extends BaseMethods {
 
   public async postLogout(): Promise<void> {
     await axios.post(`${this.baseUrl}/logout`, {}, { withCredentials: true });
+  }
+
+  public async postTodo(todos: IToDoItem[]): Promise<void> {
+    await axios.post(
+      `${this.baseUrl}/todo`,
+      { todos },
+      { withCredentials: true }
+    );
+  }
+
+  public async postAddAdminUser(email: string): Promise<void> {
+    await axios.post(
+      `${this.baseUrl}/add-admin-user`,
+      { email },
+      { withCredentials: true }
+    );
   }
 
   public async createAnimal(options: NewAnimalData): Promise<IAnimalData> {

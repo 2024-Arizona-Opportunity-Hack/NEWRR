@@ -15,6 +15,7 @@ pnpm-lock.yaml
 
 # misc 
 test/
+pnpm-lock.yaml
 **/.DS_Store
 
 # Ignore build output directories

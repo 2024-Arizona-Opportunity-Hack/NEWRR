@@ -1,7 +1,7 @@
 import { Request, Response, Router } from 'express';
 import { ValidRoutes } from '../../server/ValidRoutes';
-import { AuthMiddleware } from '../../source/Middleware/AuthMiddleware';
 import { ControllerChild } from './HandlerController';
+import { AuthMiddleware } from '../../source/Middleware/AuthMiddleware';
 
 export abstract class RequestRouter {
   public router: Router;

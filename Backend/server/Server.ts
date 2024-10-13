@@ -1,12 +1,12 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Application } from 'express';
+import multer from 'multer';
 import { Globals } from '../library/Globals/Globals';
 import { LoggerUtils } from '../library/Utilities/LoggerUtils';
 import { GetRouter } from './Routes/Get';
 import { PostRouter } from './Routes/Post';
 import { PutRouter } from './Routes/Put';
-import multer from 'multer';
 
 export class Server {
   private readonly app: Application;
@@ -30,6 +30,8 @@ export class Server {
         credentials: true
       })
     );
+
+    this.app.options('*', cors()); // Manually handle OPTIONS requests
     this.app.use(cookieParser());
     this.app.use(express.json());
   }

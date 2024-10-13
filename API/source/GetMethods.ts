@@ -1,10 +1,26 @@
 import { BaseMethods } from './BaseMethods';
 import axios, { AxiosError } from 'axios';
 import { UserResponse } from '../Types/User';
+import { IToDoItem } from 'API/Types/ToDo';
 import { IAnimalData, IBehavior } from '../Types/Animal';
 export class GetMethods extends BaseMethods {
   constructor(baseUrl: string) {
     super(baseUrl);
+  }
+
+  public async getAdminUsers(): Promise<string> {
+    const response = await axios.get<string>(
+      `${this.baseUrl}/get-admin-users`,
+      { withCredentials: true }
+    );
+    return response.data;
+  }
+
+  public async getTodo(): Promise<IToDoItem[]> {
+    const response = await axios.get<IToDoItem[]>(`${this.baseUrl}/get-todo`, {
+      withCredentials: true,
+    });
+    return response.data;
   }
 
   public async checkAuth(): Promise<UserResponse> {
