@@ -2,7 +2,7 @@ const AdoptAnimalSection = () => {
   return (
     <section
       className="bg-[#3A4D42] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16"
-      id="AdoptAnimalSection"
+      id="adopt"
     >
       <div className="container mx-auto">
         <div className="text-left mb-8">

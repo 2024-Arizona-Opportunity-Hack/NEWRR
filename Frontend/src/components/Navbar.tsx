@@ -73,13 +73,13 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
           <div className="hidden md:flex space-x-4">
-            <Link to="/" className="hover:text-gray-700">
+            <Link to="/#found" className="hover:text-gray-700">
               Found an Animal?
             </Link>
-            <Link to="adopt" className="hover:text-gray-700">
+            <Link to="#adopt" className="hover:text-gray-700">
               Adopt an Animal
             </Link>
-            <Link to="/" className="hover:text-gray-700">
+            <Link to="/#donate" className="hover:text-gray-700">
               Donate
             </Link>
           </div>
@@ -118,17 +118,17 @@ const Navbar: React.FC = () => {
         <div className="flex flex-col space-y-8 p-4 items-center">
           <ul className="space-y-8 text-center">
             <li>
-              <Link to="/" className="hover:text-gray-700">
+              <Link to="/#found" className="hover:text-gray-700">
                 Found an Animal?
-              </Link>{" "}
+              </Link>
             </li>
             <li>
-              <Link to="/" className="hover:text-gray-700">
+              <Link to="/#adopt" className="hover:text-gray-700">
                 Adopt an Animal
               </Link>
             </li>
             <li>
-              <Link to="/" className="hover:text-gray-700">
+              <Link to="/#donate" className="hover:text-gray-700">
                 Donate
               </Link>
             </li>

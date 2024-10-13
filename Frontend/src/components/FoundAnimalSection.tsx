@@ -1,6 +1,9 @@
 const FoundAnimalSection = () => {
   return (
-    <section className="bg-[#DAD7CE] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16">
+    <section
+      className="bg-[#DAD7CE] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16"
+      id="found"
+    >
       <div className="container mx-auto">
         <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
           Found an Animal?
