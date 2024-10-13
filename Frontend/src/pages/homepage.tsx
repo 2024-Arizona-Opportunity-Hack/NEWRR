@@ -4,7 +4,7 @@ import Hero from "../components/Hero";
 import About from "../components/AboutSection";
 import FoundAnimalSection from "../components/FoundAnimalSection";
 import AdoptAnimalSection from "../components/AdoptAnimalSection";
-import ContactSection from "../components/ContactSection";
+import DonateSection from "../components/DonateSection";
 import Footer from "../components/Footer";
 
 const Home: React.FC = () => {
@@ -23,7 +23,7 @@ const Home: React.FC = () => {
       <About />
       <FoundAnimalSection />
       <AdoptAnimalSection />
-      <ContactSection />
+      <DonateSection />
       <Footer />
     </div>
   );
