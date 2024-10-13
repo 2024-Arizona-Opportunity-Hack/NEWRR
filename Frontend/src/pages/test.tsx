@@ -78,17 +78,11 @@ const Test: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
-      <h1 className="text-2xl font-bold mb-4">Image Upload Test</h1>
-      {imageUrl && (
-        <img 
+      <img 
           src={uploadedUrl || imageUrl} 
           alt="Uploaded image" 
           className="max-w-md shadow-lg rounded-lg mb-4"
         />
-      )}
-      {uploadedUrl && (
-        <p className="text-green-600">Image successfully uploaded to S3!</p>
-      )}
     </div>
   );
 };
