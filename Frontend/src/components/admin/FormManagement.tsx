@@ -8,29 +8,39 @@ const FormManagement: React.FC = () => {
     {
       number: 1,
       name: "Check-in Form",
-      description:
-        "Upon animal intake, fill out animal check-in form here to store basic information about a new animal including name, sex, and upload an image. To input more information about the animal and further edit it's profile, visit animal dashboard.",
+      description: (
+        <p>
+          Upon animal intake, fill out animal check-in form here to store basic
+          information about a new animal. To input more information about the
+          animal and further edit its profile, visit the{" "}
+          <span style={{ fontWeight: "bold" }}>Animal Management</span> area on
+          the dashboard.
+        </p>
+      ),
       link: "https://form.jotform.com/242856634248061",
     },
     {
       number: 2,
       name: "Check-out Form",
-      description:
-        "For updating animal's data in database. Ex: updating animal's status to inactive",
+      description: (
+        <p>
+          For updating the status of an animal in the database{" "}
+          <span style={{ fontWeight: "bold" }}>strictly</span> for adoption.
+        </p>
+      ),
       link: "#",
     },
     {
       number: 3,
       name: "Review Intake Forms",
-      description:
-        "Access Intake Form submissions dashboard here on JotForm. Review submissions on JotForm and contact rescuers accordingly/ facilitate the intake process.",
+      description: "Review Intake Form submissions on JotForm.",
       link: "https://form.jotform.com/242856687555070",
     },
     {
       number: 4,
       name: "Review Adoption Form",
       description:
-        "Access and review Adoption Request Form submissions dashboard here on JotForm. Review Adoption Requests and contact interested parties accordingly.",
+        "Review Adoption Requests on JotForm and contact interested parties accordingly.",
       link: "https://form.jotform.com/242855970936168",
     },
   ];
@@ -59,7 +69,7 @@ const FormManagement: React.FC = () => {
           >
             <Form
               name={form.name}
-              description={form.description}
+              description={form.description as string}
               link={form.link}
             />
           </div>
