@@ -1,6 +1,7 @@
 import { BaseMethods } from './BaseMethods';
 import axios, { AxiosError } from 'axios';
 import { UserResponse } from '../Types/User';
+import { IToDoItem } from 'API/Types/ToDo';
 export class GetMethods extends BaseMethods {
   constructor(baseUrl: string) {
     super(baseUrl);
@@ -8,6 +9,11 @@ export class GetMethods extends BaseMethods {
 
   public async getHelloWorld(): Promise<string> {
     const response = await axios.get<string>(`${this.baseUrl}/helloworld`);
+    return response.data;
+  }
+
+  public async getTodo(): Promise<IToDoItem[]> {
+    const response = await axios.get<IToDoItem[]>(`${this.baseUrl}/get-todo`, { withCredentials: true });
     return response.data;
   }
 
