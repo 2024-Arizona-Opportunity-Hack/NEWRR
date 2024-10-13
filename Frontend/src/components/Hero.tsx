@@ -1,4 +1,3 @@
-import newrrLogo from "../assets/newrr.svg";
 import { useNavigate } from "react-router-dom";
 
 // Hero section of the website (the first thing you see)
@@ -25,13 +24,13 @@ const Hero: React.FC = () => {
             {/* Buttons for navigation */}
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
               <button
-                className="bg-[#3A4D42] text-white px-6 py-2 rounded font-outfit font-medium whitespace-nowrap"
+                className="bg-darkestgreen hover:bg-darkergreen text-white px-6 py-2 rounded font-outfit font-medium whitespace-nowrap"
                 onClick={() => navigate("/#found")} // Navigate to the "Found an Animal?" section
               >
                 Found an Animal?
               </button>
               <button
-                className="bg-white text-[#3A4D42] border border-[#3A4D42] px-6 py-2 rounded font-outfit font-medium whitespace-nowrap"
+                className="bg-white text-darkestgreen border border-darkestgreen hover:border-darkergreen hover:text-darkergreen px-6 py-2 rounded font-outfit font-medium whitespace-nowrap"
                 onClick={() => navigate("/#donate")} // Navigate to the "Donate" section
               >
                 Donate
@@ -41,9 +40,9 @@ const Hero: React.FC = () => {
           {/* Image section */}
           <div className="md:w-full mt-8 md:mt-0 flex justify-center">
             <img
-              src={newrrLogo}
-              alt="NEWRR logo"
-              className="rounded-lg shadow-lg w-3/4"
+              src="https://images.unsplash.com/photo-1511144241814-c7d501e5239c?q=80&w=2022&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Chameleon"
+              className="rounded-lg shadow-lg shadow-[#2020209d] w-full"
             />
           </div>
         </div>
