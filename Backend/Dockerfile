@@ -1,6 +1,9 @@
 # Stage 1: Build the Backend
 FROM node:22-alpine AS builder
 
+ARG RAILWAY_ENVIRONMENT
+ARG RAILWAY_SERVICE_NAME
+
 # Set working directory
 WORKDIR /app
 

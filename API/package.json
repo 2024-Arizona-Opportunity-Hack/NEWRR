@@ -1,10 +1,13 @@
 {
   "name": "@newrr/api",
   "private": true,
-  "scripts": {},
+  "scripts": {
+    "build": "tsc -p ."
+  },
   "main": "./index.ts",
   "types": "./index.d.ts",
   "dependencies": {
-    "axios": "^1.7.5"
+    "axios": "^1.7.5",
+    "zod": "^3.23.8"
   }
 }

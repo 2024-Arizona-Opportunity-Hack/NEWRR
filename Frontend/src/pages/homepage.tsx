@@ -9,9 +9,9 @@ import Footer from "../components/Footer";
 
 const Home: React.FC = () => {
   const homepageLinks = [
-    { name: "Found an Animal?", href: "/#found" },
-    { name: "Adopt an Animal", href: "/#adopt" },
-    { name: "Donate", href: "/#donate" },
+    { name: "Found an Animal?", href: "#found" },
+    { name: "Adopt an Animal", href: "#adopt" },
+    { name: "Donate", href: "#donate" },
   ];
   return (
     <div className="min-h-screen bg-gray-100">
@@ -21,9 +21,15 @@ const Home: React.FC = () => {
       />
       <Hero />
       <About />
-      <FoundAnimalSection />
-      <AdoptAnimalSection />
-      <ContactSection />
+      <section id="found">
+        <FoundAnimalSection />
+      </section>
+      <section id="adopt">
+        <AdoptAnimalSection />
+      </section>
+      <section id="donate">
+        <ContactSection />
+      </section>
       <Footer />
     </div>
   );
