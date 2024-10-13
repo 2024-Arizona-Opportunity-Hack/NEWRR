@@ -1,6 +1,6 @@
-import axios from "axios";
-import { IAnimalData, UpdateableAnimalKeys } from "../Types/Animal";
-import { BaseMethods } from "./BaseMethods";
+import axios from 'axios';
+import { IAnimalData, UpdateableAnimalKeys } from '../Types/Animal';
+import { BaseMethods } from './BaseMethods';
 
 export class PutMethods extends BaseMethods {
   constructor(baseUrl: string) {
@@ -9,12 +9,15 @@ export class PutMethods extends BaseMethods {
 
   public async updateAnimal(
     id: string,
-    options: UpdateableAnimalKeys
+    options: IAnimalData
   ): Promise<IAnimalData> {
     const response = await axios.put<IAnimalData>(
       `${this.baseUrl}/animal`,
-      { id, ...options },
-      { withCredentials: true }
+      options,
+      {
+        headers: { id: id },
+        withCredentials: true,
+      }
     );
     return response.data;
   }

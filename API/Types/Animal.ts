@@ -13,6 +13,7 @@ export enum AnimalStatus {
   IN_REHABILITATION = 'in-rehabilitation',
   ADOPTED = 'adopted',
   RELEASED = 'released',
+  NO_STATUS = 'no-status',
 }
 
 export interface IBehavior extends z.infer<typeof AnimalValidator.Behavior> {}

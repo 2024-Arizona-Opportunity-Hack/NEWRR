@@ -12,7 +12,7 @@ export class PostRouter extends RequestRouter {
       this.handleRequest(ValidRoutes.GoogleAuth, req, res, false);
     });
     this.router.post('/logout', (req, res) => {
-      this.handleRequest(ValidRoutes.Logout, req, res, false);
+      this.handleRequest(ValidRoutes.Logout, req, res, true);
     });
     this.router.post('/todo', (req, res) => {
       this.handleRequest(ValidRoutes.Todo, req, res, true);
@@ -25,11 +25,11 @@ export class PostRouter extends RequestRouter {
     });
 
     this.router.post('/animal', (req, res) => {
-      this.handleRequest(ValidRoutes.CreateAnimal, req, res, false);
+      this.handleRequest(ValidRoutes.CreateAnimal, req, res, true);
     });
 
     this.router.post('/behavior', (req, res) => {
-      this.handleRequest(ValidRoutes.CreateBehavior, req, res, false);
+      this.handleRequest(ValidRoutes.CreateBehavior, req, res, true);
     });
   }
 }

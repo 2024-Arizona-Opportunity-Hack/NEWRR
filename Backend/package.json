@@ -4,16 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:dev": "docker compose build newrr-dev",
-    "start:dev": "docker compose run -P --rm newrr-dev",
     "start:watch": "ts-node start-watch.ts",
     "test": "ts-node test/test.ts",
     "test:jq": "ts-node test/test.ts | jq",
     "lint": "eslint 'source' 'library' 'database' 'test' 'server'",
     "lint:fix": "p run lint && --fix",
     "prettier": "prettier --write 'source' 'library' 'database' 'test' 'server'",
-    "build:prod": "docker compose build newrr-prod",
-    "start:prod": "docker compose run -P --rm newrr-prod",
     "build": "tsc -p .",
     "start": "npm run build && node dist/index.js",
     "docs": "typedoc"
