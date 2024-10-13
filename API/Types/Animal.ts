@@ -9,9 +9,10 @@ export enum AnimalSex {
 }
 
 export enum AnimalStatus {
-  AVAILABLE = 'available',
-  NOT_AVAILABLE = 'not available',
-  FOSTERED = 'fostered',
+  REHABILITATED = 'rehabilitated',
+  IN_REHABILITATION = 'in-rehabilitation',
+  ADOPTED = 'adopted',
+  RELEASED = 'released',
 }
 
 export interface IBehavior extends z.infer<typeof AnimalValidator.Behavior> {}

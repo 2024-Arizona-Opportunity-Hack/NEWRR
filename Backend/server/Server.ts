@@ -1,10 +1,10 @@
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express, { Application } from 'express';
+import multer from 'multer';
 import { Globals } from '../library/Globals/Globals';
 import { LoggerUtils } from '../library/Utilities/LoggerUtils';
 import { GetRouter } from './Routes/Get';
-import { HttpStatusCode } from 'axios';
 import { PostRouter } from './Routes/Post';
 import { PutRouter } from './Routes/Put';
 
@@ -37,25 +37,11 @@ export class Server {
   }
 
   private configureRoutes(): void {
+    const storage = multer.memoryStorage();
+    const upload = multer({ storage: storage });
+
     this.app.use('/api', new GetRouter().router);
-    this.app.use('/api', new PostRouter().router);
-  }
-
-  private configureErrorHandling(): void {
-    this.app.use(
-      (
-        err: any,
-        req: express.Request,
-        res: express.Response,
-        next: express.NextFunction
-      ) => {
-        LoggerUtils.error(`Error: ${err}`);
-        res
-          .status(HttpStatusCode.InternalServerError)
-          .json({ message: 'Internal Server Error' });
-      }
-    );
-
+    this.app.use('/api', upload.any(), new PostRouter().router);
     this.app.use('/api', new PutRouter().router);
   }
 

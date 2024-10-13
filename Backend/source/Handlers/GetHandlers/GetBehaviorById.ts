@@ -14,20 +14,20 @@ export class GetBehaviorById
   extends Handler<ServerEvent>
   implements IHasChecks
 {
-  private declare behaviorId: string;
+  private declare id: string;
 
   constructor(event: ServerEvent) {
     super(event);
   }
 
   private checkBehaviorId(): void {
-    const body = this.event.req.body as { behaviorId: string };
+    const headers = this.event.req.headers as { id: string };
 
-    if (!body.behaviorId) {
-      throw new MissingBody('Missing animalId', ['behaviorId']);
+    if (!headers.id) {
+      throw new MissingBody('Missing behaviorId', ['id']);
     }
 
-    this.behaviorId = body.behaviorId;
+    this.id = headers.id;
   }
 
   @Catchable()
@@ -41,7 +41,7 @@ export class GetBehaviorById
 
   @Catchable()
   async execute(): Promise<void> {
-    const behavior = await BehaviorCRUD.getBehaviorById(this.behaviorId);
+    const behavior = await BehaviorCRUD.getBehaviorById(this.id);
 
     this.event.res.status(HttpStatusCode.Ok).send(behavior);
   }
