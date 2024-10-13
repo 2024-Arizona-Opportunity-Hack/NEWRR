@@ -2,6 +2,7 @@ import React from "react";
 import AnimalManagement from "../components/admin/AnimalManagement";
 import TaskManagement from "../components/admin/TaskManagement";
 import Navbar from "../components/Navbar";
+import Users from "../components/admin/Users";
 import { useNavigate } from "react-router-dom";
 import { PostMethods } from "@newrr/api";
 import { useQueryClient } from "@tanstack/react-query";
@@ -36,7 +37,7 @@ const AdminDashboard: React.FC = () => {
         <TaskManagement />
       </div>
       <div id="admins">
-        <AdminUsers />
+        <Users />
       </div>
       <div id="animals">
         <AnimalManagement />

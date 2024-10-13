@@ -262,7 +262,7 @@ const AnimalManagement: React.FC = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container mx-auto px-16 py-8">
+    <div className="container px-16 py-8">
       <h1 className="text-3xl font-bold mb-6">Animal Management</h1>
       <SearchBar onSearch={handleSearch} />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

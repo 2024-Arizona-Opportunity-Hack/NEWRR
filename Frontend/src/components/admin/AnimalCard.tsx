@@ -103,7 +103,7 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
                   href={animal.intakeFormLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-darkergreen text-wolfwhite px-3 py-1 rounded text-sm text-center font-bold"
+                  className="bg-darkestgreen hover:bg-darkergreen text-white px-3 py-1 rounded text-sm text-center font-bold min-w-[100px]"
                 >
                   Intake Form
                 </a>
@@ -113,7 +113,7 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
                   href={animal.adoptionFormLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-lightgreen text-wolfwhite px-3 py-1 rounded text-sm text-center font-bold"
+                  className="bg-darkestgreen hover:bg-darkergreen text-white px-3 py-1 rounded text-sm text-center font-bold min-w-[100px]"
                 >
                   Adoption Form
                 </a>
