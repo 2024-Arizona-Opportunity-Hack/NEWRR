@@ -1,3 +1,4 @@
+import { DefaultRoles } from '@newrr/api';
 import mongoose from 'mongoose';
 
 export interface IUserRole {
@@ -15,7 +16,8 @@ const schema = new mongoose.Schema<IUserRole>({
     name: { 
         type: String, 
         required: true,
-        unique: true
+        unique: true,
+        enum: Object.values(DefaultRoles)
     },
 });
 

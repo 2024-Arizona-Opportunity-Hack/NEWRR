@@ -9,7 +9,10 @@ export class PostRouter extends RequestRouter {
 
   initializeRoutes() {
     this.router.post('/google-auth', (req, res) => {
-      this.handleRequest(ValidRoutes.GoogleAuth, req, res);
+      this.handleRequest(ValidRoutes.GoogleAuth, req, res, false);
+    });
+    this.router.post('/logout', (req, res) => {
+      this.handleRequest(ValidRoutes.Logout, req, res, false);
     });
   }
 }

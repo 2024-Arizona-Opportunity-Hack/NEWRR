@@ -1,55 +1,74 @@
-import { UserCRUD } from '../../../database/Middleware/UserCRUD';
+import { UserCRUD } from '../../../database/Services/UserCRUD';
 import { Catchable } from '../../../library/Decorators/Catchable';
 import {
   Handler,
+  IHasChecks,
   ServerEvent
 } from '../../../library/Interfaces/HandlerController';
 import { HttpStatusCode } from 'axios';
-import { OAuth2Client } from 'google-auth-library';
-import { UserRole } from '../../../database/Models/UserRole';
+import { LoginTicket, OAuth2Client } from 'google-auth-library';
 import jwt from 'jsonwebtoken';
 import { Globals } from '../../../library/Globals/Globals';
 import { CookieOptions } from 'express';
+import { IUser } from '../../../database/Models/User';
+import { Checkable } from '../../../library/Decorators/Checkable';
+import { InvalidCredentials } from '../../../library/Errors/GoogleAuth';
+import { UserRoleCRUD } from '../../../database/Services/UserRoleCRUD';
 
-export class GoogleAuth extends Handler<ServerEvent> {
+@Checkable
+export class GoogleAuth extends Handler<ServerEvent> implements IHasChecks {
   private client = new OAuth2Client();
+  private client_id: string;
+  private credential: string;
+  private declare ticket: LoginTicket;
 
   constructor(event: ServerEvent) {
     super(event);
+    this.client_id = event.req.body.client_id;
+    this.credential = event.req.body.credential;
+  }
+
+  private async checkCredential(): Promise<void> {
+    try {
+      const ticket = await this.client.verifyIdToken({
+        idToken: this.credential,
+        audience: this.client_id
+      });
+      this.ticket = ticket;
+    } catch (error) {
+      throw new InvalidCredentials('Credential Error');
+    }
+  }
+
+  @Catchable()
+  public async runChecks(): Promise<void> {
+    await this.checkCredential();
   }
 
   @Catchable()
   async execute(): Promise<void> {
-    // Get the credential and client ID from the request body
-    const { credential, client_id } = this.event.req.body as { credential: string; client_id: string };
-
-    // Verify the ID token
-    const ticket = await this.client.verifyIdToken({
-      idToken: credential,
-      audience: client_id,
-    });
-
     // Get the payload from the ticket
-    const payload = ticket.getPayload();
+    const payload = this.ticket.getPayload();
     if (!payload) throw new Error('No payload');
 
     // Get the user ID from the payload
-    const {sub: userid, email, name} = payload;
-    if(!userid || !email || !name) throw new Error('Missing required fields');
+    const { sub: userid, email, name, picture } = payload;
+    if (!userid || !email || !name || !picture)
+      throw new Error('Missing required fields');
 
     // Check if the user already exists
     let existingUser = await UserCRUD.getUserByGoogleID(userid);
     if (!existingUser) {
       // Find the basic role so they dont have access to anything
-      const basicRole = await UserRole.findOne({ name: "Basic" });
-      if(!basicRole) throw new Error('Basic role not found');
+      const basicRole = await UserRoleCRUD.findRoleByName('Basic');
 
-      // Create User  
+      // Create User
       existingUser = await UserCRUD.createUser({
         google_id: userid,
         email,
         name,
-        role: basicRole._id,
+        picture,
+        role: basicRole._id
       });
     }
 
@@ -57,11 +76,14 @@ export class GoogleAuth extends Handler<ServerEvent> {
     const token = jwt.sign({ existingUser }, Globals.JWT_SECRET);
     const cookieOptions: CookieOptions = {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production', // Use secure in production
+      secure: Globals.IS_PRODUCTION, // Use secure in production
       sameSite: 'strict',
-      maxAge: 1000 * 60 * 60 * 24 * 90, // 90 days
+      maxAge: 1000 * 60 * 60 * 24 * 90 // 90 days
     };
-    this.event.res.status(HttpStatusCode.Ok).cookie('token', token, cookieOptions).json({ payload });
+    this.event.res
+      .status(HttpStatusCode.Ok)
+      .cookie('token', token, cookieOptions)
+      .json({ ...existingUser });
 
     return await new Promise((resolve) => resolve());
   }
