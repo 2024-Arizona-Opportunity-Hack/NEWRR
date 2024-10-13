@@ -7,14 +7,17 @@ const Footer = () => {
           Reptile Rescue, All Rights Reserved.
         </p>
         <div className="flex space-x-4">
-          <a href="tel:682-463-9453" className="hover:text-gray-300">
+          <a
+            href="tel:682-463-9453"
+            className="hover:text-gray-300 hover:underline"
+          >
             Contact Us
           </a>
           <a
             href="https://www.youtube.com/c/NaturesEdgeWildlifeandReptileRescue"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-gray-300"
+            className="hover:text-gray-300 hover:underline"
           >
             YouTube
           </a>
@@ -22,7 +25,7 @@ const Footer = () => {
             href="https://www.instagram.com/naturesedgewildliferescue/"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-gray-300"
+            className="hover:text-gray-300 hover:underline"
           >
             Instagram
           </a>
@@ -30,7 +33,7 @@ const Footer = () => {
             href="https://www.facebook.com/Naturesedgewildliferescue"
             target="_blank"
             rel="noreferrer"
-            className="hover:text-gray-300"
+            className="hover:text-gray-300 hover:underline"
           >
             Facebook
           </a>

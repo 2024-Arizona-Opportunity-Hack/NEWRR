@@ -1,7 +1,7 @@
 const ContactSection = () => {
   return (
     <section
-      className="bg-[#E8E8E8] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16 py-16 lg:py-0"
+      className="bg-[#E8E8E8] flex items-center justify-center px-16 py-16 lg:py-36"
       id="donate"
     >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
@@ -29,11 +29,17 @@ const ContactSection = () => {
           <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">
             Contact
           </h3>
-          <p className="font-['Outfit'] text-lg text-[#3A4D42] mb-2">
-            (682) 463-9453
+          <p className="font-['Outfit'] text-lg text-[#3A4D42] mb-2 hover:underline">
+            <a href="tel:682-463-9453">682-463-9453</a>
           </p>
-          <p className="font-['Outfit'] text-lg text-[#3A4D42] mb-4">
-            5828 Woodard Avenue
+          <p className="font-['Outfit'] text-lg text-[#3A4D42] mb-4 hover:underline">
+            <a
+              href="https://maps.app.goo.gl/9bEVKGLqsRVgysKb9"
+              target="_blank"
+              rel="noreferrer"
+            >
+              5828 Woodard Avenue
+            </a>
           </p>
           <p className="font-['Outfit'] text-lg text-[#3A4D42] mb-2">
             Follow us on Social Media:
@@ -43,7 +49,7 @@ const ContactSection = () => {
               href="https://www.youtube.com/c/NaturesEdgeWildlifeandReptileRescue"
               target="_blank"
               rel="noreferrer"
-              className="text-[#3A4D42] hover:text-gray-700"
+              className="text-[#3A4D42] hover:text-gray-700 hover:underline"
             >
               YouTube
             </a>
@@ -51,7 +57,7 @@ const ContactSection = () => {
               href="https://www.instagram.com/naturesedgewildliferescue/"
               target="_blank"
               rel="noreferrer"
-              className="text-[#3A4D42] hover:text-gray-700"
+              className="text-[#3A4D42] hover:text-gray-700 hover:underline"
             >
               Instagram
             </a>
@@ -59,7 +65,7 @@ const ContactSection = () => {
               href="https://www.facebook.com/Naturesedgewildliferescue"
               target="_blank"
               rel="noreferrer"
-              className="text-[#3A4D42] hover:text-gray-700"
+              className="text-[#3A4D42] hover:text-gray-700 hover:underline"
             >
               Facebook
             </a>

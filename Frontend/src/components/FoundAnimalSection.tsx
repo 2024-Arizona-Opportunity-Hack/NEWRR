@@ -1,7 +1,7 @@
 const FoundAnimalSection = () => {
   return (
     <section
-      className="bg-[#DAD7CE] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16 py-16 lg:py-0"
+      className="bg-[#DAD7CE] flex items-center justify-center px-16 py-16 lg:py-36"
       id="found"
     >
       <div className="container mx-auto">
@@ -75,7 +75,7 @@ const FoundAnimalSection = () => {
         </ul>
         <button className="bg-darkestgreen text-wolfwhite px-6 py-2 mt-6 rounded font-outfit font-medium">
           <a
-            href="https://forms.gle/7Q6Z8Q6Q7Q6Z8Q6Q7"
+            href="https://form.jotform.com/242856687555070"
             target="_blank"
             rel="noreferrer"
           >

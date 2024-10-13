@@ -30,7 +30,7 @@ const AdoptAnimalSection: React.FC = () => {
               </h4>
               <button className="bg-[#3A4D42] text-white px-4 py-2 mt-4 rounded font-outfit font-medium">
                 <a
-                  href="https://forms.gle/7Q6Z8Q6Q7Q6Z8Q6Q7"
+                  href="https://form.jotform.com/242855970936168"
                   target="_blank"
                   rel="noreferrer"
                 >
