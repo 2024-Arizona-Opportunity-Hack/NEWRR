@@ -32,15 +32,22 @@ const SearchBar: React.FC<{
     setFilters((prev) => ({ ...prev, [key]: value }));
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <div className="mb-4 px-16">
       <div className="flex items-center bg-gray-200 rounded-lg">
         <input
-          type="text"
+          type="search"
           placeholder="Search for animals in the database..."
           className="flex-grow p-2 bg-transparent outline-none"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
         <button onClick={handleSearch} className="p-2">
           <Search className="w-5 h-5" />
