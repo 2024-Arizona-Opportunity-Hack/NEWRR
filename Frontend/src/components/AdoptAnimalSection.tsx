@@ -1,7 +1,7 @@
-const AdoptAnimalSection = () => {
+const AdoptAnimalSection: React.FC = () => {
   return (
     <section
-      className="bg-[#3A4D42] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16"
+      className="bg-[#3A4D42] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] py-16 lg:py-0 px-16"
       id="adopt"
     >
       <div className="container mx-auto">
@@ -29,7 +29,13 @@ const AdoptAnimalSection = () => {
                 Animal Name
               </h4>
               <button className="bg-[#3A4D42] text-white px-4 py-2 mt-4 rounded font-outfit font-medium">
-                Adoption Form
+                <a
+                  href="https://form.jotform.com/242855970936168"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Adoption Form
+                </a>
               </button>
             </div>
           </div>

@@ -9,6 +9,7 @@ export default {
         lightgreen: "#588157",
         sage: "#A3B18A",
         white: "#FFFFFF",
+        wolfwhite: "#DAD7CD",
       },
     },
   },

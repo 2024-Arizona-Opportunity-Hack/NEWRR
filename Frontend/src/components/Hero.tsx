@@ -1,8 +1,11 @@
 import newrrLogo from "../assets/newrr.svg";
+import { useNavigate } from "react-router-dom";
 
 const Hero: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <main className="pt-16 sm:pt-20 flex items-center bg-[#FFFFFF] justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16">
+    <main className="pt-16 sm:pt-20 flex items-center bg-[#FFFFFF] justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] pt-24 pb-16 lg:pt-0 lg:pb-0 px-16">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div className="md:w-full mb-8 md:mb-0">
@@ -17,10 +20,16 @@ const Hero: React.FC = () => {
               animal find its place in nature or a loving home.
             </p>
             <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <button className="bg-[#3A4D42] text-white px-6 py-2 rounded font-outfit font-medium whitespace-nowrap">
+              <button
+                className="bg-[#3A4D42] text-white px-6 py-2 rounded font-outfit font-medium whitespace-nowrap"
+                onClick={() => navigate("/#found")}
+              >
                 Found an Animal?
               </button>
-              <button className="bg-white text-[#3A4D42] border border-[#3A4D42] px-6 py-2 rounded font-outfit font-medium whitespace-nowrap">
+              <button
+                className="bg-white text-[#3A4D42] border border-[#3A4D42] px-6 py-2 rounded font-outfit font-medium whitespace-nowrap"
+                onClick={() => navigate("/#donate")}
+              >
                 Donate
               </button>
             </div>
