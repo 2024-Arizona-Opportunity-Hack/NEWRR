@@ -19,13 +19,16 @@
 <!-- Add all team members -->
 
 ## Project Overview
-Brief description of your project and its goals.
+In order to properly solve the issues of Nature's Edge Wildlife and Reptile Rescue, we decided to build them a fully functioning website to replace their current website, which lacks high quality UX (see here: https://www.newrr.org/), and is unable to support their needed tools like an animal database, additional forms, and centralized donation tracking.
+We chose to decrease complexity for administrative users at the nonprofit by using forms from JotForm and facilitating donation and donation tracking with GiveButter. We centralize animal database editing and links to relevant form submissions and donating tracking all in one Admin Dashboard, which is accessible by logging in with Oauth. 
 
 ## Tech Stack
-- Frontend: Vite + React + Tailwind + TanStack Query
+- Frontend: Vite + React + Tailwind
 - Backend: Express.js
 - Database: MongoDB
-- APIs: 
+- APIs:
+- Cloud Services: AWS S3
+- Authorization: Google Oauth
 <!-- Add/modify as needed -->
 
 
@@ -33,11 +36,17 @@ Brief description of your project and its goals.
 Instructions on how to set up and run your project locally.
 
 ```bash
-# Example commands
-git clone [your-repo-link]
-cd [your-repo-name]
-npm install
-npm start
+git clone https://github.com/2024-Arizona-Opportunity-Hack/NEWRR
+cd NEWRR
+cd Frontend
+pnpm install
+pnpm run dev
+```
+and
+```bash
+cd Backend
+pnpm install
+
 ```
 
 
