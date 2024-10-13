@@ -14,5 +14,8 @@ export class GetRouter extends RequestRouter {
     this.router.get('/check-auth', (req, res) => {
       this.handleRequest(ValidRoutes.CheckAuth, req, res, false);
     });
+    this.router.get('/get-todo', (req, res) => {
+      this.handleRequest(ValidRoutes.GetToDo, req, res, true);
+    });
   }
 }
