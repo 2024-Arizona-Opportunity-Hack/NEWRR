@@ -1,7 +1,7 @@
 import React, { useState, useEffect, KeyboardEvent } from "react";
 import { FaCheck } from "react-icons/fa";
 import Box from "../Box";
-import Keyboard from "../keyboard";
+import Keyboard from "../Keyboard";
 import { GetMethods, IToDoItem, PostMethods, TodoStatus } from "@newrr/api";
 
 const ToDo: React.FC = () => {
@@ -29,7 +29,7 @@ const ToDo: React.FC = () => {
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       addTodo();
     }
   };
@@ -38,11 +38,12 @@ const ToDo: React.FC = () => {
     setTodos(
       todos.map((todo) => {
         if (todo.id === id) {
-          const nextStatus = {
-            [TodoStatus.NOT_DONE]: TodoStatus.COMPLETED,
-            [TodoStatus.COMPLETED]: TodoStatus.DELETED,
-            [TodoStatus.DELETED]: TodoStatus.NOT_DONE,
-          }[todo.completed] || TodoStatus.NOT_DONE; // Add fallback
+          const nextStatus =
+            {
+              [TodoStatus.NOT_DONE]: TodoStatus.COMPLETED,
+              [TodoStatus.COMPLETED]: TodoStatus.DELETED,
+              [TodoStatus.DELETED]: TodoStatus.NOT_DONE,
+            }[todo.completed] || TodoStatus.NOT_DONE; // Add fallback
           return { ...todo, completed: nextStatus };
         }
         return todo;
@@ -61,33 +62,33 @@ const ToDo: React.FC = () => {
 
   return (
     <div className="w-[50%] min-h-screen bg-white p-16 mt-16">
-      <div className='border border-black rounded-lg p-4'>
+      <div className="border border-black rounded-lg p-4">
         <h1 className="text-2xl font-bold mb-4 text-center">To-Do List</h1>
         <ul>
-        {todos
-          .filter((todo) => todo.completed !== TodoStatus.DELETED)
-          .map((todo) => (
-              <li
-              key={todo.id}
-                className="flex items-center mb-2 last:mb-0"
-            >
-              <button
-                onClick={() => toggleTodo(todo.id)}
-                 className="mr-2 text-lg"
-              >
-                  {todo.completed === TodoStatus.COMPLETED ? <FaCheck /> : <Box />}
-              </button>
-              <span className={`cursor-pointer ${todo.completed === TodoStatus.COMPLETED ? 'line-through' : ''}`}>
-                {todo.text}
-              </span>
-            </li>
-          ))}
+          {todos
+            .filter((todo) => todo.completed !== TodoStatus.DELETED)
+            .map((todo) => (
+              <li key={todo.id} className="flex items-center mb-2 last:mb-0">
+                <button
+                  onClick={() => toggleTodo(todo.id)}
+                  className="mr-2 text-lg"
+                >
+                  {todo.completed === TodoStatus.COMPLETED ? (
+                    <FaCheck />
+                  ) : (
+                    <Box />
+                  )}
+                </button>
+                <span
+                  className={`cursor-pointer ${todo.completed === TodoStatus.COMPLETED ? "line-through" : ""}`}
+                >
+                  {todo.text}
+                </span>
+              </li>
+            ))}
         </ul>
         <div className="mb-4 flex items-center">
-          <button
-            onClick={() => addTodo()}
-            className="mr-2 text-lg"
-          >
+          <button onClick={() => addTodo()} className="mr-2 text-lg">
             <Box />
           </button>
           <input
@@ -100,10 +101,13 @@ const ToDo: React.FC = () => {
           />
         </div>
         <div className="flex justify-between items-center">
-          <Keyboard />  
-          <button onClick={saveTodos} className="bg-darkestgreen text-white p-2 rounded">
-          Save
-        </button>
+          <Keyboard />
+          <button
+            onClick={saveTodos}
+            className="bg-darkestgreen text-white p-2 rounded"
+          >
+            Save
+          </button>
         </div>
       </div>
     </div>
