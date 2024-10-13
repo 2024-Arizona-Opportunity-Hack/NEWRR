@@ -6,7 +6,7 @@ const Footer = () => {
           © Copyright {new Date().getFullYear()} Nature's Edge Wildlife and
           Reptile Rescue, All Rights Reserved.
         </p>
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 text-center md:pl-4">
           <a
             href="tel:682-463-9453"
             className="hover:text-gray-300 hover:underline"
