@@ -2,6 +2,7 @@
 
 import React from "react";
 import Navbar from "../components/Navbar";
+import Form from "../components/form";
 
 const FormsDashboard: React.FC = () => {
   const adminLinks = [
@@ -11,9 +12,13 @@ const FormsDashboard: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <Navbar links={adminLinks} title="NEWRR Forms Dashboard" />
-      <div className="flex-1 flex flex-col md:flex-row justify-center items-stretch p-4 mt-16 mx-4"></div>
+    <div>
+      <div className="min-h-screen bg-white flex flex-col">
+        <Navbar links={adminLinks} title="NEWRR Forms Dashboard" />
+        <div className="flex-1 flex flex-row items-stretch p-4 mt-16 mx-4">
+          <Form name={"Test"} description={"Test"} link={""} />
+        </div>
+      </div>
     </div>
   );
 };
