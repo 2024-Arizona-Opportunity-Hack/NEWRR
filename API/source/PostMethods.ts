@@ -1,6 +1,7 @@
 import { GoogleAuthResponse } from 'API/Types/GoogleAuth';
 import { BaseMethods } from './BaseMethods';
 import axios from 'axios';
+import { IToDoItem } from 'API/Types/ToDo';
 
 export class PostMethods extends BaseMethods {
   constructor(baseUrl: string) {
@@ -14,5 +15,9 @@ export class PostMethods extends BaseMethods {
 
   public async postLogout(): Promise<void> {
     await axios.post(`${this.baseUrl}/logout`, {}, { withCredentials: true });
+  }
+
+  public async postTodo(todos: IToDoItem[]): Promise<void> {
+    await axios.post(`${this.baseUrl}/todo`, { todos }, { withCredentials: true });
   }
 }

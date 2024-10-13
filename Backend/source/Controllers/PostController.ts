@@ -6,6 +6,7 @@ import {
 import { ValidRoutes } from '../../server/ValidRoutes';
 import { GoogleAuth } from '../Handlers/PostHandlers/GoogleAuth';
 import { Logout } from '../Handlers/PostHandlers/Logout';
+import { ToDo } from '../Handlers/PostHandlers/Todo';
 
 export class PostController extends Controller<ServerEvent> {
   private routeId: ValidRoutes;
@@ -21,6 +22,8 @@ export class PostController extends Controller<ServerEvent> {
         return new GoogleAuth(this.trigger);
       case ValidRoutes.Logout:
         return new Logout(this.trigger);
+      case ValidRoutes.Todo:
+        return new ToDo(this.trigger);
       default:
         return null;
     }

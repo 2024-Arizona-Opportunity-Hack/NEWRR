@@ -14,5 +14,8 @@ export class PostRouter extends RequestRouter {
     this.router.post('/logout', (req, res) => {
       this.handleRequest(ValidRoutes.Logout, req, res, false);
     });
+    this.router.post('/todo', (req, res) => {
+      this.handleRequest(ValidRoutes.Todo, req, res, true);
+    });
   }
 }
