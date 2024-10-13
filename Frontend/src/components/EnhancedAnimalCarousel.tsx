@@ -7,6 +7,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 
+// Define the Animal interface to type the animal data
 interface Animal {
   id: number;
   name: string;
@@ -17,51 +18,60 @@ interface Animal {
   description: string;
 }
 
+// Define the props for the ResponsiveAnimalCarousel component
 interface ResponsiveAnimalCarouselProps {
-  animals: Animal[];
+  animals: Animal[]; // Array of animal objects
 }
 
 export default function ResponsiveAnimalCarousel({
   animals,
 }: ResponsiveAnimalCarouselProps) {
+  // State to track the current indices of animals being displayed
   const [currentIndices, setCurrentIndices] = useState<number[]>([]);
+  // State to track which animal is expanded for more details
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  // State to track the direction of the slide animation
   const [direction, setDirection] = useState(0);
 
+  // Effect to handle responsive behavior based on window size
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setCurrentIndices([0, 1, 2]);
+        setCurrentIndices([0, 1, 2]); // Show 3 animals on large screens
       } else if (window.innerWidth >= 768) {
-        setCurrentIndices([0, 1]);
+        setCurrentIndices([0, 1]); // Show 2 animals on medium screens
       } else {
-        setCurrentIndices([0]);
+        setCurrentIndices([0]); // Show 1 animal on small screens
       }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial setup
+    window.addEventListener("resize", handleResize); // Update on resize
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Function to move to the next set of animals
   const nextSlide = () => {
-    setDirection(1);
+    setDirection(1); // Set direction for animation
     setCurrentIndices((prev) => prev.map((i) => (i + 1) % animals.length));
-    setExpandedIndex(null);
+    setExpandedIndex(null); // Collapse any expanded animal
   };
 
+  // Function to move to the previous set of animals
   const prevSlide = () => {
-    setDirection(-1);
+    setDirection(-1); // Set direction for animation
     setCurrentIndices((prev) =>
       prev.map((i) => (i - 1 + animals.length) % animals.length)
     );
-    setExpandedIndex(null);
+    setExpandedIndex(null); // Collapse any expanded animal
   };
 
+  // Function to toggle the expanded view of an animal
   const toggleExpand = (index: number) => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
+  // Effect to handle keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") prevSlide();
@@ -69,7 +79,7 @@ export default function ResponsiveAnimalCarousel({
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  });
 
   return (
     <div className="relative w-full max-w-7xl mx-auto py-8 px-8 sm:py-12 sm:px-10 lg:py-16 lg:px-12">

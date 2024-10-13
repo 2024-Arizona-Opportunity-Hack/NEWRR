@@ -1,8 +1,10 @@
+// About component definition
 const About = () => {
   return (
     <section className="bg-[#61805B] flex items-center justify-center py-16 lg:py-36 px-16">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* What We Do Section */}
           <div>
             <h3 className="font-['Montserrat'] font-bold text-4xl text-white mb-4">
               What We Do
@@ -50,6 +52,7 @@ const About = () => {
               </li>
             </ul>
           </div>
+          {/* How the Process Works Section */}
           <div>
             <h3 className="font-['Montserrat'] font-bold text-4xl text-white mb-4">
               How the Process Works
