@@ -12,6 +12,11 @@ export class GetMethods extends BaseMethods {
     return response.data;
   }
 
+  public async getAdminUsers(): Promise<string> {
+    const response = await axios.get<string>(`${this.baseUrl}/get-admin-users`, { withCredentials: true });
+    return response.data;
+  }
+
   public async getTodo(): Promise<IToDoItem[]> {
     const response = await axios.get<IToDoItem[]>(`${this.baseUrl}/get-todo`, { withCredentials: true });
     return response.data;
