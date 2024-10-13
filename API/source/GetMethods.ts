@@ -1,8 +1,8 @@
-import { BaseMethods } from './BaseMethods';
-import axios, { AxiosError } from 'axios';
-import { UserResponse } from '../Types/User';
-import { IToDoItem } from 'API/Types/ToDo';
-import { IAnimalData, IBehavior } from '../Types/Animal';
+import { BaseMethods } from "./BaseMethods";
+import axios, { AxiosError } from "axios";
+import { UserDetails, UserResponse } from "../Types/User";
+import { IToDoItem } from "API/Types/ToDo";
+import { IAnimalData, IBehavior } from "../Types/Animal";
 export class GetMethods extends BaseMethods {
   constructor(baseUrl: string) {
     super(baseUrl);

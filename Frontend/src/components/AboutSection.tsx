@@ -1,15 +1,28 @@
+import { motion } from "framer-motion";
+import { Heart, Feather, Truck, BookOpen } from "lucide-react";
+
+// About component definition
 const About = () => {
   return (
     <section className="bg-[#61805B] flex items-center justify-center py-16 lg:py-36 px-16">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {/* What We Do Section */}
           <div>
-            <h3 className="font-['Montserrat'] font-bold text-4xl text-white mb-4">
-              What We Do
+            <h3 className="font-['Montserrat'] font-bold text-4xl text-white mb-4 flex items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mr-2"
+              >
+                What We Do
+              </motion.div>
             </h3>
             <ul className="text-white space-y-4">
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <Feather className="w-6 h-6 mr-2 text-blue-400" />
                   Wildlife Rehabilitation
                 </strong>
                 <p className="font-['Outfit'] text-base">
@@ -19,7 +32,8 @@ const About = () => {
                 </p>
               </li>
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <Heart className="w-6 h-6 mr-2 text-red-500" />
                   Exotic Reptile Rescue
                 </strong>
                 <p className="font-['Outfit'] text-base">
@@ -29,7 +43,8 @@ const About = () => {
                 </p>
               </li>
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <Truck className="w-6 h-6 mr-2 text-black" />
                   Transport Assistance
                 </strong>
                 <p className="font-['Outfit'] text-base">
@@ -39,7 +54,8 @@ const About = () => {
                 </p>
               </li>
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <BookOpen className="w-6 h-6 mr-2 text-green-400" />
                   Educational Outreach
                 </strong>
                 <p className="font-['Outfit'] text-base">
@@ -50,13 +66,22 @@ const About = () => {
               </li>
             </ul>
           </div>
+          {/* How the Process Works Section */}
           <div>
-            <h3 className="font-['Montserrat'] font-bold text-4xl text-white mb-4">
-              How the Process Works
+            <h3 className="font-['Montserrat'] font-bold text-4xl text-white mb-4 flex items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mr-2"
+              >
+                How the Process Works
+              </motion.div>
             </h3>
             <ul className="text-white space-y-4">
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <Heart className="w-6 h-6 mr-2 text-red-500" />
                   Report and Intake
                 </strong>
                 <p className="font-['Outfit'] text-base">
@@ -66,7 +91,8 @@ const About = () => {
                 </p>
               </li>
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <Feather className="w-6 h-6 mr-2 text-blue-400" />
                   Assessment and Care
                 </strong>
                 <p className="font-['Outfit'] text-base">
@@ -77,7 +103,8 @@ const About = () => {
                 </p>
               </li>
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <Truck className="w-6 h-6 mr-2 text-black" />
                   Rehabilitation and Monitoring
                 </strong>
                 <p className="font-['Outfit'] text-lg">
@@ -87,7 +114,8 @@ const About = () => {
                 </p>
               </li>
               <li>
-                <strong className="font-['Outfit'] font-normal text-xl">
+                <strong className="font-['Outfit'] font-bold text-xl flex items-center">
+                  <BookOpen className="w-6 h-6 mr-2 text-green-400" />
                   Release or Adoption
                 </strong>
                 <p className="font-['Outfit'] text-lg">

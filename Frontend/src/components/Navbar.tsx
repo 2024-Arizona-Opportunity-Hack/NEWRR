@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import newrrLogo from "../assets/newrr.svg";
 
 interface NavbarProps {
-  links: { name: string; href: string }[];
+  links: { name: string; href: string; onClick?: () => void }[];
   title: string;
-  color?: string
+  color?: string;
+  onClick?: () => void;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
+const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -55,23 +56,43 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
     };
   }, []);
 
+  const handleLinkClick = (href: string, onClick?: () => void) => {
+    if (onClick) {
+      onClick();
+    } else {
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
-    <nav>
+    <nav className="fixed top-0 left-0 right-0 z-50">
       <div
         ref={navbarRef}
         style={{ backgroundColor: color || "#FFFFFF" }}
-        className={`fixed top-0 left-0 right-0 text-[#101010] z-50 transition-transform duration-300 ${
+        className={`text-[#101010] transition-transform duration-300 ${
           isNavbarVisible
             ? "transform translate-y-0"
             : "transform -translate-y-full"
         }`}
       >
-        <div className="flex items-center justify-between h-16 sm:h-20 px-16">
-          <div className="flex items-center">
-            <img src={newrrLogo} alt="NEWRR logo" className="w-12 h-12 mr-3" />
+        <div className="flex items-center justify-between h-16 sm:h-20 px-4 md:px-16">
+          <div
+            className="flex items-center"
+            onClick={onClick}
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={newrrLogo}
+              alt="NEWRR logo"
+              className="w-10 h-10 sm:w-12 sm:h-12 mr-2 sm:mr-3"
+            />
             <Link
               to="/"
-              className="font-['Montserrat'] font-bold text-2xl sm:text-3xl"
+              className="font-['Montserrat'] font-bold text-xl sm:text-2xl md:text-3xl"
             >
               <span className="block md:hidden">NEWRR</span>
               <span className="hidden md:block">{title}</span>
@@ -79,13 +100,17 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
           </div>
           <div className="hidden md:flex space-x-4">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.name}
-                to={link.href}
+                href={link.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleLinkClick(link.href, link.onClick);
+                }}
                 className="hover:text-gray-700"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
           <div className="md:hidden">
@@ -93,13 +118,9 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
               onClick={toggleMenu}
               className="text-[#101010] focus:outline-none"
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24">
                 <path
+                  stroke="#101010"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
@@ -116,7 +137,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
       </div>
       <div
         ref={menuRef}
-        className={`fixed h-screen right-0 max-w-xs w-full bg-[#FFFFFF] text-[#101010] transform ${
+        className={`fixed h-screen right-0 max-w-xs w-full bg-[#FFFFFF] text-[#101010] z-60 transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center`}
       >
@@ -124,9 +145,16 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color }) => {
           <ul className="space-y-8 text-center">
             {links.map((link) => (
               <li key={link.name}>
-                <Link to={link.href} className="hover:text-gray-700">
+                <a
+                  href={link.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick(link.href, link.onClick);
+                  }}
+                  className="hover:text-gray-700"
+                >
                   {link.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
