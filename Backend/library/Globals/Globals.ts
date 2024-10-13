@@ -19,6 +19,7 @@ export class Globals {
   public static readonly MONGO_URI = process.env.MONGODB_URI || '';
   public static readonly PORT = process.env.PORT || 3000;
   public static readonly API_URL = process.env.API_URL || '';
-
+  public static readonly FRONTEND_URL = process.env.FRONTEND_URL || '';
+  public static readonly JWT_SECRET = process.env.JWT_SECRET || '';
   // VARIABLE ACCESSORS BASED ON ENVIRONMENT
 }

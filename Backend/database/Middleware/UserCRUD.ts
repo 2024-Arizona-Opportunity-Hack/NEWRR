@@ -2,7 +2,7 @@ import { IUser } from "../Models/User";
 import { User } from "../Models/User";
 
 export class UserCRUD {
-    public static async createUser(user: IUser): Promise<IUser> {
+    public static async createUser(user: Omit<IUser, '_id'>): Promise<IUser> {
         const newUser = await User.create(user);
         return newUser;
     }
