@@ -9,11 +9,11 @@ interface FormProps {
 const Form: React.FC<FormProps> = ({ name, description, link }) => {
   return (
     <div
-      className="bg-white shadow-md rounded p-4 mb-4 cursor-pointer hover:bg-gray-100 transition"
+      className="bg-darkestgreen shadow-md rounded p-4 cursor-pointer hover:bg-darkergreen transition h-full"
       onClick={() => (window.location.href = link)}
     >
-      <h3 className="text-lg font-bold text-darkestgreen">{name}</h3>
-      <p className="text-gray-700">{description}</p>
+      <h3 className="text-2xl font-bold text-wolfwhite mb-2">{name}</h3>
+      <p className="text-wolfwhite">{description}</p>
     </div>
   );
 };
