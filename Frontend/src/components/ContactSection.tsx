@@ -1,6 +1,9 @@
 const ContactSection = () => {
   return (
-    <section className="bg-[#E8E8E8] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16">
+    <section
+      className="bg-[#E8E8E8] flex items-center justify-center min-h-[calc(100vh)] sm:min-h-[calc(100vh)] px-16"
+      id="donate"
+    >
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
         <div className="text-left">
           <h3 className="font-['Montserrat'] font-bold text-4xl text-[#3A4D42] mb-4">

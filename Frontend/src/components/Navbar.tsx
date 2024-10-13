@@ -50,16 +50,16 @@ const Navbar: React.FC = () => {
   }, []);
 
   return (
-    <nav
-      ref={navbarRef}
-      className={`fixed top-0 left-0 right-0 bg-[#FFFFFF] text-[#101010] z-50 transition-transform duration-300 px-16 ${
-        isNavbarVisible
-          ? "transform translate-y-0"
-          : "transform -translate-y-full"
-      }`}
-    >
-      <div className="container mx-auto">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+    <nav>
+      <div
+        ref={navbarRef}
+        className={`fixed top-0 left-0 right-0 bg-[#FFFFFF] text-[#101010] z-50 transition-transform duration-300 ${
+          isNavbarVisible
+            ? "transform translate-y-0"
+            : "transform -translate-y-full"
+        }`}
+      >
+        <div className="flex items-center justify-between h-16 sm:h-20 px-16">
           <div className="flex items-center">
             <img src={newrrLogo} alt="NEWRR logo" className="w-12 h-12 mr-3" />
             <Link
@@ -111,12 +111,12 @@ const Navbar: React.FC = () => {
       </div>
       <div
         ref={menuRef}
-        className={`fixed inset-y-0 right-0 max-w-xs w-full bg-[#FFFFFF] text-[#101010] transform ${
+        className={`fixed h-screen right-0 max-w-xs w-full bg-[#FFFFFF] text-[#101010] transform ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center`}
       >
         <div className="flex flex-col space-y-8 p-4 items-center">
-          <ul className="space-y-4 text-center">
+          <ul className="space-y-8 text-center">
             <li>
               <Link to="/" className="hover:text-gray-700">
                 Found an Animal?
