@@ -17,5 +17,8 @@ export class GetRouter extends RequestRouter {
     this.router.get('/get-todo', (req, res) => {
       this.handleRequest(ValidRoutes.GetToDo, req, res, true);
     });
+    this.router.get('/get-admin-users', (req, res) => {
+      this.handleRequest(ValidRoutes.GetAdminUsers, req, res, true);
+    });
   }
 }

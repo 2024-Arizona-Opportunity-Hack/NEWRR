@@ -1,6 +1,6 @@
 import { BaseMethods } from './BaseMethods';
 import axios, { AxiosError } from 'axios';
-import { UserResponse } from '../Types/User';
+import { UserDetails, UserResponse } from '../Types/User';
 import { IToDoItem } from 'API/Types/ToDo';
 export class GetMethods extends BaseMethods {
   constructor(baseUrl: string) {
@@ -9,6 +9,11 @@ export class GetMethods extends BaseMethods {
 
   public async getHelloWorld(): Promise<string> {
     const response = await axios.get<string>(`${this.baseUrl}/helloworld`);
+    return response.data;
+  }
+
+  public async getAdminUsers(): Promise<UserDetails[]> {
+    const response = await axios.get<UserDetails[]>(`${this.baseUrl}/get-admin-users`, { withCredentials: true });
     return response.data;
   }
 

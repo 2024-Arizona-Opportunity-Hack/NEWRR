@@ -3,30 +3,27 @@ import AnimalManagement from "../components/admin/AnimalManagement";
 import TaskManagement from "../components/admin/TaskManagement";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-// import FinancialManagement from "../components/admin/FinancialManagement";
-// import { useUser } from "../hooks/useUser";
-// import NotLoggedIn from "../components/ NotLoggedIn";
+import { PostMethods } from "@newrr/api";
+import { useQueryClient } from "@tanstack/react-query";
 
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
+  const handleLogout = async () => {
+    const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
+    await postMethods.postLogout();
+    queryClient.invalidateQueries({ queryKey: ["user"] });
+    navigate("/admin");
+  };
+
   const adminLinks = [
-    { name: "Tasks", href: "/admin/dashboard/#tasks" },
-    { name: "Animals", href: "/admin/dashboard/#animals" },
-    { name: "Financials", href: "/admin/dashboard/#financials" },
-    { name: "Log out", href: "" },
+    { name: "Management", href: "#management" },
+    { name: "Admins", href: "#admins" },
+    { name: "Animals", href: "#animals" },
+    { name: "Log out", href: "#", onClick: handleLogout },
   ];
 
-  // const { data: user } = useUser();
-
-  // const hasPerms = () => {
-  //   console.log(user);
-  //   if (!user || !user.data) return false;
-  //   return user.data.role.perm_level > 5;
-  // };
-
-  // const hasAccess = hasPerms();
-  // if(!user) return <NotLoggedIn hasUser={false}/>;
-  // if(!hasAccess) return <NotLoggedIn hasUser={true}/>;
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar
@@ -35,9 +32,15 @@ const AdminDashboard: React.FC = () => {
         onClick={() => navigate("/admin/dashboard")}
       />
 
-      <TaskManagement />
-      {/* <FinancialManagement /> */}
-      <AnimalManagement />
+      <div id="management">
+        <TaskManagement />
+      </div>
+      <div id="admins">
+        <AdminUsers />
+      </div>
+      <div id="animals">
+        <AnimalManagement />
+      </div>
     </div>
   );
 };

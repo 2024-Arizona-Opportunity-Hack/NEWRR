@@ -60,7 +60,7 @@ export class GoogleAuth extends Handler<ServerEvent> implements IHasChecks {
     let existingUser = await UserCRUD.getUserByGoogleID(userid);
     if (!existingUser) {
       // Find the basic role so they dont have access to anything
-      const basicRole = await UserRoleCRUD.findRoleByName('Basic');
+      const basicRole = await UserRoleCRUD.findRoleByName('basic');
 
       // Create User
       existingUser = await UserCRUD.createUser({

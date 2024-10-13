@@ -62,7 +62,7 @@ const AdoptAnimalSection: React.FC = () => {
         // Additional animal data...
       ]);
       setLoading(false); // Set loading to false after data is fetched
-    }, 8000); // Simulate an 8-second delay
+    }, 1000); // Simulate an 8-second delay
   }, [results]);
 
   return (
@@ -84,6 +84,7 @@ const AdoptAnimalSection: React.FC = () => {
           <Spinner /> // Show a spinner while loading
         ) : results.length > 0 ? (
           <div className="carousel flex justify-center items-center space-x-4">
+            <EnhancedAnimalCarousel animals={results} />
             <EnhancedAnimalCarousel animals={results} />
           </div>
         ) : (
