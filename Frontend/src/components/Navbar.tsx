@@ -2,7 +2,12 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import newrrLogo from "../assets/newrr.svg";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  links: { name: string; href: string }[];
+  title: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ links, title }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -67,21 +72,19 @@ const Navbar: React.FC = () => {
               className="font-['Montserrat'] font-bold text-2xl sm:text-3xl"
             >
               <span className="block md:hidden">NEWRR</span>
-              <span className="hidden md:block">
-                Nature's Edge Wildlife and Reptile Rescue
-              </span>
+              <span className="hidden md:block">{title}</span>
             </Link>
           </div>
           <div className="hidden md:flex space-x-4">
-            <Link to="/#found" className="hover:text-gray-700">
-              Found an Animal?
-            </Link>
-            <Link to="#adopt" className="hover:text-gray-700">
-              Adopt an Animal
-            </Link>
-            <Link to="/#donate" className="hover:text-gray-700">
-              Donate
-            </Link>
+            {links.map((link) => (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="hover:text-gray-700"
+              >
+                {link.name}
+              </Link>
+            ))}
           </div>
           <div className="md:hidden">
             <button
@@ -117,21 +120,13 @@ const Navbar: React.FC = () => {
       >
         <div className="flex flex-col space-y-8 p-4 items-center">
           <ul className="space-y-8 text-center">
-            <li>
-              <Link to="/#found" className="hover:text-gray-700">
-                Found an Animal?
-              </Link>
-            </li>
-            <li>
-              <Link to="/#adopt" className="hover:text-gray-700">
-                Adopt an Animal
-              </Link>
-            </li>
-            <li>
-              <Link to="/#donate" className="hover:text-gray-700">
-                Donate
-              </Link>
-            </li>
+            {links.map((link) => (
+              <li key={link.name}>
+                <Link to={link.href} className="hover:text-gray-700">
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

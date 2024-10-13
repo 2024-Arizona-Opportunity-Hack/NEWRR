@@ -1,8 +1,11 @@
 import Home from "./pages/homepage";
-import Admin from "./pages/admin";
 import ScrollToHashElement from "./components/ScrollToHashElement";
 import Test from "./pages/test";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AdminDashboard from "./pages/admin-dashboard";
+import FinancialDashboard from "./pages/financial-dashboard";
+import FormsDashboard from "./pages/forms-dashboard";
+import AnimalDashboard from "./pages/animal-dashboard";
 
 function App() {
   return (
@@ -10,7 +13,14 @@ function App() {
       <ScrollToHashElement />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
+        {/* <Route path="/admin" element={<Admin />} /> */}
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
+        <Route
+          path="/admin/financial-dashboard"
+          element={<FinancialDashboard />}
+        />
+        <Route path="/admin/animal-dashboard" element={<AnimalDashboard />} />
+        <Route path="/admin/forms-dashboard" element={<FormsDashboard />} />
         <Route path="/test" element={<Test />} />
       </Routes>
       <ScrollToHashElement />

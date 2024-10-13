@@ -8,9 +8,17 @@ import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 
 const Home: React.FC = () => {
+  const homepageLinks = [
+    { name: "Found an Animal?", href: "/#found" },
+    { name: "Adopt an Animal", href: "/#adopt" },
+    { name: "Donate", href: "/#donate" },
+  ];
   return (
     <div className="min-h-screen bg-gray-100">
-      <Navbar />
+      <Navbar
+        links={homepageLinks}
+        title={"Nature's Edge Wildlife and Reptile Rescue"}
+      />
       <Hero />
       <About />
       <FoundAnimalSection />
