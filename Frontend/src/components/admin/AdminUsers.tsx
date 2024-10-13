@@ -1,22 +1,16 @@
 import React, { useState, useEffect } from "react";
-
-interface User {
-  id: number;
-  email: string;
-  role: string;
-}
+import { GetMethods, PostMethods, UserDetails} from "@newrr/api";
 
 const AdminUsers: React.FC = () => {
-  const [users, setUsers] = useState<User[]>([]);
+  const [users, setUsers] = useState<UserDetails[]>([]);
   const [email, setEmail] = useState<string>("");
 
   // Mock backend call to fetch users
   useEffect(() => {
-    // Replace this with your actual backend call
     const fetchUsers = async () => {
-      const response = await fetch('/api/users'); // Example endpoint
-      const data = await response.json();
-      setUsers(data);
+      const getMethods = new GetMethods(import.meta.env.VITE_G_API_URL);
+      const users = await getMethods.getAdminUsers();
+      setUsers(users);
     };
 
     fetchUsers();
@@ -24,8 +18,8 @@ const AdminUsers: React.FC = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Add backend logic to handle submission
-    console.log("Email submitted:", email);
+    const postMethods = new PostMethods(import.meta.env.VITE_G_API_URL);
+    postMethods.postAddAdminUser(email);
   };
 
   return (
@@ -54,11 +48,11 @@ const AdminUsers: React.FC = () => {
         </thead>
         <tbody>
           {users.length > 0 ? (
-            users.map((user) => (
-              <tr key={user.id}>
-                <td style={{ border: "1px solid black", padding: "8px" }}>{user.id}</td>
+            users.map((user, index) => (
+              <tr key={`user-${index}`}>
+                <td style={{ border: "1px solid black", padding: "8px" }}>{index}</td>
                 <td style={{ border: "1px solid black", padding: "8px" }}>{user.email}</td>
-                <td style={{ border: "1px solid black", padding: "8px" }}>{user.role}</td>
+                <td style={{ border: "1px solid black", padding: "8px" }}>{user.role.name}</td>
               </tr>
             ))
           ) : (

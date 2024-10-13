@@ -8,7 +8,7 @@ export interface UserResponse {
     data: UserDetails | null;
 }
 
-interface UserDetails {
+export interface UserDetails {
     picture: string;
     email: string;
     name: string;
