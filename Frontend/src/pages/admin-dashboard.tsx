@@ -1,5 +1,5 @@
 import React from "react";
-import AnimalManagament from "../components/admin/AnimalManagament";
+import AnimalManagement from "../components/admin/AnimalManagement";
 import TaskManagement from "../components/admin/TaskManagement";
 import Navbar from "../components/Navbar";
 import Users from "../components/admin/Users";
@@ -40,7 +40,7 @@ const AdminDashboard: React.FC = () => {
         <Users />
       </div>
       <div id="animals">
-        <AnimalManagament />
+        <AnimalManagement />
       </div>
     </div>
   );
