@@ -1,6 +1,10 @@
 # Team 8 - Amdahl's Law
 #### 2024_fall Hackathon Project
 
+## MOST UPDATED REPO(S)
+- [Backend repo](https://github.com/materwelonDhruv/newrr-backend/)
+- [Frontend repo](https://github.com/JonathanAmdahl/oc-frontend)
+
 ## Quick Links
 - [Hackathon Details](https://www.ohack.dev/hack/2024_fall)
 - [Team Slack Channel](https://opportunity-hack.slack.com/app_redirect?channel=amdahls-law)
