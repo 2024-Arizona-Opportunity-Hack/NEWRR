@@ -45,21 +45,21 @@ const Tile: React.FC<TileProps> = ({ title, icon, items }) => {
               </h3>
             </div>
             {item.actions ? (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex gap-x-2">
                 <button
                   onClick={() =>
                     copyToClipboard(
                       `https://example.com/${item.name.toLowerCase().replace(" ", "-")}`
                     )
                   }
-                  className="bg-sage text-darkestgreen px-2 py-1 rounded-md text-xs md:text-sm flex items-center"
+                  className="bg-sage text-darkestgreen px-2 py-1 rounded-md text-xs md:text-sm flex items-center justify-center w-1/2"
                 >
                   <Share2 className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                   Share
                 </button>
                 <a
                   href={item.url || "#"}
-                  className="bg-sage text-darkestgreen px-2 py-1 rounded-md text-xs md:text-sm flex items-center"
+                  className="bg-sage text-darkestgreen px-2 py-1 rounded-md text-xs md:text-sm flex items-center justify-center w-1/2"
                 >
                   <MessageSquare className="w-3 h-3 md:w-4 md:h-4 mr-1" />
                   Responses

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import newrrLogo from "../assets/newrr.svg";
 
 interface NavbarProps {
-  links: { name: string; href: string }[];
+  links: { name: string; href: string; onClick?: () => void }[];
   title: string;
   color?: string;
   onClick?: () => void;
@@ -22,23 +22,21 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!isMenuOpen) {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop.current) {
-          setIsNavbarVisible(false);
-        } else {
-          setIsNavbarVisible(true);
-        }
-        lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+      if (scrollTop > lastScrollTop.current) {
+        setIsNavbarVisible(false);
+      } else {
+        setIsNavbarVisible(true);
       }
+      lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop;
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [isMenuOpen]);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -64,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
         ref={navbarRef}
         style={{ backgroundColor: color || "#FFFFFF" }}
         className={`text-[#101010] transition-transform duration-300 ${
-          isNavbarVisible || isMenuOpen
+          isNavbarVisible
             ? "transform translate-y-0"
             : "transform -translate-y-full"
         }`}
@@ -90,13 +88,14 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
           </div>
           <div className="hidden md:flex space-x-4">
             {links.map((link) => (
-              <Link
+              <a
                 key={link.name}
-                to={link.href}
+                href={link.href}
+                onClick={link.onClick}
                 className="hover:text-gray-700"
               >
                 {link.name}
-              </Link>
+              </a>
             ))}
           </div>
           <div className="md:hidden">
@@ -131,9 +130,19 @@ const Navbar: React.FC<NavbarProps> = ({ links, title, color, onClick }) => {
           <ul className="space-y-8 text-center">
             {links.map((link) => (
               <li key={link.name}>
-                <Link to={link.href} className="hover:text-gray-700">
+                <a
+                  href={link.href}
+                  onClick={(e) => {
+                    if (link.onClick) {
+                      e.preventDefault();
+                      link.onClick();
+                    }
+                    setIsMenuOpen(false);
+                  }}
+                  className="hover:text-gray-700"
+                >
                   {link.name}
-                </Link>
+                </a>
               </li>
             ))}
           </ul>
