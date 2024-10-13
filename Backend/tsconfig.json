@@ -3,7 +3,7 @@
   "compilerOptions": {
     "composite": true,
     "paths": {
-      "@monorepo/api": ["../API/source/index.ts"]
+      "@newrr/api": ["../API/index.ts"]
     }
   },
   "references": [{ "path": "../API" }]

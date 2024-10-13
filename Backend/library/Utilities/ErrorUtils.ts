@@ -14,6 +14,18 @@ import {
 } from '../Errors/Params';
 import { ErrorResponse } from '../Interfaces/Errors';
 import { LoggerUtils } from './LoggerUtils';
+import {
+  AnimalDoesNotExist,
+  AnimalDoesNotExistRes,
+  NoAnimalsFound,
+  NoAnimalsFoundRes
+} from '../Errors/Animal';
+import {
+  BehaviorAlreadyExists,
+  BehaviorAlreadyExistsRes,
+  NoBehaviorsSaved,
+  NoBehaviorsSavedRes
+} from '../Errors/Behavior';
 
 export type CustomErrorType = new (...args: any[]) => Error;
 
@@ -41,7 +53,11 @@ export class ErrorUtils {
     [
       MissingBody.name,
       (error: MissingBody) => new MissingBodyRes(error.missingBody)
-    ]
+    ],
+    [AnimalDoesNotExist.name, () => new AnimalDoesNotExistRes()],
+    [NoAnimalsFound.name, () => new NoAnimalsFoundRes()],
+    [NoBehaviorsSaved.name, () => new NoBehaviorsSavedRes()],
+    [BehaviorAlreadyExists.name, () => new BehaviorAlreadyExistsRes()]
   ]);
 
   public static getErrorRes(

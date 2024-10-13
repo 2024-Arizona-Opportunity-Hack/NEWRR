@@ -16,7 +16,7 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@monorepo/api": ["API/source/index.ts"]
+      "@newrr/api": ["API/index.ts"]
     }
   },
   "include": ["API/**/*.ts", "Frontend/**/*.ts", "Backend/**/*.ts"],

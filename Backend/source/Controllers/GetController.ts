@@ -4,7 +4,7 @@ import {
   ServerEvent
 } from '../../library/Interfaces/HandlerController';
 import { ValidRoutes } from '../../server/ValidRoutes';
-import { GetHealth } from '../Handlers/GetHandlers/HelloWorld';
+import { GetHealth } from '../Handlers/GetHandlers/GetHealth';
 
 export class GetController extends Controller<ServerEvent> {
   private routeId: ValidRoutes;

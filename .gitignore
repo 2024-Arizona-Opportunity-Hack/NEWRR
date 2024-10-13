@@ -28,6 +28,8 @@ build/
 *.log
 Logs/
 
+pnpm-lock.yaml
+
 # Ignore coverage reports
 coverage/
 

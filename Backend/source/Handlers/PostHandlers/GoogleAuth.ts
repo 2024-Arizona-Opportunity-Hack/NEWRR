@@ -1,4 +1,4 @@
-import { UserCRUD } from '../../../database/Middleware/UserCRUD';
+import { UserCRUD } from '../../../database/Services/UserCRUD';
 import { Catchable } from '../../../library/Decorators/Catchable';
 import {
   Handler,
