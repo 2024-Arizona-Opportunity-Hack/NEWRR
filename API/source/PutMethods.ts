@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { IAnimalData, UpdateableAnimalKeys } from '../Types/Animal';
-import { BaseMethods } from './BaseMethods';
+import axios from "axios";
+import { IAnimalData, UpdateableAnimalKeys } from "../Types/Animal";
+import { BaseMethods } from "./BaseMethods";
 
 export class PutMethods extends BaseMethods {
   constructor(baseUrl: string) {
