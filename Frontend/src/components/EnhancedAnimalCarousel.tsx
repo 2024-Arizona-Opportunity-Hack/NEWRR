@@ -33,7 +33,7 @@ export default function ResponsiveAnimalCarousel({
   // State to track the direction of the slide animation
   const [direction, setDirection] = useState(0);
 
-  // Effect to handle responsive behavior based on window size
+  // Set the number of visible slides based on screen width (3 for desktop, 2 for tablet, 1 for mobile)
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
