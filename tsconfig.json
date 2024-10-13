@@ -16,7 +16,8 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@newrr/api": ["API/index.ts"]
+      "@newrr/api": ["API/index.ts"],
+      "@newrr/api/*": ["API/*"]
     }
   },
   "include": ["API/**/*.ts", "Frontend/**/*.ts", "Backend/**/*.ts"],
