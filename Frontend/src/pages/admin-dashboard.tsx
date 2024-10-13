@@ -3,7 +3,7 @@ import AnimalManagement from "../components/admin/AnimalManagament";
 import TaskManagement from "../components/admin/TaskManagement";
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import FinancialManagement from "../components/admin/FinancialManagement";
+// import FinancialManagement from "../components/admin/FinancialManagement";
 // import { useUser } from "../hooks/useUser";
 // import NotLoggedIn from "../components/ NotLoggedIn";
 
@@ -36,8 +36,8 @@ const AdminDashboard: React.FC = () => {
       />
 
       <TaskManagement />
+      {/* <FinancialManagement /> */}
       <AnimalManagement />
-      <FinancialManagement />
     </div>
   );
 };
