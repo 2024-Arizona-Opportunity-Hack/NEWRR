@@ -37,22 +37,22 @@ const AdminUsers: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Admin Users</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", alignItems: "center" }}>
-        <label htmlFor="email" style={{ marginRight: "10px" }}>Add email:</label>
+    <div style={{ margin: "20px", justifyContent: "center", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <h1 className="text-4xl font-extrabold text-center my-8">Admin Users</h1>
+      <form onSubmit={handleSubmit} className="flex items-center justify-center mb-4 w-full max-w-2xl mx-auto">
+        <label htmlFor="email" className="mr-2 whitespace-nowrap">Add email:</label>
         <input
           type="email"
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          style={{ marginRight: "10px" }}
+          className="flex-grow mr-2 px-2 py-1 border rounded"
           required
         />
-        <button type="submit">Add</button>
+        <button type="submit" className="px-4 py-1 bg-blue-500 text-white rounded whitespace-nowrap">Add</button>
       </form>
 
-      <table style={{ marginTop: "20px", width: "100%", borderCollapse: "collapse" }}>
+      <table style={{ marginTop: "20px", width: "60%", borderCollapse: "collapse" }}>
         <thead>
           <tr>
             <th style={{ border: "1px solid black", padding: "8px" }}>ID</th>
