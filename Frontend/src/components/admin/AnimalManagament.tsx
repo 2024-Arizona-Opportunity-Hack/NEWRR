@@ -37,7 +37,12 @@ const AnimalManagement: React.FC = () => {
         status: "In Rehabilitation",
         description:
           "Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest. Luna is a young wolf found injured in the forest.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: [
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+          "https://images.unsplash.com/photo-1568860357750-5ca7b2e9f3e6?w=500&h=500&fit=crop",
+          "https://images.unsplash.com/photo-1531386151447-fd76ad50012f?w=500&h=500&fit=crop",
+        ],
       },
       {
         id: 2,
@@ -117,7 +122,10 @@ const AnimalManagement: React.FC = () => {
         status: "Rehabilitated",
         description:
           "Milo was rehabilitated after being found in a garden with an injured paw.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: [
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+        ],
       },
       {
         id: 10,
@@ -127,7 +135,9 @@ const AnimalManagement: React.FC = () => {
         status: "In Rehabilitation",
         description:
           "Stella, a rescued penguin, is recovering from an oil spill incident.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: [
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+        ],
       },
       {
         id: 11,
@@ -137,7 +147,9 @@ const AnimalManagement: React.FC = () => {
         status: "Released",
         description:
           "Duke, a sea turtle, was released after being treated for a shell injury.Sasha is a rescued python that was nursed back to health after an infection. Sasha is a rescued python that was nursed back to health after an infection. Sasha is a rescued python that was nursed back to health after an infection. Sasha is a rescued python that was nursed back to health after an infection.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: [
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+        ],
       },
       {
         id: 12,
@@ -147,7 +159,9 @@ const AnimalManagement: React.FC = () => {
         status: "Rehabilitated",
         description:
           "Sasha is a rescued python that was nursed back to health after an infection.",
-        images: ["/placeholder.svg?height=200&width=200"],
+        images: [
+          "https://images.unsplash.com/photo-1612024782955-49fae79e42bb?w=500&h=500&fit=crop",
+        ],
       },
     ];
     setAnimals(dummyAnimals);

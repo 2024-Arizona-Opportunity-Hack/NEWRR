@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ImageSlider from "./ImageSlider";
 import { Eye } from "lucide-react";
 
 interface Animal {
@@ -23,7 +24,7 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
 
   return (
     <div
-      className={`bg-gray-100 rounded-lg shadow-md p-4 mb-4 ${expanded ? "h-auto" : "h-20"} transition-all duration-300`}
+      className={`h-16 bg-gray-100 rounded-lg shadow-md p-4 mb-4 ${expanded ? "h-auto" : "h-20"} transition-all duration-300`}
     >
       <div
         className={`flex justify-between items-center ${expanded ? "mb-4" : ""}`}
@@ -52,12 +53,8 @@ const AnimalCard: React.FC<{ animal: Animal }> = ({ animal }) => {
           <div className="flex-grow overflow-y-auto pr-4 custom-scrollbar">
             <p className="text-sm leading-relaxed">{animal.description}</p>
           </div>
-          <div className="relative h-40">
-            <img
-              src={animal.images[0]}
-              alt={animal.name}
-              className="w-full h-full object-cover rounded"
-            />
+          <div className="relative">
+            <ImageSlider images={animal.images} />
           </div>
         </div>
       )}
