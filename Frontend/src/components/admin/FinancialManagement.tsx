@@ -1,7 +1,7 @@
 import React from "react";
 
 const FinancialManagement: React.FC = () => {
-  return <div>FinancialManagement</div>;
+  return <div className="min-h-screen bg-wolfwhite"></div>;
 };
 
 export default FinancialManagement;
