@@ -1,5 +1,5 @@
 # Team 8 - Amdahl's Law
-#### 2024_fall Hackathon Project
+# 2024 Opportunity Hack @ASU Winners
 
 ## MOST UPDATED REPO(S)
 - [Backend repo](https://github.com/materwelonDhruv/newrr-backend/)
@@ -28,11 +28,10 @@ In order to properly solve the issues of Nature's Edge Wildlife and Reptile Resc
 We chose to decrease complexity for administrative users at the nonprofit by using forms from JotForm and facilitating donation and donation tracking with GiveButter. We centralize animal database editing and links to relevant form submissions and donating tracking all in one Admin Dashboard, which is accessible by logging in with Oauth. 
 
 ## Tech Stack
-- Frontend: Vite + React + Tailwind
-- Backend: Express.js
+- Frontend: Vite + React + Typescript + Tailwind
+- Backend: Typescript, Express.js
 - Database: MongoDB
-- APIs:
-- Cloud Services: AWS S3
+- Cloud Services: Railway and Vercel, a little AWS S3
 - Authorization: Google Oauth
 <!-- Add/modify as needed -->
 
